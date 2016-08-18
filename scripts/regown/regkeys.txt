@@ -1,0 +1,16 @@
+hkey_current_user\software\policies\microsoft\office\15.0\osm
+hkey_current_user\software\policies\microsoft\office\16.0\osm
+hkey_local_machine\software\microsoft\wcmsvc\wifinetworkmanager
+hkey_local_machine\software\microsoft\windows\currentversion\datetime\servers
+hkey_local_machine\software\microsoft\windows\currentversion\windowsupdate\auto update
+hkey_local_machine\software\microsoft\windows defender\spynet
+hkey_local_machine\software\policies\microsoft\sqmclient\windows
+hkey_local_machine\software\policies\microsoft\windows\datacollection
+hkey_local_machine\software\policies\microsoft\windows\gwx
+hkey_local_machine\software\policies\microsoft\windows\scripteddiagnosticsprovider\policy
+hkey_local_machine\software\policies\microsoft\windows\skydrive
+hkey_local_machine\software\policies\microsoft\windows\windowsupdate
+hkey_local_machine\system\currentcontrolset\control\wmi\autologger\autoLogger-diagtrack-listener
+hkey_local_machine\system\currentcontrolset\services\w32time\parameters
+hkey_local_machine\system\currentcontrolset\services\w32time\timeproviders\ntpclient
+

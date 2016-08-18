@@ -1,0 +1,32 @@
+\microsoft\windows\application experience\aitagent
+\microsoft\windows\application experience\microsoft compatibility appraiser
+\microsoft\windows\application experience\programdataupdater
+\microsoft\windows\autochk\proxy
+\microsoft\windows\customer experience improvement program\consolidator
+\microsoft\windows\customer experience improvement program\kernelceiptask
+\microsoft\windows\customer experience improvement program\usbceip
+\microsoft\windows\diskdiagnostic\microsoft-windows-diskdiagnosticdatacollector
+\microsoft\windows\maintenance\winsat
+\microsoft\windows\media center\activatewindowssearch
+\microsoft\windows\media center\configureinternettimeservice
+\microsoft\windows\media center\dispatchrecoverytasks
+\microsoft\windows\media center\ehdrminit
+\microsoft\windows\media center\installplayready
+\microsoft\windows\media center\mcupdate
+\microsoft\windows\media center\mediacenterrecoverytask
+\microsoft\windows\media center\objectstorerecoverytask
+\microsoft\windows\media center\ocuractivate
+\microsoft\windows\media center\ocurdiscovery
+\microsoft\windows\media center\pbdadiscovery
+\microsoft\windows\media center\pbdadiscoveryw1
+\microsoft\windows\media center\pbdadiscoveryw2
+\microsoft\windows\media center\pvrrecoverytask
+\microsoft\windows\media center\pvrscheduletask
+\microsoft\windows\media center\registersearch
+\microsoft\windows\media center\reindexsearchroot
+\microsoft\windows\media center\sqlliterecoverytask
+\microsoft\windows\media center\updaterecordpath
+\microsoft\windows\pi\sqm-tasks
+\microsoft\windows\power efficiency diagnostics\analyzeSystem
+\microsoft\windows\setup\gwx\refreshgwxconfigandcontent
+\microsoft\windows\windows error reporting\queuereporting
