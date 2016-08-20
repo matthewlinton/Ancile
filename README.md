@@ -1,43 +1,46 @@
 # Ancile
+https://bitbucket.org/matthewlinton/ancile/
 Ancile for Windows 7/8x attempts to block all windows spying and unwanted upgrades.
-This is a fork of Aegis-voat (https://github.com/th3power/aegis-voat) created by th3power.
+This is a fork and rework th3power's of Aegis-voat (https://github.com/th3power/aegis-voat) script.
 
 ## Instructions
-Ancile does not require instalation.
+Ancile does not require installation and can be run directly from it's parent folder.
 
-1. Download the latest version.
+1. Download the latest version (https://bitbucket.org/matthewlinton/ancile/downloads).
 1. Unzip the archive.
 1. Navigate to the Ancile directory.
 1. Right click on "ancile.cmd"
 1. Select "Run as Administrator" from the menu
-1. Follow the onscreen instructions
+1. Follow the on screen instructions
 
 ## Features
 ### Overview
-*  Block 197 bad hosts.
+*  Block unwanted hosts.
 *  Change windows update to check/notify (do not download/install).
-*  Disable automatic delivery of internet explorer via windows update.
-*  Disable ceip/gwx/skydrive(aka onedrive)/spynet/telemetry/wifisense.
+*  Disable automatic delivery of Internet explorer via windows update.
+*  Disable ceip/gwx/skydrive(aka OneDrive)/SpyNet/telemetry/WiFiSense.
 *  Disable remote registry.
-*  Disable 31 scheduled tasks.
-*  Disable windows 10 download directory*
-*  Remove diagtrack.
-*  Sync time to ntp.org.
-*  Hide/Uninstall 51 KB updates.
+*  Disable unwanted scheduled tasks.
+*  Disable Windows 10 download directory
+*  Remove Microsoft's diagnostics tracking.
+*  Sync time with ntp.org.
+*  Hide/Uninstall unwanted Windows updates.
 
 ### Block Bad Hosts
+There are a number of hosts that Microsoft uses to collect data. Ancile disables access to them by redirecting connections using the hosts file.
+
 ### Internet Explorer
-Some updates which may contain critical security patches for ie, as well as automated delivery of ie and related updates, will be blocked. Due to the obvious security risk posed by running an unpatched browser we strongly advise to uninstall ie. If you plan to continue to use ie you should probably not run this script - or manually patch and do so at your own risk.
+Some updates which may contain critical security patches for IE, as well as automated delivery of IE and related updates, will be blocked. Due to the obvious security risk posed by running an un-patched browser we strongly advise to uninstall IE. If you plan to continue to use IE you should probably not run this script - or manually patch and do so at your own risk.
 
-### Uninstall Windows Update
-This script will not block Windows Update however it will change your Windows Update settings to 'check/notify but do not download/install'. If you have problems getting Windows Update to work properly after running the script you may need to run the Windows Update Troubleshooter or the System Update Readiness Tool. If you have recently installed updates and have not yet rebooted you should reboot before running the script. If you are on a fresh install you may want to install all updates before running Aegis for the first time, otherwise it may take a long time to update.
+### Windows Update
+This will not block Windows Update. however, it will change your Windows Update settings to 'check/notify but do not download/install'. If you have problems getting Windows Update to work properly after running the script you may need to run the Windows Update Troubleshooter or the System Update Readiness Tool. If you have recently installed updates and have not yet rebooted you should reboot before running the script. If you are on a fresh install you may want to install all updates before running Aegis for the first time, otherwise it may take a long time to update.
 
-####KB update	description
+####Hidden Updates
 
 * KB971033	update for windows activation technologies
 * KB2882822	update for adding itracerelogger interface support
-* KB2902907	description not available, update was pulled by microsoft
-* KB2922324	description not available, update was pulled by microsoft
+* KB2902907	description not available, update was pulled by Microsoft
+* KB2922324	description not available, update was pulled by Microsoft
 * KB2952664	update for upgrading windows 7
 * KB2976978	update for windows 8.1 and windows 8
 * KB2977759	update for windows 7 rtm
@@ -87,27 +90,38 @@ This script will not block Windows Update however it will change your Windows Up
 * KB3150513	may 2016 compatibility update for windows
 
 ## License
-There is no official license - you are welcome to modify and share my code and you do not have to give me credit. I do appreciate any feedback and I will give you credit if I use your ideas. This script is the product of a collaborate effort and does not belong to any one person.
+You are welcome to modify and share this code as you please.
 
 ## Liability
-All code except sed and setacl is provided as open source so you can look and see for yourself what it does. It has been thoroughly tested on my own systems and scanned on VirusTotal and to the best of my knowledge it does not contain any harmful or malicious elements. However I assume no liability for any problems so use it at your own risk.
+Ancile, to the best of my knowledge, does not contain any harmful or malicious code. I assume no liability for any issues that may occur from the use of this software. Please take the time to understand how this software will interact with your system before using it. Use Ancile at your own risk.
 
 ## Resources
-Ancile uses the folowing ouside resources to perform specific tasks.
+Ancile uses the following third party resources to perform specific tasks.
 
 ### GnuWin
-GnuWin (http://gnuwin32.sourceforge.net/) provides ports of tools with a GNU or similar open source license, to modern MS-Windows (Microsoft Windows 2000 / XP / 2003 / Vista / 2008 / 7)
+GnuWin(http://gnuwin32.sourceforge.net/) provides ports of tools with a GNU or similar open source license, to modern MS-Windows (Microsoft Windows 2000 / XP / 2003 / Vista / 2008 / 7).
+
 * sed.exe (http://gnuwin32.sourceforge.net/packages/sed.htm)
+
+### Microsoft
+* Toolkit to Disable Automatic Delivery of Internet Explorer 7 (https://www.microsoft.com/en-us/download/details.aspx?id=13428)
+* Toolkit to Disable Automatic Delivery of Internet Explorer 8 (https://technet.microsoft.com/en-us/browser/dd365124.aspx)
+* Toolkit to Disable Automatic Delivery of Internet Explorer 9 (https://technet.microsoft.com/en-us/browser/gg615600.aspx)
+* Toolkit to Disable Automatic Delivery of Internet Explorer 10 (https://technet.microsoft.com/en-us/browser/jj898509.aspx)
+* Toolkit to Disable Automatic Delivery of Internet Explorer 11 (https://www.microsoft.com/en-us/download/details.aspx?id=40722)
 
 ### Other
 * setacl-**.exe (https://helgeklein.com/setacl/)
+
+## Feedback
+Please direct all feedback to the bitbucket repository page (https://bitbucket.org/matthewlinton/ancile/).
 
 ## Thanks
 ### A special thanks to everyone that helped to improve Ancile
 
 ### Thank you to everyone that helped create Aegis-voat
 #### Creators
-@th3power
+th3power
 
 #### Contributors
-@alexzerg11, @allockse, @AxiomBreak, @elixxx, @erskine, @eSh, @GGLapkizzz, @ilikeskittles, @liquidinsects, @Magoo204, @Mixplate, @mythias, @PaulDG, @pstein, @RypeDub420, @spexdi, @tor11, @Umrtvovacz, @qzxq, @thequestion, @tor11, @tr3bg0d, @Umrtvovacz, @Voluptuous_Panda, and @Zaphain.
+alexzerg11, allockse, AxiomBreak, elixxx, erskine, eSh, GGLapkizzz, ilikeskittles, liquidinsects, Magoo204, Mixplate, mythias, PaulDG, pstein, RypeDub420, spexdi, tor11, Umrtvovacz, qzxq, thequestion, tor11, tr3bg0d, Umrtvovacz, Voluptuous_Panda, and Zaphain.

@@ -1,79 +1,10 @@
-v1.19-
-Branched Ancile from Aegis-Voat by th3power (https://github.com/th3power/aegis-voat).
+v0.1 -
+	Moved subscripts to their own files (Located in the scripts directory).
+	Moved binaries into the lib directory
+	Fixed issue with NTP time sync quietly failing (synctime)
+	Seperated registry key data from code (regown)
+	Seperated hosts lists from code (blockhosts)
+	Added script to clear all persistant routes (clearallroutes.cmd) [UNTESTED]
 
-v1.18-
-add kb3150513 - may 2016 compatibility update for windows
-remove msftncsi from blocks - harmless, only used to test for network connectivity
-update host blocks
-
-v1.17- (once again thanks to erskine for many ideas/improvements in v1.17)
-update genblock to address outlook blocking issues
-update genblock to add documentation and improve error checking/logging output
-update host blocks
-replace find with findstr
-replace regedit /s with reg import
-improve error checking/handling to reduce unnecessary operations and errors
-add notify message if reboot is required to complete some operations
-add kb3058168 - activate windows 10 from windows 8 or windows 8.1, and windows server 2012 or windows server 2012 r2 kms hosts
-improve logging functionality and readability
-add repairtimeservice.cmd (run to resolve issues w/ windows time service)
-remove aegis.reg (merged all registry operations into main script)
-remove kb3050265 & kb3050267 (install to resolve issues w/ windows update)
-add repairwindowsupdate.cmd (run to resolve issues w/ windows update)
-
-v1.16- (thanks to erskine for many of the improvements in v1.16)
-update host blocks (unblock hotmail/microsoft/loudwire web sites)
-add kb3138612 - windows update client for windows 7 and windows server 2008 r2: march 2016
-add kb3138615 - windows update client for windows 8.1 and windows server 2012 r2: march 2016
-add privilege check to verify running as administrator
-add 64-bit version of setacl.exe
-detect os architecture and run 32 or 64-bit setacl accordingly (should help prevent errors when manipulating permissions)
-add begin/end functions, other small changes to streamline code
-add taskkil for gwxux.exe
-change log name to "%~dpn0.log"
-fix incorrect key for ceip disable
-add kb3139929 - security update for internet explorer: march 8, 2016
-add kb3146449 - updated internet explorer 11 capabilities to upgrade windows 8.1 and windows 7
-
-v1.15-
-fix inadvertent blocking of akamai hosts (should prevent blocking of hotmail/outlook)
-fix specialpollinginterval (hex value was used instead of decimal)
-update host blocks
-
-v1.14-
-rewrote hide/uninstall code to permanently resolve problems with updates not being reliably hidden
-updated ip's for host blocks
-
-v1.13-
-fix genblock to prevent adding duplicate entries to hosts file in block.cmd
-fix genblock to properly delete routes in unblock.cmd
-fix time config/sync issues
-
-v1.12-
-improved create system restore point method and error handling
-added begin/end message with timestamp to log file
-changed http links to use https
-misc code clean up
-rewrote genblock script to improve execution speed and quality of results
-removed several hosts that were redundant and/or causing problems
-added 70+ hosts to the block list (sources include mvps and others)
-updated ip's for host blocks
-added hosts file blocking in addition to existing route based blocking
-added comments to aegis.reg
-added sed.exe to facilitate removal of hosts file blocks
-
-v1.11-
-cosmetic updates
-removed kb2999226
-removed a few questionable ocsp host blocks
-updated ip's for host blocks
-added internet explorer blocking toolkits for versions 7-11
-added log command output to file
-
-v1.10-
-added create restore point
-added 17 updates, 48 total
-added 27 ip blocks, 248 total
-added 1 registry key update, 14 total
-added 9 registry value updates, 24 total
-removed 25 host blocks, 163 total (bing, hotmail, msn, outlook, skype)
+v0.0 -
+	Branched Ancile from Aegis-Voat v1.18 by th3power (https://github.com/th3power/aegis-voat).
