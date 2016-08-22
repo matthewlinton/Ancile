@@ -5,7 +5,7 @@
 :INIT
 @REM Configure the environment
 SET APPNAME=Ancile
-SET VERSION=0.1
+SET VERSION=0.2
 SET ARCH=32
 wmic os get osarchitecture 2>&1|findstr /i 64-bit >nul 2>&1 && SET ARCH=64
 
@@ -25,15 +25,22 @@ IF %ERRORLEVEL% NEQ 0 ECHO This script requires Administrative privileges. Exiti
 
 @REM Begin Logging
 ECHO [%DATE% %TIME%] ### %APPNAME% v%VERSION% ################################# >> "%LOGFILE%"
-ECHO [%DATE% %TIME%] Created by Matthew Linton https://github.com/matthewlinton/ancile >> "%LOGFILE%"
+ECHO [%DATE% %TIME%] Created by Matthew Linton >> "%LOGFILE%"
+ECHO [%DATE% %TIME%] https://github.com/matthewlinton/ancile >> "%LOGFILE%"
+ECHO [%DATE% %TIME%] ########################################################## >> "%LOGFILE%"
 ECHO Starting %APPNAME% v%VERSION%
+
+@REM Log System information
+ECHO Collecting system information ...
+systeminfo >> "%LOGFILE%"
 
 @REM Sync Windows time
 CALL "%SCRIPTDIR%\synctime.cmd"
 
-:BEGIN
 @REM Create restore point
 CALL "%SCRIPTDIR%\mkrestore.cmd"
+
+:BEGIN
 @REM Take ownership of registry keys
 CALL "%SCRIPTDIR%\regown\regown.cmd"
 @REM Block malicious hosts

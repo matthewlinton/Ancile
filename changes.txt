@@ -1,3 +1,10 @@
+v0.2 -
+	Added system information collection to help diagnose errors.
+	Modified hostsip.txt to use full network mask (blockhosts)
+	Fixed issue with routing table not updating (blockhosts)
+	Added code to generate firewall rule which blocks outbound connections to malicious IP addresses (blockhosts)
+	Rewrote host blocking through the hosts file (blockhosts)
+	
 v0.1 -
 	Moved subscripts to their own files (Located in the scripts directory).
 	Moved binaries into the lib directory

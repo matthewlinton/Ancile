@@ -9,7 +9,7 @@ net session >nul 2>&1
 IF %ERRORLEVEL% NEQ 0 ECHO This script requires Administrative privileges. Exiting. & PAUSE & EXIT 1
 
 ECHO.
-ECHO !!! This will delete ALL routes in your routing table.
+ECHO !!! This will delete ALL static routes in your routing table.
 ECHO !!! This could break routing/networking on your system.
 ECHO !!! Before you continue you may want to back up your routing table.
 ECHO.
@@ -20,9 +20,10 @@ IF /i "%yesno:~,1%" equ "Y" GOTO DELROUTE
 GOTO END
 
 :DELROUTE
+ECHO Deleting Static routes ... 
 SET rkey=HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\PersistentRoutes
 FOR /f "tokens=1,2,3,* delims=," %%i IN ('reg query %rkey% ^| find "REG_SZ"') DO (
-   route delete %%i mask %%j %%k
+   route DELETE %%i mask %%j %%k >nul
 )
 ECHO Operation Complete
 
