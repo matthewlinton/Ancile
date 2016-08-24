@@ -102,7 +102,6 @@ Ancile uses the following third party resources to perform specific tasks.
 GnuWin(http://gnuwin32.sourceforge.net/) provides ports of tools with a GNU or similar open source license, to modern MS-Windows (Microsoft Windows 2000 / XP / 2003 / Vista / 2008 / 7).
 
 * sed.exe (http://gnuwin32.sourceforge.net/packages/sed.htm)
-* grep.exe (http://gnuwin32.sourceforge.net/packages/grep.htm)
 
 ### Microsoft
 * Toolkit to Disable Automatic Delivery of Internet Explorer 7 (https://www.microsoft.com/en-us/download/details.aspx?id=13428)

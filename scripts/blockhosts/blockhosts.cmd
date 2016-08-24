@@ -13,29 +13,48 @@ SET LISTEND=# End of entries inserted by %APPNAME%
 
 ECHO [%DATE% %TIME%] BEGIN HOST BLOCKING >> "%LOGFILE%"
 ECHO * Blocking malicious hosts ... 
+ECHO   This may take a long time. Please be patient.
 
 @REM Block hosts using the system hosts file
-ECHO Hosts file entries added: >> "%LOGFILE%"
+@REM This can take a very long time for large host files.
+@REM TODO: Figure out a better(faster) way to do this.
+ECHO Cleaning hosts file: >> "%LOGFILE%"
 ECHO ** Updating hosts file
-IF EXIST "%TMPHOSTS%" DEL "%TMPHOSTS%"
+IF EXIST "%TMPHOSTS%" DEL "%TMPHOSTS%" >> "%LOGFILE%" 2>&1
 Setlocal EnableDelayedExpansion
 SET wout=1
-FOR /F "delims=" %%i in ('TYPE "%HOSTSFILE%"') DO (
+SET linecount=0
+FOR /F "delims=" %%i IN ('TYPE "%HOSTSFILE%"') DO (
 	IF "%%i"=="%LISTBEGIN%" SET wout=0
 	IF !wout! EQU 1 ECHO %%i>> "%TMPHOSTS%"
-	IF "%%i"=="%LISTEND%" SET wout=0
+	IF "%%i"=="%LISTEND%" SET wout=1
+	SET /A linecount=linecount+1
 )
+ECHO Processed %linecount% Lines >> "%LOGFILE%"
+COPY "%TMPHOSTS%" "%HOSTSFILE%" >> "%LOGFILE%" 2>&1
+ECHO Adding hosts file entries: >> "%LOGFILE%"
+ECHO %LISTBEGIN%>> "%HOSTSFILE%"
+SET match=0
+FOR /F %%k IN ('TYPE "%HOSTLIST%"') DO (
+	FOR /F "tokens=1,2" %%i IN ('findstr /V /C:"#" "%TMPHOSTS%"') DO (
+		IF "%%k"=="%%j" (
+			SET match=1
+			ECHO Duplicate: %%k >> "%LOGFILE%"
+		) 
+	)
+	IF !match! EQU 0 (
+		ECHO 127.0.0.1	%%k>> "%HOSTSFILE%"
+		ECHO Adding: %%k >> "%LOGFILE%"
+	)
+	SET match=0
+)
+ECHO %LISTEND%>> "%HOSTSFILE%"
 Setlocal DisableDelayedExpansion
-FOR /F "delims=" %%i in ('TYPE "%HOSTLIST%"') DO (
-	ECHO TODO: Parse Hostlist >> "%LOGFILE%"
-)
-
-ECHO TODO: Build new Hosts file >> "%LOGFILE%"
 
 @REM Block hosts using the routing table
 ECHO Routing table entries added: >> "%LOGFILE%"
 ECHO ** Updating routing table
-FOR /F "tokens=1,2,* delims=, " %%i in ('TYPE "%IPLIST%"') DO (
+FOR /F "tokens=1,2,* delims=, " %%i IN ('TYPE "%IPLIST%"') DO (
 	ECHO | set /p=%%i - >> "%LOGFILE%"
 	route ADD %%i MASK %%j 0.0.0.0 -p >> "%LOGFILE%" 2>&1
 )

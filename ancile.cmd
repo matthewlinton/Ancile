@@ -43,8 +43,6 @@ CALL "%SCRIPTDIR%\mkrestore.cmd"
 :BEGIN
 @REM Take ownership of registry keys
 CALL "%SCRIPTDIR%\regown\regown.cmd"
-@REM Block malicious hosts
-CALL "%SCRIPTDIR%\blockhosts\blockhosts.cmd"
 @REM Configure Windows update
 CALL "%SCRIPTDIR%\winupdate.cmd"
 @REM Disable automated delivery of internet explorer
@@ -69,6 +67,8 @@ CALL "%SCRIPTDIR%\disablewifisense.cmd"
 CALL "%SCRIPTDIR%\disablewinx.cmd"
 @REM Remove Windows diagnostics tracking
 CALL "%SCRIPTDIR%\disablediagtrak.cmd"
+@REM Block malicious hosts
+CALL "%SCRIPTDIR%\blockhosts\blockhosts.cmd"
 @REM Uninstall and hide unwanted updates
 CALL "%SCRIPTDIR%\disableupdates\disableupdates.cmd"
 

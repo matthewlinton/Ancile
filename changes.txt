@@ -1,12 +1,14 @@
 v0.2 -
-	Added system information collection to help diagnose errors.
+	Added system information collection to help diagnose errors
 	Modified hostsip.txt to use full network mask (blockhosts)
-	Fixed issue with routing table not updating (blockhosts)
+	Fixed issue with routing table not updating correctly (blockhosts)
 	Added code to generate firewall rule which blocks outbound connections to malicious IP addresses (blockhosts)
 	Rewrote host blocking through the hosts file (blockhosts)
+	Tested clearallroutes.cmd (Functions as expected)
+	Moved host blocking down (after configuration changes)
 	
 v0.1 -
-	Moved subscripts to their own files (Located in the scripts directory).
+	Moved subscripts to their own files (Located in the scripts directory)
 	Moved binaries into the lib directory
 	Fixed issue with NTP time sync quietly failing (synctime)
 	Seperated registry key data from code (regown)
