@@ -6,7 +6,7 @@ SET HIDEUD=%SCRIPTDIR%\disableupdates\hide.ps1
 
 ECHO [%DATE% %TIME%] BEGIN DISABLE WINDOWS UPDATES >> "%LOGFILE%"
 ECHO * Disabling Windows Updates ... 
-ECHO   This can take a long time. Please be patient.
+ECHO   This may take a long time. Please be patient.
 
 @REM Uninstall and hide windows updates
 ECHO ** Uninstalling Updates

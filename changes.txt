@@ -1,3 +1,9 @@
+v0.3 -
+	Moved disablegwx.cmd code into disablewinx.cmd.
+	Deleted disablegwx.cmd
+	Cleaned up code in disablewinx.cmd
+	Rearranged script execution (ancile.cmd)
+
 v0.2 -
 	Added system information collection to help diagnose errors
 	Modified hostsip.txt to use full network mask (blockhosts)
@@ -5,7 +11,7 @@ v0.2 -
 	Added code to generate firewall rule which blocks outbound connections to malicious IP addresses (blockhosts)
 	Rewrote host blocking through the hosts file (blockhosts)
 	Tested clearallroutes.cmd (Functions as expected)
-	Moved host blocking down (after configuration changes)
+	Moved host blocking down(after configuration changes) in main script (ancile.cmd)
 	
 v0.1 -
 	Moved subscripts to their own files (Located in the scripts directory)

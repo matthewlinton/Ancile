@@ -5,7 +5,7 @@
 :INIT
 @REM Configure the environment
 SET APPNAME=Ancile
-SET VERSION=0.2
+SET VERSION=0.3
 SET ARCH=32
 wmic os get osarchitecture 2>&1|findstr /i 64-bit >nul 2>&1 && SET ARCH=64
 
@@ -43,34 +43,32 @@ CALL "%SCRIPTDIR%\mkrestore.cmd"
 :BEGIN
 @REM Take ownership of registry keys
 CALL "%SCRIPTDIR%\regown\regown.cmd"
+@REM Disable remote registry
+CALL "%SCRIPTDIR%\disableremreg.cmd"
+@REM Disable Windows 10 upgrade
+CALL "%SCRIPTDIR%\disablewinx.cmd"
+@REM Disable scheduled tasks
+call "%SCRIPTDIR%\tasks\disabletasks.cmd"
 @REM Configure Windows update
 CALL "%SCRIPTDIR%\winupdate.cmd"
+@REM Uninstall and hide unwanted updates
+CALL "%SCRIPTDIR%\disableupdates\disableupdates.cmd"
 @REM Disable automated delivery of internet explorer
 CALL "%SCRIPTDIR%\disableie\disableie.cmd"
 @REM Disable Microsoft Customer Experience Improvement Program
+CALL "%SCRIPTDIR%\disablewifisense.cmd"
+@REM Remove Windows diagnostics tracking
 CALL "%SCRIPTDIR%\disableceip.cmd"
-@REM Disable Get Windows 10 
-CALL "%SCRIPTDIR%\disablegwx.cmd"
-@REM Disable remote registry
-CALL "%SCRIPTDIR%\disableremreg.cmd"
-@REM Disable scheduled tasks
-call "%SCRIPTDIR%\tasks\disabletasks.cmd"
-@REM Disable SkyDrive
-CALL "%SCRIPTDIR%\disableskydrive.cmd"
 @REM Disable SpyNet
 CALL "%SCRIPTDIR%\disablespynet.cmd"
 @REM Disable Telemitry
 CALL "%SCRIPTDIR%\disabletelemetry.cmd"
 @REM Disable WIFISense
-CALL "%SCRIPTDIR%\disablewifisense.cmd"
-@REM Disable Windows 10 upgrade
-CALL "%SCRIPTDIR%\disablewinx.cmd"
-@REM Remove Windows diagnostics tracking
 CALL "%SCRIPTDIR%\disablediagtrak.cmd"
+@REM Disable SkyDrive
+CALL "%SCRIPTDIR%\disableskydrive.cmd"
 @REM Block malicious hosts
 CALL "%SCRIPTDIR%\blockhosts\blockhosts.cmd"
-@REM Uninstall and hide unwanted updates
-CALL "%SCRIPTDIR%\disableupdates\disableupdates.cmd"
 
 :ERRCHK
 @REM Check for error condition
