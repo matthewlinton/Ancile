@@ -3,8 +3,8 @@
 @REM 			  hosts.txt - Lists of hosts that will be blocked through the hosts file
 
 SET HOSTSFILE=%SYSTEMDRIVE%\windows\system32\drivers\etc\hosts
-SET IPLIST=%SCRIPTDIR%\blockhosts\hostsip.txt
-SET HOSTLIST=%SCRIPTDIR%\blockhosts\hostsdns.txt
+SET IPLIST=%SCRIPTDIR%\hosts\hostsip.txt
+SET HOSTLIST=%SCRIPTDIR%\hosts\hostsdns.txt
 
 SET TMPHOSTS=%TEMP%\%APPNAME%_%VERSION%.hosts.tmp
 
@@ -67,7 +67,11 @@ SET rulename=%APPNAME% - Block Malicious IP Addresses
 SET ipaddrlist=
 netsh advfirewall firewall delete rule name="%rulename%" >> "%LOGFILE%" 2>&1
 FOR /F "tokens=1,* delims=, " %%i in ('TYPE "%IPLIST%"') DO (
-	SET ipaddrlist=!ipaddrlist!,%%i
+	IF ".!ipaddrlist!"=="." (
+		SET ipaddrlist=%%i
+	) ELSE (
+		SET ipaddrlist=!ipaddrlist!,%%i
+	)
 )
 ECHO Adding: !ipaddrlist! >> "%LOGFILE%"
 netsh advfirewall firewall add rule name="%rulename%" dir=out action=block remoteip=!ipaddrlist! >> "%LOGFILE%" 2>&1

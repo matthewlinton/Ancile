@@ -5,7 +5,7 @@
 :INIT
 @REM Configure the environment
 SET APPNAME=Ancile
-SET VERSION=0.3
+SET VERSION=0.4
 SET ARCH=32
 wmic os get osarchitecture 2>&1|findstr /i 64-bit >nul 2>&1 && SET ARCH=64
 
@@ -42,7 +42,7 @@ CALL "%SCRIPTDIR%\mkrestore.cmd"
 
 :BEGIN
 @REM Take ownership of registry keys
-CALL "%SCRIPTDIR%\regown\regown.cmd"
+CALL "%SCRIPTDIR%\registry\regown.cmd"
 @REM Disable remote registry
 CALL "%SCRIPTDIR%\disableremreg.cmd"
 @REM Disable Windows 10 upgrade
@@ -52,9 +52,9 @@ call "%SCRIPTDIR%\tasks\disabletasks.cmd"
 @REM Configure Windows update
 CALL "%SCRIPTDIR%\winupdate.cmd"
 @REM Uninstall and hide unwanted updates
-CALL "%SCRIPTDIR%\disableupdates\disableupdates.cmd"
+CALL "%SCRIPTDIR%\updates\disableupdates.cmd"
 @REM Disable automated delivery of internet explorer
-CALL "%SCRIPTDIR%\disableie\disableie.cmd"
+CALL "%SCRIPTDIR%\inetexplore\disableie.cmd"
 @REM Disable Microsoft Customer Experience Improvement Program
 CALL "%SCRIPTDIR%\disablewifisense.cmd"
 @REM Remove Windows diagnostics tracking
@@ -68,12 +68,12 @@ CALL "%SCRIPTDIR%\disablediagtrak.cmd"
 @REM Disable SkyDrive
 CALL "%SCRIPTDIR%\disableskydrive.cmd"
 @REM Block malicious hosts
-CALL "%SCRIPTDIR%\blockhosts\blockhosts.cmd"
+CALL "%SCRIPTDIR%\hosts\blockhosts.cmd"
 
 :ERRCHK
 @REM Check for error condition
 IF %ANCERRLVL% GTR 0 GOTO ENDFAIL
-GOTO ENDSUCC
+GOTO ENDSUCCESS
 
 :ENDFAIL
 ECHO [%DATE% %TIME%] END : %APPNAME% v%VERSION% completed with %ANCERRLVL% error(s) >> "%LOGFILE%"
@@ -82,7 +82,7 @@ ECHO See "%LOGFILE%" for more indformation.
 ECHO Press any key to exit.
 GOTO END
 
-:ENDSUCC
+:ENDSUCCESS
 ECHO [%DATE% %TIME%] END : %APPNAME% v%VERSION% completed successfully >> "%LOGFILE%"
 ECHO %APPNAME% v%VERSION% has completed successfully.
 ECHO Press any key to exit.

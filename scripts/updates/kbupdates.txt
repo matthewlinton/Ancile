@@ -1,0 +1,51 @@
+971033		Update for Windows Activation Technologies
+2882822		Update adds ITraceRelogger interface support to Windows Embedded Standard 7 SP1, Windows 7 SP1 and Windows Server 2008 R2 SP1
+2902907		[description not available, update was pulled by Microsoft]
+2922324		[description not available, update was pulled by Microsoft]
+2952664		Compatibility update for upgrading Windows 7
+2976978		Compatibility update for Windows 8.1 and Windows 8
+2977759		Compatibility update for Windows 7 RTM
+2990214		Update that enables you to upgrade from Windows 7 to a later version of Windows
+3012973		Upgrade to windows 10
+3014460		update for windows insider preview / upgrade to windows 10
+3015249		[Upgrade that adds telemetry points to consent.exe in Windows 8.1 and Windows 7?]
+3021917		Update to Windows 7 SP1 for performance improvements
+3022345		Update for customer experience and diagnostic telemetry
+3035583		Update installs Get Windows 10 app in Windows 8.1 and Windows 7 SP1
+3042058		Microsoft security advisory: Update to default cipher suite priority order: May 12, 2015
+3044374		Update that enables you to upgrade from Windows 8.1 to Windows 10
+3046480		Update helps to determine whether to migrate the .NET Framework 1.1 when you upgrade Windows 8.1 or Windows 7
+3058168		Update: activate Windows 10 from Windows 8 or Windows 8.1, and Windows Server 2012 or Windows Server 2012 R2 KMS hosts
+3064683		Windows 8.1 OOBE modifications to reserve Windows 10
+3065987		Windows Update Client for Windows 7 and Windows Server 2008 R2: July 2015
+3065988		Windows Update Client for Windows 8.1 and Windows Server 2012 R2: July 2015
+3068708		Update for customer experience and diagnostic telemetry
+3072318		Update for Windows 8.1 OOBE to upgrade to Windows 10
+3074677		Compatibility update for upgrading to Windows 10
+3075249		Update that adds telemetry points to consent.exe in Windows 8.1 and Windows 7
+3075851		Windows Update Client for Windows 7 and Windows Server 2008 R2: August 2015
+3075853		Windows Update Client for Windows 8.1 and Windows Server 2012 R2: August 2015 
+3080149		Update for customer experience and diagnostic telemetry
+3081437		August 18, 2015, compatibility update for upgrading to Windows 10
+3081454		September 8, 2015, compatibility update for upgrading to Windows 10 
+3081954		Update for Work Folders improvements in Windows 7 SP1 
+3083324		Windows Update Client for Windows 7 and Windows Server 2008 R2: September 2015
+3083325		Windows Update Client for Windows 8.1 and Windows Server 2012 R2: September 2015
+3083710		Windows Update Client for Windows 7 and Windows Server 2008 R2: October 2015
+3083711		Windows Update Client for Windows 8.1 and Windows Server 2012 R2: October 2015
+3086255		MS15-097: Description of the security update for the graphics component in Windows: September 8, 2015 
+3088195		MS15-111: Description of the security update for Windows Kernel: October 13, 2015
+3090045		Windows Update for reserved devices in Windows 8.1 or Windows 7 SP1
+3093983		MS15-106: Security update for Internet Explorer: October 13, 2015
+3102810		Installing and searching for updates is slow and high CPU usage occurs in Windows 7 and Windows Server 2008 R2
+3102812		Installing and searching for updates is slow and high CPU usage occurs in Windows 8.1 and Windows Server 2012 R2
+3112343		Windows Update Client for Windows 7 and Windows Server 2008 R2: December 2015 
+3112336		Windows Update Client for Windows 8.1 and Windows Server 2012 R2: December 2015
+3123862		Updated capabilities to upgrade Windows 8.1 and Windows 7
+3135445		Windows Update Client for Windows 7 and Windows Server 2008 R2: February 2016
+3135449		Windows Update Client for Windows 8.1 and Windows Server 2012 R2: February 2016
+3138612		Windows Update Client for Windows 7 and Windows Server 2008 R2: March 2016
+3138615		Windows Update Client for Windows 8.1 and Windows Server 2012 R2: March 2016
+3139929		MS16-023: Security update for Internet Explorer: March 8, 2016
+3146449		Updated Internet Explorer 11 capabilities to upgrade Windows 8.1 and Windows 7
+3150513		May 2016 Compatibility Update for Windows
