@@ -1,6 +1,8 @@
 # Ancile (https://bitbucket.org/matthewlinton/ancile/)
 Ancile for Windows 7/8.x attempts to block all Windows spying and unwanted upgrades.
 
+For more information go to https://voat.co/v/ancile
+
 This is a fork and rework of th3power's Aegis-voat ( https://github.com/th3power/aegis-voat ) script.
 
 ## Instructions
