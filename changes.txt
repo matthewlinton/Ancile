@@ -1,3 +1,19 @@
+v0.5
+	Removed delete Windows packages code (updates)
+	Moved winupdate code to disableupdates command (updates)
+	Switched over to Mark Berry's (MCB Systems) script with minor modifications (updates)
+	
+v0.4 -
+	Reworked Windows updates scripts (updates)
+	Removed need for windows updates uninstall powershell script (updates)
+	Added code to delete windows update package files (updates)
+	Added descriptions to kbupdates.txt (updates)
+	Disabled hide windows updates. This takes too long. the next version will attempt to fix this (updates)
+	Renamed directories to make them more generic
+	Disabled unblockhosts.cmd script (May write script to undo Ancile changes in the future)
+	Misc. changes that do not affect functionality
+	Updated README file
+
 v0.3 -
 	Moved disablegwx.cmd code into disablewinx.cmd.
 	Deleted disablegwx.cmd

@@ -13,13 +13,13 @@ w32tm /config /syncfromflags:manual /manualpeerlist:"0.pool.ntp.org 1.pool.ntp.o
 
 @REM Add ntp servers
 SET rkey=hkey_local_machine\software\microsoft\windows\currentversion\datetime\servers
-reg add "%rkey%" /f /t reg_sz /d 0 >> "%LOGFILE%" 2>&1
-reg add "%rkey%" /f /t reg_sz /v 0 /d 0.pool.ntp.org >> "%LOGFILE%" 2>&1
-reg add "%rkey%" /f /t reg_sz /v 1 /d 1.pool.ntp.org >> "%LOGFILE%" 2>&1
-reg add "%rkey%" /f /t reg_sz /v 2 /d 2.pool.ntp.org >> "%LOGFILE%" 2>&1
-reg add "%rkey%" /f /t reg_sz /v 3 /d 3.pool.ntp.org >> "%LOGFILE%" 2>&1
+reg ADD "%rkey%" /f /t reg_sz /d 0 >> "%LOGFILE%" 2>&1
+reg ADD "%rkey%" /f /t reg_sz /v 0 /d 0.pool.ntp.org >> "%LOGFILE%" 2>&1
+reg ADD "%rkey%" /f /t reg_sz /v 1 /d 1.pool.ntp.org >> "%LOGFILE%" 2>&1
+reg ADD "%rkey%" /f /t reg_sz /v 2 /d 2.pool.ntp.org >> "%LOGFILE%" 2>&1
+reg ADD "%rkey%" /f /t reg_sz /v 3 /d 3.pool.ntp.org >> "%LOGFILE%" 2>&1
 SET rkey=hkey_local_machine\system\currentcontrolset\services\w32time\timeproviders\ntpclient
-reg add "%rkey%" /f /t reg_dword /v specialpollinterval /d 14400 >> "%LOGFILE%" 2>&1
+reg ADD "%rkey%" /f /t reg_dword /v specialpollinterval /d 14400 >> "%LOGFILE%" 2>&1
 
 @REM Start time service
 sc config w32time start= auto >> "%LOGFILE%" 2>&1

@@ -1,12 +1,12 @@
-# Ancile
-https://bitbucket.org/matthewlinton/ancile/
-Ancile for Windows 7/8x attempts to block all windows spying and unwanted upgrades.
-This is a fork and rework th3power's of Aegis-voat (https://github.com/th3power/aegis-voat) script.
+# Ancile (https://bitbucket.org/matthewlinton/ancile/)
+Ancile for Windows 7/8.x attempts to block all Windows spying and unwanted upgrades.
+
+This is a fork and rework of th3power's Aegis-voat ( https://github.com/th3power/aegis-voat ) script.
 
 ## Instructions
-Ancile does not require installation and can be run directly from it's parent folder.
+Ancile does not require installation and can be run directly from within it's parent folder.
 
-1. Download the latest version (https://bitbucket.org/matthewlinton/ancile/downloads).
+1. Download the latest version ( https://bitbucket.org/matthewlinton/ancile/downloads ).
 1. Unzip the archive.
 1. Navigate to the Ancile directory.
 1. Right click on "ancile.cmd"
@@ -15,106 +15,54 @@ Ancile does not require installation and can be run directly from it's parent fo
 
 ## Features
 ### Overview
-*  Block unwanted hosts.
-*  Change windows update to check/notify (do not download/install).
-*  Disable automatic delivery of Internet explorer via windows update.
-*  Disable ceip/gwx/skydrive(aka OneDrive)/SpyNet/telemetry/WiFiSense.
-*  Disable remote registry.
-*  Disable unwanted scheduled tasks.
+*  Sync time with ntp.org
+*  Block unwanted hosts
+*  Change windows update to check/notify (do not download/install)
+*  Disable automatic delivery of Internet explorer via windows update
+*  Disable ceip/gwx/skydrive(aka OneDrive)/SpyNet/telemetry/WiFiSense
+*  Disable remote registry
+*  Disable unwanted scheduled tasks
 *  Disable Windows 10 download directory
-*  Remove Microsoft's diagnostics tracking.
-*  Sync time with ntp.org.
-*  Hide/Uninstall unwanted Windows updates.
+*  Remove Microsoft's diagnostics tracking
+*  Hide/Uninstall unwanted Windows updates
 
 ### Block Bad Hosts
-There are a number of hosts that Microsoft uses to collect data. Ancile disables access to them by redirecting connections using the hosts file.
+There are a number of hosts that Microsoft uses to collect data. Ancile disables access to them by redirecting connections using the Windows routing table, Windows firewall, and the hosts file. A complete list of blocked hosts can be found in "ancile\scripts\hosts\hostsdns.txt" and "ancile\scripts\hosts\hostsip.txt".
 
 ### Internet Explorer
-Some updates which may contain critical security patches for IE, as well as automated delivery of IE and related updates, will be blocked. Due to the obvious security risk posed by running an un-patched browser we strongly advise to uninstall IE. If you plan to continue to use IE you should probably not run this script - or manually patch and do so at your own risk.
+Some updates which may contain critical security patches for IE, as well as automated delivery of IE and related updates, will be blocked. Due to the security risks posed by running an un-patched browser you are strongly advised to uninstall IE. If you plan to continue to use IE you should either: Not run this script, or manually patch IE at your own risk.
 
 ### Windows Update
-This will not block Windows Update. however, it will change your Windows Update settings to 'check/notify but do not download/install'. If you have problems getting Windows Update to work properly after running the script you may need to run the Windows Update Troubleshooter or the System Update Readiness Tool. If you have recently installed updates and have not yet rebooted you should reboot before running the script. If you are on a fresh install you may want to install all updates before running Aegis for the first time, otherwise it may take a long time to update.
-
-####Hidden Updates
-
-* KB971033	update for windows activation technologies
-* KB2882822	update for adding itracerelogger interface support
-* KB2902907	description not available, update was pulled by Microsoft
-* KB2922324	description not available, update was pulled by Microsoft
-* KB2952664	update for upgrading windows 7
-* KB2976978	update for windows 8.1 and windows 8
-* KB2977759	update for windows 7 rtm
-* KB2990214	update that enables you to upgrade from windows 7 to a later version of windows
-* KB3012973	upgrade to windows 10
-* KB3014460	update for windows insider preview / upgrade to windows 10
-* KB3015249	update that adds telemetry points to consent.exe in Windows 8.1 and Windows 7
-* KB3021917	update for windows 7 sp1 for performance improvements
-* KB3022345	update for customer experience and diagnostic telemetry
-* KB3035583	update installs get windows 10 app in windows 8.1 and windows 7 sp1
-* KB3042058	update for cipher suite priority order (contains winlogon spying elements)
-* KB3044374	update that enables you to upgrade from windows 8.1 to windows 10
-* KB3046480	update for migrating .net when upgrading to later version of windows
-* KB3058168	update activate windows 10 from windows 8 or windows 8.1, and windows server 2012 or windows server 2012 r2 kms hosts
-* KB3064683	update for windows 8.1 oobe modifications to reserve windows 10
-* KB3065987	update for windows update client for windows 7 and windows server 2008 r2 july 2015
-* KB3065988	update for windows update client for windows 8.1 and windows server 2012 r2 july 2015
-* KB3068708	update for customer experience and diagnostic telemetry
-* KB3072318	update for windows 8.1 oobe modifications to reserve windows 10
-* KB3074677	compatibility update for upgrading to windows 10
-* KB3075249	update that adds telemetry points to consent.exe in windows 8.1 and windows 7
-* KB3075851	update for windows update client for windows 7 and windows server 2008 r2 august 2015
-* KB3075853	update for windows update client for windows 8.1 and windows server 2012 r2 august 2015
-* KB3080149	update for customer experience and diagnostic telemetry
-* KB3081437	august 18, 2015, compatibility update for upgrading to windows 10
-* KB3081454	september 8, 2015, compatibility update for upgrading to windows 10
-* KB3081954	update for work folders improvements in windows 7 sp1 (contains telemetry elements)
-* KB3083324	update for windows update client for windows 7 and windows server 2008 r2 september 2015
-* KB3083325	update for windows update client for windows 8.1 and windows server 2012 r2 september 2015
-* KB3083710	update for windows update client for windows 7 and windows server 2008 r2 october 2015
-* KB3083711	update for windows update client for windows 8.1 and windows server 2012 r2 october 2015
-* KB3086255	september 8, 2015, security update for the graphics component in windows (breaks safedisc)
-* KB3088195	october 13, 2015, security update for windows kernel (reported to contain a keylogger)
-* KB3090045	windows update for reserved devices in windows 8.1 or windows 7 sp1 (windows 10 upgrade elements)
-* KB3093983	security update for internet explorer: october 13, 2015 (ie spying elements)
-* KB3102810	windows 10 upgrade elements
-* KB3102812	windows 10 upgrade elements
-* KB3112343	update for windows update client for windows 7 and windows server 2008 r2 december 2015
-* KB3112336	update for windows update client for windows 8.1 and windows server 2012 r2 december 2015
-* KB3123862	updated capabilities to upgrade windows 8.1 and windows 7
-* KB3135445	windows update client for windows 7 and windows server 2008 r2: february 2016
-* KB3135449	windows update client for windows 8.1 and windows server 2012 r2: february 2016
-* KB3138612	windows update client for windows 7 and windows server 2008 r2: march 2016
-* KB3138615	windows update client for windows 8.1 and windows server 2012 r2: march 2016
-* KB3139929	security update for internet explorer: march 8, 2016
-* KB3146449	updated internet explorer 11 capabilities to upgrade windows 8.1 and windows 7
-* KB3150513	may 2016 compatibility update for windows
+Ancile modifies the Windows Update settings to 'check/notify but do not download/install'. If you have problems getting Windows Update to work properly after running the script you may need to run the Windows Update Troubleshooter ( https://support.microsoft.com/en-us/kb/2714434 ), or the System Update Readiness Tool ( https://support.microsoft.com/en-us/kb/947821 ). If you have recently installed updates and have not yet rebooted you should reboot before running the script. If you are on a fresh install of Windows you may want to install all updates before running Aegis for the first time, otherwise it may take a long time to update.
 
 ## License
-You are welcome to modify and share this code as you please.
+This code is not covered under any license. You are welcome to modify and share this code as you please.
 
 ## Liability
-Ancile, to the best of my knowledge, does not contain any harmful or malicious code. I assume no liability for any issues that may occur from the use of this software. Please take the time to understand how this software will interact with your system before using it. Use Ancile at your own risk.
+Use Ancile at your own risk!
+
+Ancile, to the best of my knowledge, does not contain any harmful or malicious code. I assume no liability for any issues that may occur from the use of this software. Please take the time to understand how this code will interact with your system before using it.
 
 ## Resources
 Ancile uses the following third party resources to perform specific tasks.
 
 ### GnuWin
-GnuWin(http://gnuwin32.sourceforge.net/) provides ports of tools with a GNU or similar open source license, to modern MS-Windows (Microsoft Windows 2000 / XP / 2003 / Vista / 2008 / 7).
+GnuWin( http://gnuwin32.sourceforge.net/ ) provides ports of tools with a GNU or similar open source license, to modern MS-Windows (Microsoft Windows 2000 / XP / 2003 / Vista / 2008 / 7).
 
-* sed.exe (http://gnuwin32.sourceforge.net/packages/sed.htm)
+* sed.exe ( http://gnuwin32.sourceforge.net/packages/sed.htm )
 
 ### Microsoft
-* Toolkit to Disable Automatic Delivery of Internet Explorer 7 (https://www.microsoft.com/en-us/download/details.aspx?id=13428)
-* Toolkit to Disable Automatic Delivery of Internet Explorer 8 (https://technet.microsoft.com/en-us/browser/dd365124.aspx)
-* Toolkit to Disable Automatic Delivery of Internet Explorer 9 (https://technet.microsoft.com/en-us/browser/gg615600.aspx)
-* Toolkit to Disable Automatic Delivery of Internet Explorer 10 (https://technet.microsoft.com/en-us/browser/jj898509.aspx)
-* Toolkit to Disable Automatic Delivery of Internet Explorer 11 (https://www.microsoft.com/en-us/download/details.aspx?id=40722)
+* Toolkit to Disable Automatic Delivery of Internet Explorer 7 ( https://www.microsoft.com/en-us/download/details.aspx?id=13428 )
+* Toolkit to Disable Automatic Delivery of Internet Explorer 8 ( https://technet.microsoft.com/en-us/browser/dd365124.aspx )
+* Toolkit to Disable Automatic Delivery of Internet Explorer 9 ( https://technet.microsoft.com/en-us/browser/gg615600.aspx )
+* Toolkit to Disable Automatic Delivery of Internet Explorer 10 ( https://technet.microsoft.com/en-us/browser/jj898509.aspx )
+* Toolkit to Disable Automatic Delivery of Internet Explorer 11 ( https://www.microsoft.com/en-us/download/details.aspx?id=40722 )
 
 ### Other
-* setacl-**.exe (https://helgeklein.com/setacl/)
+* setacl-**.exe ( https://helgeklein.com/setacl/ )
 
 ## Feedback
-Please direct all feedback to the bitbucket repository page (https://bitbucket.org/matthewlinton/ancile/).
+Please direct all feedback to the bitbucket repository page ( https://bitbucket.org/matthewlinton/ancile/ ).
 
 ## Thanks
 ### A special thanks to everyone that helped to improve Ancile
