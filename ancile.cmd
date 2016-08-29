@@ -5,7 +5,7 @@
 :INIT
 @REM Configure the environment
 SET APPNAME=Ancile
-SET VERSION=0.4
+SET VERSION=0.5
 SET ARCH=32
 wmic os get osarchitecture 2>&1|findstr /i 64-bit >nul 2>&1 && SET ARCH=64
 
@@ -49,8 +49,6 @@ CALL "%SCRIPTDIR%\disableremreg.cmd"
 CALL "%SCRIPTDIR%\disablewinx.cmd"
 @REM Disable scheduled tasks
 call "%SCRIPTDIR%\tasks\disabletasks.cmd"
-@REM Configure Windows update
-CALL "%SCRIPTDIR%\winupdate.cmd"
 @REM Uninstall and hide unwanted updates
 CALL "%SCRIPTDIR%\updates\disableupdates.cmd"
 @REM Disable automated delivery of internet explorer
