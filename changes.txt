@@ -1,3 +1,7 @@
+v0.6
+	Combined WiFi Sense, CEIP, Spynet, Telemetry, Diag Tracking, and skydrive into one script (disableservices)
+	Re-organized script execution (ancile)
+	
 v0.5
 	Removed delete Windows packages code (updates)
 	Moved winupdate code to disableupdates command (updates)

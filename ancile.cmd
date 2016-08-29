@@ -5,7 +5,7 @@
 :INIT
 @REM Configure the environment
 SET APPNAME=Ancile
-SET VERSION=0.5
+SET VERSION=0.6
 SET ARCH=32
 wmic os get osarchitecture 2>&1|findstr /i 64-bit >nul 2>&1 && SET ARCH=64
 
@@ -45,26 +45,16 @@ CALL "%SCRIPTDIR%\mkrestore.cmd"
 CALL "%SCRIPTDIR%\registry\regown.cmd"
 @REM Disable remote registry
 CALL "%SCRIPTDIR%\disableremreg.cmd"
-@REM Disable Windows 10 upgrade
-CALL "%SCRIPTDIR%\disablewinx.cmd"
+@REM Disable unwanted services
+CALL "%SCRIPTDIR%\disableservices.cmd"
 @REM Disable scheduled tasks
 call "%SCRIPTDIR%\tasks\disabletasks.cmd"
-@REM Uninstall and hide unwanted updates
-CALL "%SCRIPTDIR%\updates\disableupdates.cmd"
 @REM Disable automated delivery of internet explorer
 CALL "%SCRIPTDIR%\inetexplore\disableie.cmd"
-@REM Disable Microsoft Customer Experience Improvement Program
-CALL "%SCRIPTDIR%\disablewifisense.cmd"
-@REM Remove Windows diagnostics tracking
-CALL "%SCRIPTDIR%\disableceip.cmd"
-@REM Disable SpyNet
-CALL "%SCRIPTDIR%\disablespynet.cmd"
-@REM Disable Telemitry
-CALL "%SCRIPTDIR%\disabletelemetry.cmd"
-@REM Disable WIFISense
-CALL "%SCRIPTDIR%\disablediagtrak.cmd"
-@REM Disable SkyDrive
-CALL "%SCRIPTDIR%\disableskydrive.cmd"
+@REM Disable Windows 10 upgrade
+CALL "%SCRIPTDIR%\disablewinx.cmd"
+@REM Uninstall and hide unwanted updates
+CALL "%SCRIPTDIR%\updates\disableupdates.cmd"
 @REM Block malicious hosts
 CALL "%SCRIPTDIR%\hosts\blockhosts.cmd"
 
