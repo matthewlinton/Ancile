@@ -16,9 +16,9 @@ ECHO [%DATE% %TIME%] BEGIN DISABLE WINDOWS UPDATES >> "%LOGFILE%"
 ECHO * Disabling Windows Updates ... 
 ECHO   This may take a long time. Please be patient.
 
-@REM 
+@REM Modifying Windows Update Behavior
 ECHO Modifying Registry Entries: >> "%LOGFILE%"
-ECHO ** Modifying Windows update  ...
+ECHO ** Modifying Windows update
 SET rkey=hkey_local_machine\software\microsoft\windows\currentversion\windowsupdate\auto update
 reg ADD "%rkey%" /f /t reg_dword /v auoptions /d 2  >> "%LOGFILE%" 2>&1
 reg ADD "%rkey%" /f /t reg_dword /v enablefeaturedsoftware /d 0  >> "%LOGFILE%" 2>&1

@@ -3,6 +3,7 @@
 2902907		[description not available, update was pulled by Microsoft]
 2922324		[description not available, update was pulled by Microsoft]
 2952664		Compatibility update for upgrading Windows 7
+2966583		Improvements for the System Update Readiness Tool in Windows 7 and Windows Server 2008 R2
 2976978		Compatibility update for Windows 8.1 and Windows 8
 2977759		Compatibility update for Windows 7 RTM
 2990214		Update that enables you to upgrade from Windows 7 to a later version of Windows
@@ -39,8 +40,8 @@
 3093983		MS15-106: Security update for Internet Explorer: October 13, 2015
 3102810		Installing and searching for updates is slow and high CPU usage occurs in Windows 7 and Windows Server 2008 R2
 3102812		Installing and searching for updates is slow and high CPU usage occurs in Windows 8.1 and Windows Server 2012 R2
-3112343		Windows Update Client for Windows 7 and Windows Server 2008 R2: December 2015 
 3112336		Windows Update Client for Windows 8.1 and Windows Server 2012 R2: December 2015
+3112343		Windows Update Client for Windows 7 and Windows Server 2008 R2: December 2015 
 3123862		Updated capabilities to upgrade Windows 8.1 and Windows 7
 3135445		Windows Update Client for Windows 7 and Windows Server 2008 R2: February 2016
 3135449		Windows Update Client for Windows 8.1 and Windows Server 2012 R2: February 2016
@@ -49,3 +50,4 @@
 3139929		MS16-023: Security update for Internet Explorer: March 8, 2016
 3146449		Updated Internet Explorer 11 capabilities to upgrade Windows 8.1 and Windows 7
 3150513		May 2016 Compatibility Update for Windows
+3173040		Windows 8.1 and Windows 7 SP1 end of free upgrade offer notification
