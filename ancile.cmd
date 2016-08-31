@@ -5,14 +5,19 @@
 :INIT
 @REM Configure the environment
 SET APPNAME=Ancile
-SET VERSION=0.6
+SET VERSION=0.7
 SET ARCH=32
 wmic os get osarchitecture 2>&1|findstr /i 64-bit >nul 2>&1 && SET ARCH=64
+
+FOR /F "usebackq tokens=1,2 delims==" %%i IN (`wmic os get LocalDateTime /VALUE 2^>NUL`) DO (
+	IF '.%%i.'=='.LocalDateTime.' SET ldt=%%j
+)
+SET UNIDATE=%ldt:~0,4%-%ldt:~4,2%-%ldt:~6,2%
 
 SET CURRDIR=%~dp0
 SET LIBDIR=%CURRDIR%lib
 SET SCRIPTDIR=%CURRDIR%scripts
-SET LOGFILE=%CURRDIR%%APPNAME%-%VERSION%_%DATE%.log
+SET LOGFILE=%CURRDIR%%APPNAME%-%VERSION%_%UNIDATE%.log
 
 SET BINSETACL=%LIBDIR%\setacl-%ARCH%.exe
 SET BINSED=%LIBDIR%\sed.exe

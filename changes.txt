@@ -1,3 +1,8 @@
+v0.7
+	Added : 2966583		Improvements for the System Update Readiness Tool in Windows 7 and Windows Server 2008 R2 (updates)
+	Added : 3173040		Windows 8.1 and Windows 7 SP1 end of free upgrade offer notification (updates)
+	Fixed issue with Windows date localization causing logging to fail on some systems (ancile)
+
 v0.6
 	Combined WiFi Sense, CEIP, Spynet, Telemetry, Diag Tracking, and skydrive into one script (disableservices)
 	Re-organized script execution (ancile)

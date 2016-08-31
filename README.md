@@ -68,6 +68,7 @@ Please direct all feedback to the bitbucket repository page ( https://bitbucket.
 
 ## Thanks
 ### A special thanks to everyone that helped to improve Ancile
+ucantdothatontv, HeavyBeefCurtain, aekotra
 
 ### Thank you to everyone that helped create Aegis-voat
 #### Creators
