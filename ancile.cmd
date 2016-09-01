@@ -23,7 +23,7 @@ SET LOGFILE=%CURRDIR%%APPNAME%-%VERSION%_%UNIDATE%.log
 SET USERCONFIG=%CURRDIR%config.txt
 IF EXIST "%USERCONFIG%" (
 	FOR /F "eol=# delims=" %%i in ('TYPE "%USERCONFIG%"') DO (
-		CALL %%i
+		CALL SET %%i
 	)
 ) ELSE (
 	ECHO User config "%USERCONFIG%" does not exist.
