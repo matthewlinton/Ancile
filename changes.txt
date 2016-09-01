@@ -1,3 +1,10 @@
+v0.8
+	Added user configuration file. Users can now set configuration options and save them between versions (config.txt)
+	Verify that we can write to the logging file (ancile)
+	Added optional IDSTRING variable to allow for custom identification of log files(config.txt)
+	Minor modifications to the main script (ancile)
+	Minor modifications to the systemrestore script (mkrestore)
+
 v0.7
 	Added : 2966583		Improvements for the System Update Readiness Tool in Windows 7 and Windows Server 2008 R2 (updates)
 	Added : 3173040		Windows 8.1 and Windows 7 SP1 end of free upgrade offer notification (updates)

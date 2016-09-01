@@ -24,7 +24,7 @@ Ancile does not require installation and can be run directly from within it's pa
 *  Disable ceip/gwx/skydrive(aka OneDrive)/SpyNet/telemetry/WiFiSense
 *  Disable remote registry
 *  Disable unwanted scheduled tasks
-*  Disable Windows 10 download directory
+*  Disable Windows 10 update
 *  Remove Microsoft's diagnostics tracking
 *  Hide/Uninstall unwanted Windows updates
 

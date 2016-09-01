@@ -1,6 +1,13 @@
 @REM synctime - Sync windows time to pool.ntp.org
 
 ECHO [%DATE% %TIME%] BEGIN NTP SYNC >> "%LOGFILE%"
+
+IF "%DOTIMESYNC%"=="N" (
+	ECHO Skipping NTP settings and time sync >> "%LOGFILE%"
+	ECHO * Skipping NTP time sync
+	GOTO ENDSYNCTIME
+)
+
 ECHO * Syncing time to pool.ntp.org ... 
 
 @REM Configure NTP
@@ -29,5 +36,6 @@ net start w32time >> "%LOGFILE%" 2>&1
 w32tm /config /update >> "%LOGFILE%" 2>&1
 w32tm /resync >> "%LOGFILE%" 2>&1
 
+:ENDSYNCTIME
 ECHO [%DATE% %TIME%] END NTP SYNC >> "%LOGFILE%"
 ECHO   DONE

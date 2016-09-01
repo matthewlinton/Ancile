@@ -3,9 +3,9 @@
 @REM Block all windows spying and unwanted upgrades.
 
 :INIT
-@REM Configure the environment
+@REM Configure the default environment
 SET APPNAME=Ancile
-SET VERSION=0.7
+SET VERSION=0.8
 SET ARCH=32
 wmic os get osarchitecture 2>&1|findstr /i 64-bit >nul 2>&1 && SET ARCH=64
 
@@ -19,25 +19,53 @@ SET LIBDIR=%CURRDIR%lib
 SET SCRIPTDIR=%CURRDIR%scripts
 SET LOGFILE=%CURRDIR%%APPNAME%-%VERSION%_%UNIDATE%.log
 
+@REM Load user environment configuration
+SET USERCONFIG=%CURRDIR%config.txt
+IF EXIST "%USERCONFIG%" (
+	FOR /F "eol=# delims=" %%i in ('TYPE "%USERCONFIG%"') DO (
+		CALL %%i
+	)
+) ELSE (
+	ECHO User config "%USERCONFIG%" does not exist.
+	ECHO Using default configuration.
+)
+
+@REM Configure internal environment variables
 SET BINSETACL=%LIBDIR%\setacl-%ARCH%.exe
 SET BINSED=%LIBDIR%\sed.exe
 
 SET ANCERRLVL=0
 
+:BEGIN
+ECHO Starting %APPNAME% v%VERSION%
+
 @REM Make sure we're running as an administrator
 net session >nul 2>&1
 IF %ERRORLEVEL% NEQ 0 ECHO This script requires Administrative privileges. Exiting. & PAUSE & EXIT 1
 
+@REM Make sure that the directory we're logging to exists
+FOR %%i IN ("%LOGFILE%") DO (
+	IF NOT EXIST "%%~di%%~pi" (
+		ECHO Logging directory "%%~di%%~pi" does not exist.
+		ECHO Please make sure the path is correct.
+		SET /A ANCERRLVL=ANCERRLVL+1
+		GOTO ERRCHK
+	)
+)
+
+:MAIN
 @REM Begin Logging
 ECHO [%DATE% %TIME%] ### %APPNAME% v%VERSION% ################################# >> "%LOGFILE%"
 ECHO [%DATE% %TIME%] Created by Matthew Linton >> "%LOGFILE%"
 ECHO [%DATE% %TIME%] https://github.com/matthewlinton/ancile >> "%LOGFILE%"
 ECHO [%DATE% %TIME%] ########################################################## >> "%LOGFILE%"
-ECHO Starting %APPNAME% v%VERSION%
+IF NOT ".%IDSTRING%"=="." ECHO %IDSTRING%>> "%LOGFILE%"
 
 @REM Log System information
-ECHO Collecting system information ...
-systeminfo >> "%LOGFILE%"
+IF NOT "%DOSYSTEMINFO%"=="N" (
+	ECHO Collecting system information ...
+	systeminfo >> "%LOGFILE%"
+)
 
 @REM Sync Windows time
 CALL "%SCRIPTDIR%\synctime.cmd"
@@ -45,7 +73,7 @@ CALL "%SCRIPTDIR%\synctime.cmd"
 @REM Create restore point
 CALL "%SCRIPTDIR%\mkrestore.cmd"
 
-:BEGIN
+:SCRIPTS
 @REM Take ownership of registry keys
 CALL "%SCRIPTDIR%\registry\regown.cmd"
 @REM Disable remote registry
@@ -69,15 +97,16 @@ IF %ANCERRLVL% GTR 0 GOTO ENDFAIL
 GOTO ENDSUCCESS
 
 :ENDFAIL
-ECHO [%DATE% %TIME%] END : %APPNAME% v%VERSION% completed with %ANCERRLVL% error(s) >> "%LOGFILE%"
+IF EXIST "%LOGFILE%" ECHO [%DATE% %TIME%] END : %APPNAME% v%VERSION% completed with %ANCERRLVL% error(s) >> "%LOGFILE%"
 ECHO %APPNAME% v%VERSION% has completed with errors.
-ECHO See "%LOGFILE%" for more indformation.
+IF EXIST "%LOGFILE%" ECHO See "%LOGFILE%" for more indformation.
 ECHO Press any key to exit.
 GOTO END
 
 :ENDSUCCESS
-ECHO [%DATE% %TIME%] END : %APPNAME% v%VERSION% completed successfully >> "%LOGFILE%"
+IF EXIST "%LOGFILE%" ECHO [%DATE% %TIME%] END : %APPNAME% v%VERSION% completed successfully >> "%LOGFILE%"
 ECHO %APPNAME% v%VERSION% has completed successfully.
+IF EXIST "%LOGFILE%" ECHO See "%LOGFILE%" for more indformation.
 ECHO Press any key to exit.
 GOTO END
 
