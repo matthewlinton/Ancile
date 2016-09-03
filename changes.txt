@@ -1,3 +1,7 @@
+v0.9
+	Streamlined adding hosts to the routing table (blockhosts)
+	Removed sed.exe from lib. We're not using this at the moment
+
 v0.8
 	Added user configuration file. Users can now set configuration options and save them between versions (config.txt)
 	Verify that we can write to the logging file (ancile)

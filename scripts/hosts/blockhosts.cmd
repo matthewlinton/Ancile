@@ -2,11 +2,15 @@
 @REM 			  routes.txt - list of hosts/networks that should be blocked through routing tables
 @REM 			  hosts.txt - Lists of hosts that will be blocked through the hosts file
 
+Setlocal EnableDelayedExpansion
+
 SET HOSTSFILE=%SYSTEMDRIVE%\windows\system32\drivers\etc\hosts
 SET IPLIST=%SCRIPTDIR%\hosts\hostsip.txt
 SET HOSTLIST=%SCRIPTDIR%\hosts\hostsdns.txt
 
 SET TMPHOSTS=%TEMP%\%APPNAME%_%VERSION%.hosts.tmp
+
+SET RULENAME=%APPNAME% - Block Malicious IP Addresses
 
 SET LISTBEGIN=# Start of entries inserted by %APPNAME%
 SET LISTEND=# End of entries inserted by %APPNAME%
@@ -21,7 +25,6 @@ ECHO   This may take a long time. Please be patient.
 ECHO Cleaning hosts file: >> "%LOGFILE%"
 ECHO ** Updating hosts file
 IF EXIST "%TMPHOSTS%" DEL "%TMPHOSTS%" >> "%LOGFILE%" 2>&1
-Setlocal EnableDelayedExpansion
 SET wout=1
 SET linecount=0
 FOR /F "delims=" %%i IN ('TYPE "%HOSTSFILE%"') DO (
@@ -49,33 +52,37 @@ FOR /F %%k IN ('TYPE "%HOSTLIST%"') DO (
 	SET match=0
 )
 ECHO %LISTEND%>> "%HOSTSFILE%"
-Setlocal DisableDelayedExpansion
 
-@REM Block hosts using the routing table
+@REM Block hosts using the routing table and Windows Firewall
 ECHO Routing table entries added: >> "%LOGFILE%"
 ECHO ** Updating routing table
-FOR /F "tokens=1,2,* delims=, " %%i IN ('TYPE "%IPLIST%"') DO (
-	ECHO | set /p=%%i - >> "%LOGFILE%"
-	route ADD %%i MASK %%j 0.0.0.0 -p >> "%LOGFILE%" 2>&1
-)
-
-@REM Block hosts using the Windows firewall
-ECHO Firewall entries added: >> "%LOGFILE%"
-ECHO ** Updating firewall rules
-Setlocal EnableDelayedExpansion
-SET rulename=%APPNAME% - Block Malicious IP Addresses
+SET rkey=HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\PersistentRoutes
 SET ipaddrlist=
-netsh advfirewall firewall delete rule name="%rulename%" >> "%LOGFILE%" 2>&1
-FOR /F "tokens=1,* delims=, " %%i in ('TYPE "%IPLIST%"') DO (
+FOR /F "tokens=1,2,* delims=, " %%i IN ('TYPE "%IPLIST%"') DO (
+	reg QUERY %rkey% /V %%i* >nul; 2>&1
+	IF %ERRORLEVEL% == 1 (
+		ECHO Adding Route : %%i >> "%LOGFILE%"
+		route ADD %%i MASK %%j 0.0.0.0 -p >> "%LOGFILE%" 2>&1
+	) ELSE (
+		ECHO Route Already Present : %%i >> "%LOGFILE%"
+	)
+	
 	IF ".!ipaddrlist!"=="." (
 		SET ipaddrlist=%%i
 	) ELSE (
 		SET ipaddrlist=!ipaddrlist!,%%i
 	)
 )
-ECHO Adding: !ipaddrlist! >> "%LOGFILE%"
-netsh advfirewall firewall add rule name="%rulename%" dir=out action=block remoteip=!ipaddrlist! >> "%LOGFILE%" 2>&1
 
+@REM Block hosts using the Windows firewall. Uses the IP address list generated above
+ECHO Firewall entries added: >> "%LOGFILE%"
+ECHO ** Updating firewall rules
+ECHO Deleting old firewall ruleset >> "%LOGFILE%"
+netsh advfirewall firewall delete rule name="%RULENAME%" >> "%LOGFILE%" 2>&1
+ECHO Adding updated firewall ruleset >> "%LOGFILE%"
+netsh advfirewall firewall add rule name="%RULENAME%" dir=out action=block remoteip=!ipaddrlist! >> "%LOGFILE%" 2>&1
 
 ECHO [%DATE% %TIME%] END HOST BLOCKING >> "%LOGFILE%"
 ECHO   DONE
+
+Setlocal DisableDelayedExpansion

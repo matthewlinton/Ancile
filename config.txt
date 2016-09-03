@@ -12,6 +12,11 @@
 #	The deafult location is to log to the Ancile directory.
 #LOGFILE=%USERPROFILE%\Documents\AncileLog.txt
 
+# TEMPDIR (Drive+Path) - Set the directory where temp files will be
+#	stored. You need to include the drive letter, full path, and file name.
+#	The deafult location will use the users lcoal temp directory
+#TEMPDIR=%TEMP%\%APPNAME%
+
 # SYSTEMRESTORE (Value) - Configure behavioir of system restore
 #	Y	- Automatically launch Windows system restore before making changes.
 #	N	- Do not launch Windows system restore

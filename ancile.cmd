@@ -5,7 +5,7 @@
 :INIT
 @REM Configure the default environment
 SET APPNAME=Ancile
-SET VERSION=0.8
+SET VERSION=0.9
 SET ARCH=32
 wmic os get osarchitecture 2>&1|findstr /i 64-bit >nul 2>&1 && SET ARCH=64
 
@@ -17,6 +17,7 @@ SET UNIDATE=%ldt:~0,4%-%ldt:~4,2%-%ldt:~6,2%
 SET CURRDIR=%~dp0
 SET LIBDIR=%CURRDIR%lib
 SET SCRIPTDIR=%CURRDIR%scripts
+SET TEMPDIR=%TEMP%\%APPNAME%
 SET LOGFILE=%CURRDIR%%APPNAME%-%VERSION%_%UNIDATE%.log
 
 @REM Load user environment configuration
@@ -33,6 +34,8 @@ IF EXIST "%USERCONFIG%" (
 @REM Configure internal environment variables
 SET BINSETACL=%LIBDIR%\setacl-%ARCH%.exe
 SET BINSED=%LIBDIR%\sed.exe
+
+MD "%TEMPDIR%" >nul 2>&1
 
 SET ANCERRLVL=0
 
