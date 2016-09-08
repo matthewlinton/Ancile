@@ -48,11 +48,6 @@ Ancile, to the best of my knowledge, does not contain any harmful or malicious c
 ## Resources
 Ancile uses the following third party resources to perform specific tasks.
 
-### GnuWin
-GnuWin( http://gnuwin32.sourceforge.net/ ) provides ports of tools with a GNU or similar open source license, to modern MS-Windows (Microsoft Windows 2000 / XP / 2003 / Vista / 2008 / 7).
-
-* sed.exe ( http://gnuwin32.sourceforge.net/packages/sed.htm )
-
 ### Microsoft
 * Toolkit to Disable Automatic Delivery of Internet Explorer 7 ( https://www.microsoft.com/en-us/download/details.aspx?id=13428 )
 * Toolkit to Disable Automatic Delivery of Internet Explorer 8 ( https://technet.microsoft.com/en-us/browser/dd365124.aspx )
@@ -64,7 +59,9 @@ GnuWin( http://gnuwin32.sourceforge.net/ ) provides ports of tools with a GNU or
 * setacl-**.exe ( https://helgeklein.com/setacl/ )
 
 ## Feedback
-Please direct all feedback to the bitbucket repository page ( https://bitbucket.org/matthewlinton/ancile/ ).
+Please direct all feedback to the Voat subverse ( https://voat.co/v/ancile/ ).
+
+If you find a bug, please take the time to report it ( https://bitbucket.org/matthewlinton/ancile/ ).
 
 ## Thanks
 ### A special thanks to everyone that helped to improve Ancile
