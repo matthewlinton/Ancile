@@ -17,6 +17,12 @@
 #	The deafult location will use the users lcoal temp directory
 #TEMPDIR=%TEMP%\%APPNAME%
 
+# SYSARCH - (32|64) - Set the system archetecture.
+#	If left unset, Ancile will auto detect the the correct one.
+#	32	- For 32 bit
+#	64	- For 64 bit
+#SYSARCH=32
+
 # SYSTEMRESTORE (Value) - Configure behavioir of system restore
 #	Y	- Automatically launch Windows system restore before making changes.
 #	N	- Do not launch Windows system restore
