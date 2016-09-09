@@ -13,13 +13,14 @@ http://www.mcbsys.com/blog/2015/11/uninstall-and-hide-windows-updates/
     Name:       MCB.AutoUpdate.UninstallAndHideUpdates.ps1
     Author:     Mark Berry, MCB Systems
     Created:    10/11/2015
-    Last Edit:  08/29/2016
+    Last Edit:  09/09/2016
  
     Adapted from:
     http://techibee.com/powershell/powershell-uninstall-windows-hotfixesupdates/1084
     http://superuser.com/a/922921/171670
  
     Changes:
+	09/09/2016 "IsNullOrWhitespace" is not part of PS v2
 	08/12/2016 Modified script to take a file as an argument
 			   Added hidden=0 to search results.
     10/12/2015 Handle multiple updates in one execution.
@@ -52,12 +53,12 @@ param(
 [Boolean]$ErrFound = $false
 $ComputerName = $env:COMPUTERNAME
 
-if (![string]::IsNullOrWhitespace($KBFile)){
+if ($KBFile){
 	If (Test-Path $KBFile){
 		$KBArray = Get-Content "$KBFile"
 		foreach ($line in $KBArray) {
 			$fields = $line -split "\s+"
-			if ([string]::IsNullOrWhitespace($KBNumbers)) {
+			if (!$KBNumbers) {
 				$KBNumbers = $fields[0]
 			} else {
 				$KBNumbers = $KBNumbers + $fields[0]

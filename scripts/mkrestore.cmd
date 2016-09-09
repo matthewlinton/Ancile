@@ -12,6 +12,7 @@ IF "%SYSTEMRESTORE%"=="N" (
 )
 
 @REM Ask the user what to do
+SET yesno=Y
 SET /P yesno="* create system restore point? (Y/n):  "
 IF /I "%yesno:~,1%" equ "n" GOTO RESTOREEND
 IF /I "%yesno:~,1%" equ "N" GOTO RESTOREEND
@@ -22,7 +23,8 @@ wmic.exe /namespace:\\root\default path systemrestore call createrestorepoint "%
 
 IF %ERRORLEVEL% equ 0 DO SET /A ANCERRLVL=ANCERRLVL+1 & GOTO RESTOREEND
 
-SET /P yesno="Failed to create system restore point. Continue? (y/N):  "
+SET yesno=N
+SET /P yesno="Failed to create system restore point. Retry? (y/N):  "
 IF /I "%yesno:~,1%" equ "y" GOTO RESTOREPOINT
 IF /I "%yesno:~,1%" equ "Y" GOTO RESTOREPOINT
 

@@ -5,7 +5,7 @@
 :INIT
 @REM Configure the default environment
 SET APPNAME=Ancile
-SET VERSION=0.9
+SET VERSION=0.9.1
 
 FOR /F "usebackq tokens=1,2 delims==" %%i IN (`wmic os get LocalDateTime /VALUE 2^>NUL`) DO (
 	IF '.%%i.'=='.LocalDateTime.' SET ldt=%%j
@@ -30,10 +30,10 @@ IF EXIST "%USERCONFIG%" (
 )
 
 @REM Configure internal environment variables
-IF NOT %SYSARCH% EQU 32 (
-	IF NOT %SYSARCH% EQU 64 (
-		SET ARCH=32
-		wmic os get osarchitecture 2>&1|findstr /i 64-bit >nul 2>&1 && SET ARCH=64
+IF NOT "%SYSARCH%"=="32" (
+	IF NOT "%SYSARCH%"=="64" (
+		SET SYSARCH=32
+		wmic os get osarchitecture 2>&1|findstr /I 64-bit >nul 2>&1 && SET SYSARCH=64
 	)
 )
 
@@ -73,6 +73,7 @@ IF NOT ".%IDSTRING%"=="." ECHO %IDSTRING%>> "%LOGFILE%"
 IF NOT "%DOSYSTEMINFO%"=="N" (
 	ECHO Collecting system information ...
 	systeminfo >> "%LOGFILE%"
+	powershell -executionpolicy remotesigned -Command $PSVersionTable >> "%LOGFILE%"
 )
 
 :SYSPREP
