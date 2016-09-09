@@ -1,3 +1,9 @@
+v0.9.1
+	(ISSUE: #1) UninstallAndHideUpdates.ps1 only works on PowerShell v3+ (Fixed to work on PS v2+).
+	BUGFIX : If the system archetecture is not set correctly the script will fail (Some systems).
+	BUGFIX : Restore point user input defaults aren't registered correctly
+	Added : Collect powershell version information
+	
 v0.9
 	Streamlined adding hosts to the routing table (blockhosts)
 	Added system archatecture configuration option (config.txt)

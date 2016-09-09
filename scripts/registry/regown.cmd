@@ -3,7 +3,7 @@
 @REM		  regkeys.txt - List of registry keys to modify
 
 SET KEYFILE=%SCRIPTDIR%\registry\regkeys.txt
-SET SETACLBIN=%LIBDIR%\setacl-%ARCH%.exe
+SET SETACLBIN=%LIBDIR%\setacl-%SYSARCH%.exe
 
 ECHO [%DATE% %TIME%] BEGIN REGISTRY KEY OWNERSHIP >> "%LOGFILE%"
 ECHO * Fixing registry key ownership ... 
