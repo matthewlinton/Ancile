@@ -65,11 +65,11 @@ If you find a bug, please take the time to report it ( https://bitbucket.org/mat
 
 ## Thanks
 ### A special thanks to everyone that helped to improve Ancile
-ucantdothatontv, HeavyBeefCurtain, aekotra
+ucantdothatontv, HeavyBeefCurtain, aekotra, Scalar
 
 ### Thank you to everyone that helped create Aegis-voat
 #### Creators
 th3power
 
 #### Contributors
-alexzerg11, allockse, AxiomBreak, elixxx, erskine, eSh, GGLapkizzz, ilikeskittles, liquidinsects, Magoo204, Mixplate, mythias, PaulDG, pstein, RypeDub420, spexdi, tor11, Umrtvovacz, qzxq, thequestion, tor11, tr3bg0d, Umrtvovacz, Voluptuous_Panda, and Zaphain.
+alexzerg11, allockse, AxiomBreak, elixxx, erskine, eSh, GGLapkizzz, ilikeskittles, liquidinsects, Magoo204, Mixplate, mythias, PaulDG, pstein, RypeDub420, spexdi, tor11, Umrtvovacz, qzxq, thequestion, tor11, tr3bg0d, Voluptuous_Panda, and Zaphain.

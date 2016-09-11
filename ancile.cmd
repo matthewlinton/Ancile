@@ -5,7 +5,7 @@
 :INIT
 @REM Configure the default environment
 SET APPNAME=Ancile
-SET VERSION=0.9.1
+SET VERSION=1.0.0
 
 FOR /F "usebackq tokens=1,2 delims==" %%i IN (`wmic os get LocalDateTime /VALUE 2^>NUL`) DO (
 	IF '.%%i.'=='.LocalDateTime.' SET ldt=%%j
@@ -19,7 +19,7 @@ SET TEMPDIR=%TEMP%\%APPNAME%
 SET LOGFILE=%CURRDIR%%APPNAME%-%VERSION%_%UNIDATE%.log
 
 @REM Load user environment configuration
-SET USERCONFIG=%CURRDIR%config.txt
+SET USERCONFIG=%CURRDIR%config.ini
 IF EXIST "%USERCONFIG%" (
 	FOR /F "eol=# delims=" %%i in ('TYPE "%USERCONFIG%"') DO (
 		CALL SET %%i
@@ -70,7 +70,7 @@ ECHO [%DATE% %TIME%] ########################################################## 
 IF NOT ".%IDSTRING%"=="." ECHO %IDSTRING%>> "%LOGFILE%"
 
 @REM Log System information
-IF NOT "%DOSYSTEMINFO%"=="N" (
+IF NOT "%SYSTEMINFO%"=="N" (
 	ECHO Collecting system information ...
 	systeminfo >> "%LOGFILE%"
 	powershell -executionpolicy remotesigned -Command $PSVersionTable >> "%LOGFILE%"

@@ -1,24 +1,29 @@
+v1.0.0
+	ISSUE: #2) Add config options for modifying the hosts file.
+	ISSUE: #3) Renamed "config.txt" to "config.ini"
+	Renamed some config options in "config.ini"
+
 v0.9.1
-	(ISSUE: #1) UninstallAndHideUpdates.ps1 only works on PowerShell v3+ (Fixed to work on PS v2+).
-	BUGFIX : If the system archetecture is not set correctly the script will fail (Some systems).
-	BUGFIX : Restore point user input defaults aren't registered correctly
-	Added : Collect powershell version information
+	ISSUE: #1) UninstallAndHideUpdates.ps1 only works on PowerShell v3+ (Fixed to work on PS v2+).
+	BUGFIX: If the system architecture is not set correctly the script will fail (Some systems).
+	BUGFIX: Restore point user input defaults aren't registered correctly
+	Added: Collect PowerShell version information
 	
 v0.9
 	Streamlined adding hosts to the routing table (blockhosts)
-	Added system archatecture configuration option (config.txt)
+	Added system architecture configuration option (config.txt)
 	Removed sed.exe from lib. We're not using this at the moment
 
 v0.8
-	Added user configuration file. Users can now set configuration options and save them between versions (config.txt)
+	Added: user configuration file. Users can now set configuration options and save them between versions (config.txt)
 	Verify that we can write to the logging file (ancile)
-	Added optional IDSTRING variable to allow for custom identification of log files(config.txt)
+	Added: optional IDSTRING variable to allow for custom identification of log files(config.txt)
 	Minor modifications to the main script (ancile)
 	Minor modifications to the systemrestore script (mkrestore)
 
 v0.7
-	Added : 2966583		Improvements for the System Update Readiness Tool in Windows 7 and Windows Server 2008 R2 (updates)
-	Added : 3173040		Windows 8.1 and Windows 7 SP1 end of free upgrade offer notification (updates)
+	Added: 2966583		Improvements for the System Update Readiness Tool in Windows 7 and Windows Server 2008 R2 (updates)
+	Added: 3173040		Windows 8.1 and Windows 7 SP1 end of free upgrade offer notification (updates)
 	Fixed issue with Windows date localization causing logging to fail on some systems (ancile)
 
 v0.6
@@ -32,9 +37,9 @@ v0.5
 	
 v0.4 -
 	Reworked Windows updates scripts (updates)
-	Removed need for windows updates uninstall powershell script (updates)
-	Added code to delete windows update package files (updates)
-	Added descriptions to kbupdates.txt (updates)
+	Removed need for windows updates uninstall PowerShell script (updates)
+	Added: Code to delete windows update package files (updates)
+	Added: Descriptions to kbupdates.txt (updates)
 	Disabled hide windows updates. This takes too long. the next version will attempt to fix this (updates)
 	Renamed directories to make them more generic
 	Disabled unblockhosts.cmd script (May write script to undo Ancile changes in the future)
@@ -48,10 +53,10 @@ v0.3 -
 	Rearranged script execution (ancile.cmd)
 
 v0.2 -
-	Added system information collection to help diagnose errors
+	Added: system information collection to help diagnose errors
 	Modified hostsip.txt to use full network mask (blockhosts)
 	Fixed issue with routing table not updating correctly (blockhosts)
-	Added code to generate firewall rule which blocks outbound connections to malicious IP addresses (blockhosts)
+	Added: Code to generate firewall rule which blocks outbound connections to malicious IP addresses (blockhosts)
 	Rewrote host blocking through the hosts file (blockhosts)
 	Tested clearallroutes.cmd (Functions as expected)
 	Moved host blocking down(after configuration changes) in main script (ancile.cmd)
@@ -60,9 +65,9 @@ v0.1 -
 	Moved subscripts to their own files (Located in the scripts directory)
 	Moved binaries into the lib directory
 	Fixed issue with NTP time sync quietly failing (synctime)
-	Seperated registry key data from code (regown)
-	Seperated hosts lists from code (blockhosts)
-	Added script to clear all persistant routes (clearallroutes.cmd) [UNTESTED]
+	Separated registry key data from code (regown)
+	Separated hosts lists from code (blockhosts)
+	Added script to clear all persistent routes (clearallroutes.cmd) [UNTESTED]
 
 v0.0 -
 	Branched Ancile from Aegis-Voat v1.18 by th3power (https://github.com/th3power/aegis-voat).
