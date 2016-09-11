@@ -2,7 +2,7 @@
 
 ECHO [%DATE% %TIME%] BEGIN NTP SYNC >> "%LOGFILE%"
 
-IF "%DOTIMESYNC%"=="N" (
+IF "%TIMESYNC%"=="N" (
 	ECHO Skipping NTP settings and time sync >> "%LOGFILE%"
 	ECHO * Skipping NTP time sync
 	GOTO ENDSYNCTIME

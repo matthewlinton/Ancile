@@ -18,14 +18,14 @@ ECHO   This may take a long time. Please be patient.
 
 @REM Modifying Windows Update Behavior
 ECHO Modifying Registry Entries: >> "%LOGFILE%"
-IF NOT "%MODWUBEHAVIOR%"=="N" (
+IF NOT "%MODWINUPDATE%"=="N" (
 	ECHO ** Modifying Windows Update
 	SET rkey=hkey_local_machine\software\microsoft\windows\currentversion\windowsupdate\auto update
 	reg ADD "%rkey%" /f /t reg_dword /v auoptions /d 2  >> "%LOGFILE%" 2>&1
 	reg ADD "%rkey%" /f /t reg_dword /v enablefeaturedsoftware /d 0  >> "%LOGFILE%" 2>&1
 	reg ADD "%rkey%" /f /t reg_dword /v includerecommendedupdates /d 0  >> "%LOGFILE%" 2>&1
 ) ELSE (
-	ECHO SKIPPED:  MODWUBEHAVIOR = "%MODWUBEHAVIOR%">> "%LOGFILE%"
+	ECHO Skipped >> "%LOGFILE%"
 	ECHO ** Skipping Windows Update modification
 )
 
