@@ -43,12 +43,12 @@ IF NOT "%MODHOSTS%"=="N" (
 		FOR /F "tokens=1,2" %%i IN ('findstr /V /C:"#" "%TMPHOSTS%"') DO (
 			IF "%%k"=="%%j" (
 				SET match=1
-				ECHO Duplicate: %%k >> "%LOGFILE%"
+				IF NOT "%DEBUG%"=="N" ECHO Duplicate: %%k >> "%LOGFILE%"
 			) 
 		)
 		IF !match! EQU 0 (
 			ECHO 127.0.0.1	%%k>> "%HOSTSFILE%"
-			ECHO Adding: %%k >> "%LOGFILE%"
+			IF NOT "%DEBUG%"=="N" ECHO Adding: %%k >> "%LOGFILE%"
 		)
 		SET match=0
 	)
@@ -67,10 +67,10 @@ IF NOT "%MODROUTES%"=="N" (
 	FOR /F "tokens=1,2,* delims=, " %%i IN ('TYPE "%IPLIST%"') DO (
 		reg QUERY %rkey% /V %%i* >nul; 2>&1
 		IF %ERRORLEVEL% == 1 (
-			ECHO Adding Route : %%i >> "%LOGFILE%"
+			IF NOT "%DEBUG%"=="N" ECHO Adding Route : %%i >> "%LOGFILE%"
 			route ADD %%i MASK %%j 0.0.0.0 -p >> "%LOGFILE%" 2>&1
 		) ELSE (
-			ECHO Route Already Present : %%i >> "%LOGFILE%"
+			IF NOT "%DEBUG%"=="N" ECHO Route Already Present : %%i >> "%LOGFILE%"
 		)
 	)
 ) ELSE (
@@ -90,7 +90,7 @@ IF NOT "%MODFIREWALL%"=="N" (
 			SET ipaddrlist=!ipaddrlist!,%%i
 		)
 	)
-	ECHO !ipaddrlist! >> "%LOGFILE%"
+	IF NOT "%DEBUG%"=="N" ECHO !ipaddrlist! >> "%LOGFILE%"
 	ECHO Deleting old firewall ruleset >> "%LOGFILE%"
 	netsh advfirewall firewall delete rule name="%RULENAME%" >> "%LOGFILE%" 2>&1
 	ECHO Adding updated firewall ruleset >> "%LOGFILE%"
