@@ -5,7 +5,8 @@
 :INIT
 @REM Configure the default environment
 SET APPNAME=Ancile
-SET VERSION=1.0.0
+SET VERSION=1.1.0
+SET DEBUG=N
 
 FOR /F "usebackq tokens=1,2 delims==" %%i IN (`wmic os get LocalDateTime /VALUE 2^>NUL`) DO (
 	IF '.%%i.'=='.LocalDateTime.' SET ldt=%%j
@@ -38,7 +39,6 @@ IF NOT "%SYSARCH%"=="32" (
 )
 
 SET BINSETACL=%LIBDIR%\setacl-%SYSARCH%.exe
-SET BINSED=%LIBDIR%\sed.exe
 
 MD "%TEMPDIR%" >nul 2>&1
 
@@ -65,14 +65,15 @@ FOR %%i IN ("%LOGFILE%") DO (
 @REM Begin Logging
 ECHO [%DATE% %TIME%] ### %APPNAME% v%VERSION% ################################# >> "%LOGFILE%"
 ECHO [%DATE% %TIME%] Created by Matthew Linton >> "%LOGFILE%"
-ECHO [%DATE% %TIME%] https://github.com/matthewlinton/ancile >> "%LOGFILE%"
+ECHO [%DATE% %TIME%] https://bitbucket.org/matthewlinton/ancile/ >> "%LOGFILE%"
 ECHO [%DATE% %TIME%] ########################################################## >> "%LOGFILE%"
 IF NOT ".%IDSTRING%"=="." ECHO %IDSTRING%>> "%LOGFILE%"
 
-@REM Log System information
-IF NOT "%SYSTEMINFO%"=="N" (
+@REM Log System information when Debugging
+IF NOT "%DEBUG%"=="N" (
 	ECHO Collecting system information ...
 	systeminfo >> "%LOGFILE%"
+	SET >> "%LOGFILE%"
 	powershell -executionpolicy remotesigned -Command $PSVersionTable >> "%LOGFILE%"
 )
 
@@ -109,16 +110,18 @@ GOTO ENDSUCCESS
 :ENDFAIL
 IF EXIST "%LOGFILE%" ECHO [%DATE% %TIME%] END : %APPNAME% v%VERSION% completed with %ANCERRLVL% error(s) >> "%LOGFILE%"
 ECHO %APPNAME% v%VERSION% has completed with errors.
-IF EXIST "%LOGFILE%" ECHO See "%LOGFILE%" for more indformation.
-ECHO Press any key to exit.
 GOTO END
 
 :ENDSUCCESS
 IF EXIST "%LOGFILE%" ECHO [%DATE% %TIME%] END : %APPNAME% v%VERSION% completed successfully >> "%LOGFILE%"
 ECHO %APPNAME% v%VERSION% has completed successfully.
-IF EXIST "%LOGFILE%" ECHO See "%LOGFILE%" for more indformation.
-ECHO Press any key to exit.
+
 GOTO END
 
 :END
+IF EXIST "%LOGFILE%" ECHO See "%LOGFILE%" for more indformation.
+IF EXIST "%LOGFILE%" ECHO [%DATE% %TIME%] ########################################################## >> "%LOGFILE%"
+IF EXIST "%LOGFILE%" ECHO. >> "%LOGFILE%"
+IF EXIST "%LOGFILE%" ECHO. >> "%LOGFILE%"
+ECHO Press any key to exit.
 PAUSE >nul

@@ -15,6 +15,10 @@ Ancile does not require installation and can be run directly from within it's pa
 1. Select "Run as Administrator" from the menu
 1. Follow the on screen instructions
 
+## Configuration
+Some aspects of Ancile can be configured using the "config.ini" file in the root directory. 
+All configuration options are outlined within the config file itself.
+
 ## Features
 ### Overview
 *  Sync time with ntp.org
@@ -65,7 +69,11 @@ If you find a bug, please take the time to report it ( https://bitbucket.org/mat
 
 ## Thanks
 ### A special thanks to everyone that helped to improve Ancile
-ucantdothatontv, HeavyBeefCurtain, aekotra, Scalar
+#### Partners
+Scalar
+
+#### Contributors
+aekotra, HeavyBeefCurtain, TiagoTiago, ucantdothatontvew
 
 ### Thank you to everyone that helped create Aegis-voat
 #### Creators

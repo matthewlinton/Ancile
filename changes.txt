@@ -1,4 +1,12 @@
-v1.0.0
+v1.1
+	Major review of Windows updates:
+	REMOVED: KB3086255 - This breaks SecureROM DRM, but has nothing to do with Windows 10 upgrades or malware
+	REMOVED: KB971033 - This is a Windows activation update that doesn't have anything to do with Windows 10 upgrades or malware
+	Added the ability to comment and include blank lines in "scripts/updates/kbupdates.txt" (updates)
+	Added debug option to enable debugging features (ancile)(blockhosts)
+	Misc. other minor changes not related to script behavior
+
+v1.0
 	ISSUE: #2) Add config options for modifying the hosts file.
 	ISSUE: #3) Renamed "config.txt" to "config.ini"
 	Renamed some config options in "config.ini"

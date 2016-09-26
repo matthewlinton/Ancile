@@ -20,6 +20,7 @@ http://www.mcbsys.com/blog/2015/11/uninstall-and-hide-windows-updates/
     http://superuser.com/a/922921/171670
  
     Changes:
+	09/14/2016 Script now ignores commented (lines starting with "#") and blank lines in files passed to it
 	09/09/2016 "IsNullOrWhitespace" is not part of PS v2
 	08/12/2016 Modified script to take a file as an argument
 			   Added hidden=0 to search results.
@@ -56,7 +57,7 @@ $ComputerName = $env:COMPUTERNAME
 if ($KBFile){
 	If (Test-Path $KBFile){
 		$KBArray = Get-Content "$KBFile"
-		foreach ($line in $KBArray) {
+		foreach ($line in $KBArray | Where { $_ -notmatch '^#.*' -and $_ -notmatch '^\s*$' } ) {
 			$fields = $line -split "\s+"
 			if (!$KBNumbers) {
 				$KBNumbers = $fields[0]
