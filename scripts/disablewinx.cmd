@@ -29,12 +29,12 @@ reg ADD "%rkey%" /f /t reg_dword /v disableosupgrade /d 1 >> "%LOGFILE%" 2>&1
 ECHO Locking Windows 10 download directory: >> "%LOGFILE%"
 ECHO ** Disabling Windows 10 Download
 IF EXIST "%WINXDIR%" (
-	"%BINSETACL%" -on "%WINXDIR%" -ot file -actn setprot -op dacl:np;sacl:nc -rec cont_obj -actn setowner -ownr n:administrators >> "%LOGFILE%" 2>&1
+	"%BINSETACL%" -on "%WINXDIR%" -ot file -actn setprot -op dacl:np;sacl:nc -rec cont_obj -actn setowner -ownr n:S-1-5-32-544 >> "%LOGFILE%" 2>&1
 	RMDIR /Q /S "%WINXDIR%" >> "%LOGFILE%" 2>&1
 )
 MKDIR "%WINXDIR%" >> "%LOGFILE%" 2>&1
 attrib +h "%WINXDIR%" >> "%LOGFILE%" 2>&1
-"%BINSETACL%" -on "%WINXDIR%" -ot file -actn setprot -op dacl:p_nc;sacl:p_nc -rec cont_obj -actn setowner -ownr n:administrators >> "%LOGFILE%" 2>&1
+"%BINSETACL%" -on "%WINXDIR%" -ot file -actn setprot -op dacl:p_nc;sacl:p_nc -rec cont_obj -actn setowner -ownr n:S-1-5-32-544 >> "%LOGFILE%" 2>&1
 
 ECHO [%DATE% %TIME%] END DISABLE WIN 10 UPGRADE >> "%LOGFILE%"
 ECHO   DONE

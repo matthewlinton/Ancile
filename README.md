@@ -59,6 +59,9 @@ Ancile uses the following third party resources to perform specific tasks.
 * Toolkit to Disable Automatic Delivery of Internet Explorer 10 ( https://technet.microsoft.com/en-us/browser/jj898509.aspx )
 * Toolkit to Disable Automatic Delivery of Internet Explorer 11 ( https://www.microsoft.com/en-us/download/details.aspx?id=40722 )
 
+### WindowsSpyBlocker
+Some host names and IP addresses were provided by crazy-max's WindowsSpyBlockerScript (https://github.com/crazy-max/WindowsSpyBlocker).
+
 ### Other
 * setacl-**.exe ( https://helgeklein.com/setacl/ )
 
@@ -73,7 +76,7 @@ If you find a bug, please take the time to report it ( https://bitbucket.org/mat
 Scalar
 
 #### Contributors
-aekotra, HeavyBeefCurtain, TiagoTiago, ucantdothatontvew
+aekotra, HeavyBeefCurtain, Mixplate, TiagoTiago, ucantdothatontvew
 
 ### Thank you to everyone that helped create Aegis-voat
 #### Creators

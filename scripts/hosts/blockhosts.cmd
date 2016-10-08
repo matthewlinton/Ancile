@@ -8,7 +8,9 @@ SET HOSTSFILE=%SYSTEMDRIVE%\windows\system32\drivers\etc\hosts
 SET IPLIST=%SCRIPTDIR%\hosts\hostsip.txt
 SET HOSTLIST=%SCRIPTDIR%\hosts\hostsdns.txt
 
-SET TMPHOSTS=%TEMP%\%APPNAME%_%VERSION%.hosts.tmp
+SET HTEMPDIR=%TEMP%\%APPNAME%\hosts
+SET TMPHOSTS=%HTEMPDIR%\%VERSION%.system.hosts.tmp
+SET TMPANCILE=%HTEMPDIR%\%VERSION%.ancile.hosts.tmp
 
 SET RULENAME=%APPNAME% - Block Malicious IP Addresses
 
@@ -19,13 +21,17 @@ ECHO [%DATE% %TIME%] BEGIN HOST BLOCKING >> "%LOGFILE%"
 ECHO * Blocking malicious hosts ... 
 ECHO   This may take a long time. Please be patient.
 
+IF NOT EXIST "%HTEMPDIR%" MKDIR %HTEMPDIR% 2>&1 >> "%LOGFILE%"
+
+@REM Clear old temp hosts files
+IF EXIST "%TMPHOSTS%" DEL "%TMPHOSTS%" >> "%LOGFILE%" 2>&1
+IF EXIST "%TMPANCILE%" DEL "%TMPANCILE%" >> "%LOGFILE%" 2>&1
+
 @REM Block hosts using the system hosts file
-@REM This can take a very long time for large host files.
-@REM TODO: Figure out a better(faster) way to do this.
 ECHO Modifying hosts file: >> "%LOGFILE%"
 IF NOT "%MODHOSTS%"=="N" (
 	ECHO ** Updating hosts file
-	IF EXIST "%TMPHOSTS%" DEL "%TMPHOSTS%" >> "%LOGFILE%" 2>&1
+
 	SET wout=1
 	SET linecount=0
 	FOR /F "delims=" %%i IN ('TYPE "%HOSTSFILE%"') DO (
@@ -35,9 +41,10 @@ IF NOT "%MODHOSTS%"=="N" (
 		SET /A linecount=linecount+1
 	)
 	ECHO Processed !linecount! Lines >> "%LOGFILE%"
-	COPY "%TMPHOSTS%" "%HOSTSFILE%" >> "%LOGFILE%" 2>&1
+	
 	ECHO Adding hosts file entries: >> "%LOGFILE%"
-	ECHO %LISTBEGIN%>> "%HOSTSFILE%"
+	IF EXIST "%TMPANCILE%" DEL "%TMPANCILE%" >> "%LOGFILE%" 2>&1
+	ECHO %LISTBEGIN%>> "%TMPANCILE%"
 	SET match=0
 	FOR /F %%k IN ('TYPE "%HOSTLIST%"') DO (
 		FOR /F "tokens=1,2" %%i IN ('findstr /V /C:"#" "%TMPHOSTS%"') DO (
@@ -47,19 +54,21 @@ IF NOT "%MODHOSTS%"=="N" (
 			) 
 		)
 		IF !match! EQU 0 (
-			ECHO 127.0.0.1	%%k>> "%HOSTSFILE%"
+			ECHO 127.0.0.1	%%k>> "%TMPANCILE%"
 			IF NOT "%DEBUG%"=="N" ECHO Adding: %%k >> "%LOGFILE%"
 		)
 		SET match=0
 	)
-	ECHO %LISTEND%>> "%HOSTSFILE%"
+	ECHO %LISTEND%>> "%TMPANCILE%"
+	
+	COPY /B "%TMPHOSTS%" + "%TMPANCILE%" "%HOSTSFILE%" >> "%LOGFILE%" 2>&1
 ) ELSE (
 	ECHO Skipping modification of hosts file >> "%LOGFILE%"
 	ECHO ** Skipping hosts file
 )
 
-@REM Block hosts using the routing table and Windows Firewall
-ECHO Routing table entries added: >> "%LOGFILE%"
+@REM Block hosts using the routing table
+ECHO Modifying routing table: >> "%LOGFILE%"
 IF NOT "%MODROUTES%"=="N" (
 	ECHO ** Updating routing table
 	SET rkey=HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\PersistentRoutes
@@ -79,7 +88,7 @@ IF NOT "%MODROUTES%"=="N" (
 )
 
 @REM Block hosts using the Windows firewall.
-ECHO Firewall entries added: >> "%LOGFILE%"
+ECHO Modifying firewall rules: >> "%LOGFILE%"
 IF NOT "%MODFIREWALL%"=="N" (
 	ECHO ** Updating firewall rules
 	SET ipaddrlist=
