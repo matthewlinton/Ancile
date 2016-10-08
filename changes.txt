@@ -1,3 +1,13 @@
+v1.2
+	ISSUE #6) disablewinx.cmd setacl setowner issue on non EN Win-installations
+	ISSUE #7) regown.cmd issue with reg keys containing a space & SetAcl.exe setowner on non EN Win
+	Modified hosts blocking scripts to avoid hosts file locking
+	Reviewed 3rd party suggestions for blocked Windows updates
+	Added some host IPs from crazy-max's WindowsSpyBlockerScript
+	Major Review of hostsip.txt
+	Added some host domains from crazy-max's WindowsSpyBlockerScript
+	Major Review of hostsdns.txt
+
 v1.1
 	Major review of Windows updates:
 	REMOVED: KB3086255 - This breaks SecureROM DRM, but has nothing to do with Windows 10 upgrades or malware

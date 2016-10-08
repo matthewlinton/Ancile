@@ -2,12 +2,6 @@
 @REM			   	  This script requires the setacl binary
 @REM				  kbupdate.txt - A list of updates that will be uninstalled and hidden
 
-IF NOT EXIST "%BINSETACL%" (
-	ECHO ERROR! setacl command not found. Unable to continue! >> "%LOGFILE%"
-	SET /A ANCERRLVL=ANCERRLVL+1
-	GOTO DISABLEWINXEND
-)
-
 SET UPDTDISABLE=%SCRIPTDIR%\updates\UninstallAndHideUpdates.ps1
 SET UPDATESLIST=%SCRIPTDIR%\updates\kbupdates.txt
 SET UPDATEPACK=%SYSTEMDRIVE%\windows\servicing\packages
