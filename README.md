@@ -3,12 +3,12 @@ Ancile for Windows 7/8.x attempts to block all Windows spying and unwanted upgra
 
 For more information go to https://voat.co/v/ancile
 
-This is a fork and rework of th3power's Aegis-voat ( https://github.com/th3power/aegis-voat ) script.
+This is a fork of th3power's Aegis-voat (https://github.com/th3power/aegis-voat) script.
 
 ## Instructions
 Ancile does not require installation and can be run directly from within it's parent folder.
 
-1. Download the latest version ( https://bitbucket.org/matthewlinton/ancile/downloads ).
+1. Download the latest version (https://bitbucket.org/matthewlinton/ancile/downloads).
 1. Unzip the archive.
 1. Navigate to the Ancile directory.
 1. Right click on "ancile.cmd"
@@ -23,7 +23,7 @@ All configuration options are outlined within the config file itself.
 ### Overview
 *  Sync time with ntp.org
 *  Block unwanted hosts
-*  Change windows update to check/notify (do not download/install)
+*  Change windows update to check/notify (do not download/install) or disabled
 *  Disable automatic delivery of Internet explorer via windows update
 *  Disable ceip/gwx/skydrive(aka OneDrive)/SpyNet/telemetry/WiFiSense
 *  Disable remote registry
@@ -39,7 +39,7 @@ There are a number of hosts that Microsoft uses to collect data. Ancile disables
 Some updates which may contain critical security patches for IE, as well as automated delivery of IE and related updates, will be blocked. Due to the security risks posed by running an un-patched browser you are strongly advised to uninstall IE. If you plan to continue to use IE you should either: Not run this script, or manually patch IE at your own risk.
 
 ### Windows Update
-Ancile modifies the Windows Update settings to 'check/notify but do not download/install'. If you have problems getting Windows Update to work properly after running the script you may need to run the Windows Update Troubleshooter ( https://support.microsoft.com/en-us/kb/2714434 ), or the System Update Readiness Tool ( https://support.microsoft.com/en-us/kb/947821 ). If you have recently installed updates and have not yet rebooted you should reboot before running the script. If you are on a fresh install of Windows you may want to install all updates before running Aegis for the first time, otherwise it may take a long time to update.
+Ancile modifies the Windows Update settings to 'check/notify but do not download/install' or (optionally) disables Windows Update entirely. If you have problems getting Windows Update to work properly after running the script you may need to run the Windows Update Troubleshooter (https://support.microsoft.com/en-us/kb/2714434), or the System Update Readiness Tool (https://support.microsoft.com/en-us/kb/947821). If you have recently installed updates and have not yet rebooted you should reboot before running the script. If you are on a fresh install of Windows Ancile may take a very long time to run.
 
 ## License
 This code is not covered under any license. You are welcome to modify and share this code as you please.
@@ -53,22 +53,22 @@ Ancile, to the best of my knowledge, does not contain any harmful or malicious c
 Ancile uses the following third party resources to perform specific tasks.
 
 ### Microsoft
-* Toolkit to Disable Automatic Delivery of Internet Explorer 7 ( https://www.microsoft.com/en-us/download/details.aspx?id=13428 )
-* Toolkit to Disable Automatic Delivery of Internet Explorer 8 ( https://technet.microsoft.com/en-us/browser/dd365124.aspx )
-* Toolkit to Disable Automatic Delivery of Internet Explorer 9 ( https://technet.microsoft.com/en-us/browser/gg615600.aspx )
-* Toolkit to Disable Automatic Delivery of Internet Explorer 10 ( https://technet.microsoft.com/en-us/browser/jj898509.aspx )
-* Toolkit to Disable Automatic Delivery of Internet Explorer 11 ( https://www.microsoft.com/en-us/download/details.aspx?id=40722 )
+* Toolkit to Disable Automatic Delivery of Internet Explorer 7 (https://www.microsoft.com/en-us/download/details.aspx?id=13428)
+* Toolkit to Disable Automatic Delivery of Internet Explorer 8 (https://technet.microsoft.com/en-us/browser/dd365124.aspx)
+* Toolkit to Disable Automatic Delivery of Internet Explorer 9 (https://technet.microsoft.com/en-us/browser/gg615600.aspx)
+* Toolkit to Disable Automatic Delivery of Internet Explorer 10 (https://technet.microsoft.com/en-us/browser/jj898509.aspx)
+* Toolkit to Disable Automatic Delivery of Internet Explorer 11 (https://www.microsoft.com/en-us/download/details.aspx?id=40722)
 
 ### WindowsSpyBlocker
 Some host names and IP addresses were provided by crazy-max's WindowsSpyBlockerScript (https://github.com/crazy-max/WindowsSpyBlocker).
 
 ### Other
-* setacl-**.exe ( https://helgeklein.com/setacl/ )
+* setacl-**.exe (https://helgeklein.com/setacl/)
 
 ## Feedback
-Please direct all feedback to the Voat subverse ( https://voat.co/v/ancile/ ).
+Please direct all feedback to the Voat subverse (https://voat.co/v/ancile/).
 
-If you find a bug, please take the time to report it ( https://bitbucket.org/matthewlinton/ancile/ ).
+If you find a bug, please take the time to report it (https://bitbucket.org/matthewlinton/ancile/).
 
 ## Thanks
 ### A special thanks to everyone that helped to improve Ancile
@@ -76,7 +76,7 @@ If you find a bug, please take the time to report it ( https://bitbucket.org/mat
 Scalar
 
 #### Contributors
-aekotra, HeavyBeefCurtain, Mixplate, TiagoTiago, ucantdothatontvew
+aekotra, HeavyBeefCurtain, Mixplate, noxxius88, TiagoTiago, ucantdothatontvew
 
 ### Thank you to everyone that helped create Aegis-voat
 #### Creators

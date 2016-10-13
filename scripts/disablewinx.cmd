@@ -16,14 +16,14 @@ ECHO Killing Get Windows 10 tasks: >> "%LOGFILE%"
 ECHO ** Stopping Get Windows 10 process
 tasklist 2>&1 | findstr /I gwx.exe >> "%LOGFILE%" 2>&1 && taskkill /F /IM gwx.exe /T >> "%LOGFILE%" 2>&1
 tasklist 2>&1 | findstr /I gwxux.exe >> "%LOGFILE%" 2>&1 && taskkill /F /IM gwxux.exe /T >> "%LOGFILE%" 2>&1
-SET rkey=hkey_local_machine\software\policies\microsoft\windows\gwx
-reg ADD "%rkey%" /f /t reg_dword /v disablegwx /d 1 >> "%LOGFILE%" 2>&1
+SET rkey=HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\GWX
+reg ADD "%rkey%" /f /t reg_dword /v DisableGWX /d 1 >> "%LOGFILE%" 2>&1
 
 @REM Disable Windows 10 upgrade
 ECHO Adding disableosupgrade registry key: >> "%LOGFILE%"
 ECHO ** Disabling Windows 10 Update
-SET rkey=hkey_local_machine\software\policies\microsoft\windows\windowsupdate
-reg ADD "%rkey%" /f /t reg_dword /v disableosupgrade /d 1 >> "%LOGFILE%" 2>&1 
+SET rkey=HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Windowsupdate
+reg ADD "%rkey%" /f /t reg_dword /v DisableOSUpgrade /d 1 >> "%LOGFILE%" 2>&1 
 
 @REM Disable the windows 10 download
 ECHO Locking Windows 10 download directory: >> "%LOGFILE%"
