@@ -1,16 +1,16 @@
-hkey_current_user\software\policies\microsoft\office\15.0\osm
-hkey_current_user\software\policies\microsoft\office\16.0\osm
-hkey_local_machine\software\microsoft\wcmsvc\wifinetworkmanager
-hkey_local_machine\software\microsoft\windows\currentversion\datetime\servers
-hkey_local_machine\software\microsoft\windows\currentversion\windowsupdate\auto update
-hkey_local_machine\software\microsoft\windows defender\spynet
-hkey_local_machine\software\policies\microsoft\sqmclient\windows
-hkey_local_machine\software\policies\microsoft\windows\datacollection
-hkey_local_machine\software\policies\microsoft\windows\gwx
-hkey_local_machine\software\policies\microsoft\windows\scripteddiagnosticsprovider\policy
-hkey_local_machine\software\policies\microsoft\windows\skydrive
-hkey_local_machine\software\policies\microsoft\windows\windowsupdate
-hkey_local_machine\system\currentcontrolset\control\wmi\autologger\autoLogger-diagtrack-listener
-hkey_local_machine\system\currentcontrolset\services\w32time\parameters
-hkey_local_machine\system\currentcontrolset\services\w32time\timeproviders\ntpclient
+HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Office\15.0\osm
+HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Office\Office\16.0\osm
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\wcmsvc\wifinetworkmanager
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\DateTime\servers
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Windowsupdate\Auto Update
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Defender\SpyNet
+HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\SQMClient\Windows
+HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection
+HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\GWX
+HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\scripteddiagnosticsprovider\policy
+HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\skydrive
+HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\WMI\Autologger\AutoLogger-Diagtrack-Listener
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\w32time\Parameters
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\w32time\TimeProviders\NtpClient
 

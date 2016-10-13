@@ -21,6 +21,8 @@ ECHO [%DATE% %TIME%] BEGIN HOST BLOCKING >> "%LOGFILE%"
 ECHO * Blocking malicious hosts ... 
 ECHO   This may take a long time. Please be patient.
 
+@REM Make sure we can edit the hosts file
+
 IF NOT EXIST "%HTEMPDIR%" MKDIR %HTEMPDIR% 2>&1 >> "%LOGFILE%"
 
 @REM Clear old temp hosts files
@@ -61,7 +63,10 @@ IF NOT "%MODHOSTS%"=="N" (
 	)
 	ECHO %LISTEND%>> "%TMPANCILE%"
 	
+	attrib -R "%HOSTSFILE%"
 	COPY /B "%TMPHOSTS%" + "%TMPANCILE%" "%HOSTSFILE%" >> "%LOGFILE%" 2>&1
+	IF %ERRORLEVEL% NEQ 0 SET /A ANCERRLVL=ANCERRLVL+1 & ECHO ERROR: Unable to copy "%TMPHOSTS%" + "%TMPANCILE%" to "%HOSTSFILE%" >> "%LOGFILE%" 2>&1
+	attrib +R "%HOSTSFILE%"
 ) ELSE (
 	ECHO Skipping modification of hosts file >> "%LOGFILE%"
 	ECHO ** Skipping hosts file
@@ -77,7 +82,11 @@ IF NOT "%MODROUTES%"=="N" (
 		reg QUERY %rkey% /V %%i* >nul; 2>&1
 		IF %ERRORLEVEL% == 1 (
 			IF NOT "%DEBUG%"=="N" ECHO Adding Route : %%i >> "%LOGFILE%"
-			route ADD %%i MASK %%j 0.0.0.0 -p >> "%LOGFILE%" 2>&1
+			IF NOT "%DEBUG%"=="N" (
+				route ADD %%i MASK %%j 0.0.0.0 -p >> "%LOGFILE%" 2>&1
+			) ELSE (
+				route ADD %%i MASK %%j 0.0.0.0 -p >> nul 2>&1
+			)
 		) ELSE (
 			IF NOT "%DEBUG%"=="N" ECHO Route Already Present : %%i >> "%LOGFILE%"
 		)

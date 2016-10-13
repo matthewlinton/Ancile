@@ -13,7 +13,7 @@ http://www.mcbsys.com/blog/2015/11/uninstall-and-hide-windows-updates/
     Name:       MCB.AutoUpdate.UninstallAndHideUpdates.ps1
     Author:     Mark Berry, MCB Systems
     Created:    10/11/2015
-    Last Edit:  09/09/2016
+    Last Edit:  09/14/2016
  
     Adapted from:
     http://techibee.com/powershell/powershell-uninstall-windows-hotfixesupdates/1084

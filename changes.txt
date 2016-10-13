@@ -1,3 +1,13 @@
+v1.3
+	Fixed issue where some tasks are not disabled on some systems
+	Fixed issue where some registry keys do not update on some systems
+	Added option to disable Windows Update
+	Remove readonly flag on hosts file before updating it
+	Set readonly flag on hosts file after update
+	Added OS check to prevent running Ancile on Windows versions other than 7 and 8
+	Some (more) log entries will now only show if debug is enabled
+	Added some more error checking to catch failures and notify users
+	
 v1.2
 	ISSUE #6) disablewinx.cmd setacl setowner issue on non EN Win-installations
 	ISSUE #7) regown.cmd issue with reg keys containing a space & SetAcl.exe setowner on non EN Win

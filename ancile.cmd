@@ -5,7 +5,7 @@
 :INIT
 @REM Configure the default environment
 SET APPNAME=Ancile
-SET VERSION=1.2
+SET VERSION=1.3
 SET DEBUG=N
 
 FOR /F "usebackq tokens=1,2 delims==" %%i IN (`wmic os get LocalDateTime /VALUE 2^>NUL`) DO (
@@ -50,6 +50,19 @@ ECHO Starting %APPNAME% v%VERSION%
 @REM Make sure we're running as an administrator
 net session >nul 2>&1
 IF %ERRORLEVEL% NEQ 0 ECHO This script requires Administrative privileges. Exiting. & PAUSE & EXIT 1
+
+@REM Make sure we're running on the correct OS
+@REM Windows 10 (10.0)
+@REM Windows 8.1 (6.3)
+@REM Windows 8 (6.2)
+@REM Windows 7 (6.1)
+@REM Windows Vista (6.0)
+SET OSCHECK=0
+FOR /f "tokens=4-5 delims=. " %%i IN ('ver') DO SET OSVERSION=%%i.%%j
+IF "%OSVERSION%" == "6.3" SET OSCHECK=1
+IF "%OSVERSION%" == "6.2" SET OSCHECK=1
+IF "%OSVERSION%" == "6.1" SET OSCHECK=1
+IF %OSCHECK% EQU 0 ECHO This script should only be run under Windows 7 or 8. Exiting. & PAUSE & EXIT 1
 
 @REM Make sure that the directory we're logging to exists
 FOR %%i IN ("%LOGFILE%") DO (
