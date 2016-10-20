@@ -56,7 +56,7 @@ IF NOT "%MODHOSTS%"=="N" (
 			) 
 		)
 		IF !match! EQU 0 (
-			ECHO 127.0.0.1	%%k>> "%TMPANCILE%"
+			ECHO %HOSTSREDIRECT%	%%k>> "%TMPANCILE%"
 			IF NOT "%DEBUG%"=="N" ECHO Adding: %%k >> "%LOGFILE%"
 		)
 		SET match=0
@@ -73,26 +73,21 @@ IF NOT "%MODHOSTS%"=="N" (
 )
 
 @REM Block hosts using the routing table
-ECHO Modifying routing table: >> "%LOGFILE%"
+SET rkey=Hkey_Local_machine\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\PersistentRoutes
 IF NOT "%MODROUTES%"=="N" (
+	ECHO Modifying routing table: >> "%LOGFILE%"
 	ECHO ** Updating routing table
-	SET rkey=HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\PersistentRoutes
-	SET ipaddrlist=
+	IF NOT "%DEBUG%"=="N" route PRINT >> "%LOGFILE%" 2>&1
 	FOR /F "tokens=1,2,* delims=, " %%i IN ('TYPE "%IPLIST%"') DO (
-		reg QUERY %rkey% /V %%i* >nul; 2>&1
-		IF %ERRORLEVEL% == 1 (
-			IF NOT "%DEBUG%"=="N" ECHO Adding Route : %%i >> "%LOGFILE%"
-			IF NOT "%DEBUG%"=="N" (
-				route ADD %%i MASK %%j 0.0.0.0 -p >> "%LOGFILE%" 2>&1
-			) ELSE (
-				route ADD %%i MASK %%j 0.0.0.0 -p >> nul 2>&1
-			)
+		IF NOT "%DEBUG%"=="N" (
+			ECHO Route: "%%i" : "%%j" : "%ROUTESREDIRECT%" >> "%LOGFILE%" 2>&1
+			route ADD %%i MASK %%j %ROUTESREDIRECT% -p >> "%LOGFILE%" 2>&1
 		) ELSE (
-			IF NOT "%DEBUG%"=="N" ECHO Route Already Present : %%i >> "%LOGFILE%"
+			route ADD %%i MASK %%j %ROUTESREDIRECT% -p >> nul 2>&1
 		)
 	)
 ) ELSE (
-	ECHO Skipping modification of routing table >> "%LOGFILE%"
+	ECHO Skipping modification of routing table: >> "%LOGFILE%"
 	ECHO ** Skipping routing table
 )
 

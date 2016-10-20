@@ -1,3 +1,15 @@
+v1.4
+	ADDED: 3192406		October 2016 Preview of Monthly Quality Rollup for Windows Server 2012
+	ADDED: 3192404		October 2016 Preview of Monthly Quality Rollup for Windows 8.1 and Windows Server 2012 R2
+	ADDED: 3192403		October 2016 Preview of Monthly Quality Rollup for Windows 7 SP1 and Windows Server 2008 R2 SP1
+	ADDED: 3184143		Remove software related to the Windows 10 free upgrade offer [UNNEEDED]
+	Added configuration option to disable windows updates uninstall and hide
+	Fixed issue of routes not being added under some configurations
+	BUGFIX #8 : 127.0.0.1 instead of 0.0.0.0 (Feature request)
+	Added configuration option to set host redirect IP for hosts file
+	Added configuration option to set routes redirect IP for hosts file
+	BUGFIX #10 : Bug: duplicate entries in hosts file
+
 v1.3
 	Fixed issue where some tasks are not disabled on some systems
 	Fixed issue where some registry keys do not update on some systems

@@ -32,17 +32,22 @@ IF NOT "%MODWINUPDATE%"=="N" (
 	reg ADD "%rkey%" /f /t reg_dword /v enablefeaturedsoftware /d 0  >> "%LOGFILE%" 2>&1
 	reg ADD "%rkey%" /f /t reg_dword /v includerecommendedupdates /d 0  >> "%LOGFILE%" 2>&1
 ) ELSE (
-	ECHO Skipped >> "%LOGFILE%"
+	ECHO Windows Update modification Skipped: >> "%LOGFILE%"
 	ECHO ** Skipping Windows Update modification
 )
 
 @REM If wuauserv is running: Uninstall Windows updates. Delete Windows update packages. 
-ECHO Uninstalling and Disabling Windows Updates: >> "%LOGFILE%"
-ECHO ** Uninstalling Updates
-IF NOT "%DEBUG%"=="N" (
-	sc query wuauserv 2>&1 | findstr /I RUNNING >nul 2>&1 && powershell -executionpolicy remotesigned -File "%UPDTDISABLE%" -KBFile "%UPDATESLIST%" >> "%LOGFILE%" 2>&1
+IF NOT "%UNINSTALLUPDATES%"=="N" (
+	ECHO Uninstalling and Disabling Windows Updates: >> "%LOGFILE%"
+	ECHO ** Uninstalling Updates
+	IF NOT "%DEBUG%"=="N" (
+		sc query wuauserv 2>&1 | findstr /I RUNNING >nul 2>&1 && powershell -executionpolicy remotesigned -File "%UPDTDISABLE%" -KBFile "%UPDATESLIST%" >> "%LOGFILE%" 2>&1
+	) ELSE (
+		sc query wuauserv 2>&1 | findstr /I RUNNING >nul 2>&1 && powershell -executionpolicy remotesigned -File "%UPDTDISABLE%" -KBFile "%UPDATESLIST%" >> nul 2>&1
+	)
 ) ELSE (
-	sc query wuauserv 2>&1 | findstr /I RUNNING >nul 2>&1 && powershell -executionpolicy remotesigned -File "%UPDTDISABLE%" -KBFile "%UPDATESLIST%" >> nul 2>&1
+	ECHO Uninstall and Disable Windows Updates Skipped: >> "%LOGFILE%"
+	ECHO ** Skipping Uninstalling Updates
 )
 
 @REM Restart Windows Update services
