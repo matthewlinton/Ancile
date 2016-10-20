@@ -5,8 +5,9 @@
 :INIT
 @REM Configure the default environment
 SET APPNAME=Ancile
-SET VERSION=1.3
+SET VERSION=1.4
 SET DEBUG=N
+SET HOSTSREDIRECT=0.0.0.0
 
 FOR /F "usebackq tokens=1,2 delims==" %%i IN (`wmic os get LocalDateTime /VALUE 2^>NUL`) DO (
 	IF '.%%i.'=='.LocalDateTime.' SET ldt=%%j

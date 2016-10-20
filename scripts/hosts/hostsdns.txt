@@ -3,10 +3,7 @@ a.ads1.msn.com
 a.ads1.msn.com
 a.ads2.msads.net
 a.ads2.msn.com
-a.ads2.msn.com
 a.rad.msn.com
-a.rad.msn.com
-ac3.msn.com
 ac3.msn.com
 act-3-blu.mesh.com
 activesync.glbdns2.microsoft.com
@@ -101,7 +98,6 @@ dmd.metaservices.microsoft.com
 download-ssl.msgamestudios.com
 ec.atdmt.com
 ecn.dev.virtualearth.net
-ecn.dev.virtualearth.net
 en-us.appex-rf.msn.com
 fe2.update.microsoft.com.akadns.net
 fe3.delivery.dsp.mp.microsoft.com.nsatc.net
@@ -129,7 +125,6 @@ js.microsoft.com
 lb1.www.ms.akadns.net
 licensing.md.mp.microsoft.com
 live.rads.msn.com
-live.rads.msn.com
 livetileedge.dsx.mp.microsoft.com
 logging.windows.microsoft.com
 ls2web.redmond.corp.microsoft.com
@@ -141,7 +136,6 @@ microsoft-hohm.com
 mobile.pipe.aria.microsoft.com
 msedge.net
 msnportal.112.2o7.net
-msntest.serving-sys.com
 msntest.serving-sys.com
 nexus.officeapps.live.com
 nexusrules.officeapps.live.com

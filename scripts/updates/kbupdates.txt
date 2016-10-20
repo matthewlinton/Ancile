@@ -55,3 +55,7 @@
 3146449		Updated Internet Explorer 11 capabilities to upgrade Windows 8.1 and Windows 7 [VERIFIED]
 3150513		May 2016 Compatibility Update for Windows [VERIFIED]
 3173040		Windows 8.1 and Windows 7 SP1 end of free upgrade offer notification [VERIFIED]
+3184143		Remove software related to the Windows 10 free upgrade offer [UNNEEDED]
+3192403		October 2016 Preview of Monthly Quality Rollup for Windows 7 SP1 and Windows Server 2008 R2 SP1 [VERIFIED]
+3192404		October 2016 Preview of Monthly Quality Rollup for Windows 8.1 and Windows Server 2012 R2 [VERIFIED]
+3192406		October 2016 Preview of Monthly Quality Rollup for Windows Server 2012 [VERIFIED]
