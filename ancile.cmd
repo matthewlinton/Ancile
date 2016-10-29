@@ -5,9 +5,8 @@
 :INIT
 @REM Configure the default environment
 SET APPNAME=Ancile
-SET VERSION=1.4
+SET VERSION=1.5
 SET DEBUG=N
-SET HOSTSREDIRECT=0.0.0.0
 
 FOR /F "usebackq tokens=1,2 delims==" %%i IN (`wmic os get LocalDateTime /VALUE 2^>NUL`) DO (
 	IF '.%%i.'=='.LocalDateTime.' SET ldt=%%j
@@ -15,6 +14,7 @@ FOR /F "usebackq tokens=1,2 delims==" %%i IN (`wmic os get LocalDateTime /VALUE 
 SET UNIDATE=%ldt:~0,4%-%ldt:~4,2%-%ldt:~6,2%
 
 SET CURRDIR=%~dp0
+SET DATADIR=%CURRDIR%data
 SET LIBDIR=%CURRDIR%lib
 SET SCRIPTDIR=%CURRDIR%scripts
 SET TEMPDIR=%TEMP%\%APPNAME%
@@ -59,7 +59,7 @@ IF %ERRORLEVEL% NEQ 0 ECHO This script requires Administrative privileges. Exiti
 @REM Windows 7 (6.1)
 @REM Windows Vista (6.0)
 SET OSCHECK=0
-FOR /f "tokens=4-5 delims=. " %%i IN ('ver') DO SET OSVERSION=%%i.%%j
+FOR /F "tokens=4-5 delims=. " %%i IN ('ver') DO SET OSVERSION=%%i.%%j
 IF "%OSVERSION%" == "6.3" SET OSCHECK=1
 IF "%OSVERSION%" == "6.2" SET OSCHECK=1
 IF "%OSVERSION%" == "6.1" SET OSCHECK=1
@@ -100,13 +100,13 @@ CALL "%SCRIPTDIR%\mkrestore.cmd"
 
 :SCRIPTS
 @REM Take ownership of registry keys
-CALL "%SCRIPTDIR%\registry\regown.cmd"
+CALL "%SCRIPTDIR%\chgregkeyown.cmd"
 @REM Disable remote registry
 CALL "%SCRIPTDIR%\disableremreg.cmd"
 @REM Disable unwanted services
 CALL "%SCRIPTDIR%\disableservices.cmd"
 @REM Disable scheduled tasks
-call "%SCRIPTDIR%\tasks\disabletasks.cmd"
+call "%SCRIPTDIR%\disabletasks.cmd"
 @REM Disable automated delivery of internet explorer
 CALL "%SCRIPTDIR%\inetexplore\disableie.cmd"
 @REM Disable Windows 10 upgrade
@@ -133,7 +133,7 @@ ECHO %APPNAME% v%VERSION% has completed successfully.
 GOTO END
 
 :END
-IF EXIST "%LOGFILE%" ECHO See "%LOGFILE%" for more indformation.
+IF EXIST "%LOGFILE%" ECHO See "%LOGFILE%" for more information.
 IF EXIST "%LOGFILE%" ECHO [%DATE% %TIME%] ########################################################## >> "%LOGFILE%"
 IF EXIST "%LOGFILE%" ECHO. >> "%LOGFILE%"
 IF EXIST "%LOGFILE%" ECHO. >> "%LOGFILE%"

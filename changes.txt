@@ -1,3 +1,20 @@
+v1.5
+	Updated README.md file
+	Added log entry when user skips restore point
+	Modified disableupdates to parse all files in th data directory
+	Moved kbupdates file to data folder and renamed it
+	Modified chgregkeyown to parse all files in the data directory
+	Moved regown.cmd to main script folder and renamed it
+	Moved registry key file to data folder and renamed it
+	Modified blockhosts to parse all files in the data directories
+	Moved hosts lists to data folder and renamed them.
+	Created new datafolder structure for script data
+	BUGFIX #11) Typo in v1.4 config.ini
+	BUGFIX #12) Typo in v1.4 config.ini
+	BUGFIX #13) (last 2) Typos in v1.4 config.ini
+	Changed ROUTESREDIRECT defaults (If the value is unset, blockhosts defaults to 0.0.0.0)
+	Changed HOSTSREDIRECT defaults (If the value is unset, blockhosts defaults to 0.0.0.0)
+
 v1.4
 	ADDED: 3192406		October 2016 Preview of Monthly Quality Rollup for Windows Server 2012
 	ADDED: 3192404		October 2016 Preview of Monthly Quality Rollup for Windows 8.1 and Windows Server 2012 R2

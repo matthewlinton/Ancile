@@ -6,7 +6,7 @@ IF NOT "%REMOTEREGISTRY%"=="N" (
 	sc query remoteregistry 2>&1 | findstr /i running >nul 2>&1 && net stop remoteregistry 2>&1 >> "%LOGFILE%"
 	sc query remoteregistry >nul 2>&1 && sc config remoteregistry start= disabled 2>&1 >> "%LOGFILE%"
 ) ELSE (
-	ECHO SKIPPED >> "%LOGFILE%"
+	ECHO Skipping Disabling of Remote Registry >> "%LOGFILE%"
 	ECHO * Skipping Disable Remote Registry
 )
 ECHO [%DATE% %TIME%] END DISABLE REMOTE REGISTRY >> "%LOGFILE%"
