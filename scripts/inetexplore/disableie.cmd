@@ -19,7 +19,7 @@ IF NOT "%DISABLEIE%"=="N" (
 	ECHO ** Internet Explorer 11
 	start "Disable IE11" /b /wait "%IESCRIPTDIR%\disable11.cmd" . /B >> "%LOGFILE%" 2>&1
 ) ELSE (
-	ECHO SKIPPED:  DISABLEIE = "%DISABLEIE%">> "%LOGFILE%"
+	ECHO Skipping Disable IE Update >> "%LOGFILE%"
 	ECHO ** Skipping IE Update configuration
 )
 ECHO [%DATE% %TIME%] END DISABLE IE UPDATE >> "%LOGFILE%"

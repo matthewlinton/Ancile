@@ -1,12 +1,10 @@
 @REM blockhosts - Block potentialy malicious hosts.
-@REM 			  routes.txt - list of hosts/networks that should be blocked through routing tables
-@REM 			  hosts.txt - Lists of hosts that will be blocked through the hosts file
 
 Setlocal EnableDelayedExpansion
 
 SET HOSTSFILE=%SYSTEMDRIVE%\windows\system32\drivers\etc\hosts
-SET IPLIST=%SCRIPTDIR%\hosts\hostsip.txt
-SET HOSTLIST=%SCRIPTDIR%\hosts\hostsdns.txt
+SET IPLISTS=%DATADIR%\hosts\ip\*.lst
+SET HOSTLISTS=%DATADIR%\hosts\dns\*.lst
 
 SET HTEMPDIR=%TEMP%\%APPNAME%\hosts
 SET TMPHOSTS=%HTEMPDIR%\%VERSION%.system.hosts.tmp
@@ -17,13 +15,16 @@ SET RULENAME=%APPNAME% - Block Malicious IP Addresses
 SET LISTBEGIN=# Start of entries inserted by %APPNAME%
 SET LISTEND=# End of entries inserted by %APPNAME%
 
+IF "%HOSTSREDIRECT%"=="" SET HOSTSREDIRECT=0.0.0.0
+IF "%ROUTESREDIRECT%"=="" SET ROUTESREDIRECT=0.0.0.0
+
 ECHO [%DATE% %TIME%] BEGIN HOST BLOCKING >> "%LOGFILE%"
 ECHO * Blocking malicious hosts ... 
 ECHO   This may take a long time. Please be patient.
 
 @REM Make sure we can edit the hosts file
 
-IF NOT EXIST "%HTEMPDIR%" MKDIR %HTEMPDIR% 2>&1 >> "%LOGFILE%"
+IF NOT EXIST "%HTEMPDIR%" MKDIR %HTEMPDIR% >> "%LOGFILE%" 2>&1 
 
 @REM Clear old temp hosts files
 IF EXIST "%TMPHOSTS%" DEL "%TMPHOSTS%" >> "%LOGFILE%" 2>&1
@@ -48,7 +49,7 @@ IF NOT "%MODHOSTS%"=="N" (
 	IF EXIST "%TMPANCILE%" DEL "%TMPANCILE%" >> "%LOGFILE%" 2>&1
 	ECHO %LISTBEGIN%>> "%TMPANCILE%"
 	SET match=0
-	FOR /F %%k IN ('TYPE "%HOSTLIST%"') DO (
+	FOR /F %%k IN ('TYPE "%HOSTLISTS%" 2^>^>"%LOGFILE%"') DO (
 		FOR /F "tokens=1,2" %%i IN ('findstr /V /C:"#" "%TMPHOSTS%"') DO (
 			IF "%%k"=="%%j" (
 				SET match=1
@@ -78,7 +79,7 @@ IF NOT "%MODROUTES%"=="N" (
 	ECHO Modifying routing table: >> "%LOGFILE%"
 	ECHO ** Updating routing table
 	IF NOT "%DEBUG%"=="N" route PRINT >> "%LOGFILE%" 2>&1
-	FOR /F "tokens=1,2,* delims=, " %%i IN ('TYPE "%IPLIST%"') DO (
+	FOR /F "tokens=1,2,* delims=, " %%i IN ('TYPE "%IPLISTS%" 2^>^> "%LOGFILE%"') DO (
 		IF NOT "%DEBUG%"=="N" (
 			ECHO Route: "%%i" : "%%j" : "%ROUTESREDIRECT%" >> "%LOGFILE%" 2>&1
 			route ADD %%i MASK %%j %ROUTESREDIRECT% -p >> "%LOGFILE%" 2>&1
@@ -96,7 +97,7 @@ ECHO Modifying firewall rules: >> "%LOGFILE%"
 IF NOT "%MODFIREWALL%"=="N" (
 	ECHO ** Updating firewall rules
 	SET ipaddrlist=
-	FOR /F "tokens=1,* delims=, " %%i IN ('TYPE "%IPLIST%"') DO (
+	FOR /F "tokens=1,* delims=, " %%i IN ('TYPE "%IPLISTS%" 2^>^> "%LOGFILE%"') DO (
 	IF ".!ipaddrlist!"=="." (
 			SET ipaddrlist=%%i
 		) ELSE (

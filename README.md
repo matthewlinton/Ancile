@@ -5,22 +5,7 @@ For more information go to https://voat.co/v/ancile
 
 This is a fork of th3power's Aegis-voat (https://github.com/th3power/aegis-voat) script.
 
-## Instructions
-Ancile does not require installation and can be run directly from within it's parent folder.
-
-1. Download the latest version (https://bitbucket.org/matthewlinton/ancile/downloads).
-1. Unzip the archive.
-1. Navigate to the Ancile directory.
-1. Right click on "ancile.cmd"
-1. Select "Run as Administrator" from the menu
-1. Follow the on screen instructions
-
-## Configuration
-Some aspects of Ancile can be configured using the "config.ini" file in the root directory. 
-All configuration options are outlined within the config file itself.
-
 ## Features
-### Overview
 *  Sync time with ntp.org
 *  Block unwanted hosts
 *  Change windows update to check/notify (do not download/install) or disabled
@@ -32,9 +17,26 @@ All configuration options are outlined within the config file itself.
 *  Remove Microsoft's diagnostics tracking
 *  Hide/Uninstall unwanted Windows updates
 
-### Block Bad Hosts
-There are a number of hosts that Microsoft uses to collect data. Ancile disables access to them by redirecting connections using the Windows routing table, Windows firewall, and the hosts file. A complete list of blocked hosts can be found in "ancile\scripts\hosts\hostsdns.txt" and "ancile\scripts\hosts\hostsip.txt".
+## Instructions
+Ancile does not require installation and can be run directly from within it's parent folder.
 
+1. Download the latest version (https://bitbucket.org/matthewlinton/ancile/downloads).
+1. Unzip the archive.
+1. Navigate to the Ancile directory.
+1. Right click on "ancile.cmd"
+1. Select "Run as Administrator" from the menu
+1. Follow the on screen instructions
+
+## Configuration
+### Configuration File
+Some aspects of Ancile can be configured using the "config.ini" file in the root directory. This allows you to customize some of Ancile's behavior. All configuration options are outlined within the config file itself.
+
+### Data Folder
+The data folder contains various configuration information for Ancile's subscripts. You can modify the behavior of some of these subscripts by adding or removing the correct configuration options within the data folders. 
+
+**WARNING:** Incorrect modifications to any of these files may break Ancile and could potentially damage your system. Do not make any modifications to these files or folders unless you know what you're doing.
+
+## More Information
 ### Internet Explorer
 Some updates which may contain critical security patches for IE, as well as automated delivery of IE and related updates, will be blocked. Due to the security risks posed by running an un-patched browser you are strongly advised to uninstall IE. If you plan to continue to use IE you should either: Not run this script, or manually patch IE at your own risk.
 
@@ -62,8 +64,11 @@ Ancile uses the following third party resources to perform specific tasks.
 ### WindowsSpyBlocker
 Some host names and IP addresses were provided by crazy-max's WindowsSpyBlockerScript (https://github.com/crazy-max/WindowsSpyBlocker).
 
+### UninstallAndHideUpdates.ps1
+UninstallAndHideUpdates.ps1 is a powershell script written by Mark Berry (MCB Systems) to uninstall and hide updates removed by Ancile. Minor modifications have been made to meet Ancile's needs.
+
 ### Other
-* setacl-**.exe (https://helgeklein.com/setacl/)
+* setacl-**.exe (https://helgeklein.com/setacl/) : Modify ACL permissions on files.
 
 ## Feedback
 Please direct all feedback to the Voat subverse (https://voat.co/v/ancile/).
