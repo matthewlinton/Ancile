@@ -12,7 +12,7 @@ ECHO * Modifying Windows Update ...
 ECHO   This may take a long time. Please be patient.
 
 @REM Collect Windows Update Information
-IF NOT "%DEBUG%"=="N" (
+IF "%DEBUG%"=="Y" (
 	sc query wuauserv  >> "%LOGFILE%" 2>&1
 	sc qc wuauserv >> "%LOGFILE%" 2>&1
 	sc query bits >> "%LOGFILE%" 2>&1
@@ -43,7 +43,7 @@ IF NOT "%UNINSTALLUPDATES%"=="N" (
 	ECHO ** Uninstalling Updates
 	FOR /F "tokens=*" %%i IN ('DIR /B "%UPDATELISTS%" 2^>^> "%LOGFILE%"') DO (
 		ECHO %UPDATEDIR%\%%i >> "%LOGFILE%" 2>&1
-		IF NOT "%DEBUG%"=="N" (
+		IF "%DEBUG%"=="Y" (
 			sc query wuauserv 2>&1 | findstr /I RUNNING >nul 2>&1 && powershell -executionpolicy remotesigned -File "%UPDTDISABLE%" -KBFile "%UPDATEDIR%\%%i" >> "%LOGFILE%" 2>&1
 		) ELSE (
 			sc query wuauserv 2>&1 | findstr /I RUNNING >nul 2>&1 && powershell -executionpolicy remotesigned -File "%UPDTDISABLE%" -KBFile "%UPDATEDIR%\%%i" >> nul 2>&1

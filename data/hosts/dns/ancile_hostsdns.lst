@@ -1,3 +1,9 @@
+# Ancile Hosts domain Address list
+# This file contains a list of domain and host names that Ancile 
+# will use to build a block list.
+#
+# Lines starting with a "#" are comments and will be ignored.
+
 0.r.msn.com
 a.ads1.msn.com
 a.ads1.msn.com

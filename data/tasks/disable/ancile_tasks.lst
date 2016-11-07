@@ -1,3 +1,8 @@
+# Ancile Task Disable List
+# This file contain a list of tasks that will be disabled.
+#
+# Lines starting with a "#" are comments and will be ignored.
+
 \microsoft\windows\application experience\aitagent
 \microsoft\windows\application experience\microsoft compatibility appraiser
 \microsoft\windows\application experience\programdataupdater

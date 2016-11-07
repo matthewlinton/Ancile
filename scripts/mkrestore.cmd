@@ -14,8 +14,8 @@ IF "%SYSTEMRESTORE%"=="N" (
 @REM Ask the user what to do
 SET yesno=Y
 SET /P yesno="* create system restore point? (Y/n):  "
-IF /I "%yesno:~,1%" EQU "n" GOTO RESTOREEND
-IF /I "%yesno:~,1%" EQU "N" GOTO RESTOREEND
+IF /I "%yesno:~,1%" EQU "n" ECHO User has skipped creating restore point >> "%LOGFILE%" && GOTO RESTOREEND
+IF /I "%yesno:~,1%" EQU "N" ECHO User has skipped creating restore point >> "%LOGFILE%" && GOTO RESTOREEND
 
 :RESTOREPOINT
 @REM Create a system restore point
@@ -26,8 +26,8 @@ IF %ERRORLEVEL% EQU 0 GOTO RESTOREEND
 
 SET yesno=N
 SET /P yesno="Failed to create system restore point. Retry? (y/N):  "
-IF /I "%yesno:~,1%" EQU "y" GOTO RESTOREPOINT
-IF /I "%yesno:~,1%" EQU "Y" GOTO RESTOREPOINT
+IF /I "%yesno:~,1%" EQU "y" ECHO User has canceled creating restore point >> "%LOGFILE%" && GOTO RESTOREPOINT
+IF /I "%yesno:~,1%" EQU "Y" ECHO User has canceled creating restore point >> "%LOGFILE%" && GOTO RESTOREPOINT
 
 :RESTOREEND
 ECHO [%DATE% %TIME%] END CREATE RESTORE POINT >> "%LOGFILE%"

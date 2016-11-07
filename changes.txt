@@ -1,3 +1,11 @@
+v1.6
+	Added comments to the disable tasks list
+	Added comments to the registry key list
+	Added comments to the hosts DNS list
+	Added comments to the host IP list
+	Changed default for debugging (defaults to "N")
+	Added logging for user actions in mkrestore
+
 v1.5
 	Updated README.md file
 	Added log entry when user skips restore point
