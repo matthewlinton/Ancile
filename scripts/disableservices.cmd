@@ -1,55 +1,15 @@
-@REM disableservices - Disable various unwanted services.
+@REM disableservices - Parse through the services script directory
+@REM	and run any scripts that are in there
+
+SET SVCDIR=%SCRIPTDIR%\services
+SET SVCSCRIPTS=%SVCDIR%\*.cmd
 
 ECHO [%DATE% %TIME%] BEGIN DISABLE SERVICES >> "%LOGFILE%"
 ECHO * Disabling Services ... 
 
-@REM Disable Microsoft Customer Experience Improvement Program
-ECHO Disabling Microsoft Customer Experience Improvement Program: >> "%LOGFILE%"
-ECHO ** Customer Experience Improvement Program
-SET rkey=HKEY_LOCAL_MACHINE\SOFTWARE\microsoft\sqmclient\windows
-reg ADD "%rkey%" /f /t reg_dword /v ceipenable /d 0 >> "%LOGFILE%" 2>&1
-
-@REM Disable Microsoft Telemetry Reporting Services
-ECHO Disabling Telemetry Reporting Services: >> "%LOGFILE%"
-ECHO ** Telemetry Reporting Services
-SET rkey=HKEY_CURRENT_USER\SOFTWARE\policies\microsoft\office\15.0\osm
-reg ADD "%rkey%" /f /t reg_dword /v enablelogging /d 0 >> "%LOGFILE%" 2>&1
-reg ADD "%rkey%" /f /t reg_dword /v enablefileobfuscation /d 1 >> "%LOGFILE%" 2>&1
-reg ADD "%rkey%" /f /t reg_dword /v enableupload /d 0 >> "%LOGFILE%" 2>&1
-SET key=HKEY_CURRENT_USER\SOFTWARE\policies\microsoft\office\16.0\osm
-reg ADD "%rkey%" /f /t reg_dword /v enablelogging /d 0 >> "%LOGFILE%" 2>&1
-reg ADD "%rkey%" /f /t reg_dword /v enablefileobfuscation /d 1 >> "%LOGFILE%" 2>&1
-reg ADD "%rkey%" /f /t reg_dword /v enableupload /d 0 >> "%LOGFILE%" 2>&1
-SET key=HKEY_LOCAL_MACHINE\SOFTWARE\policies\microsoft\windows\datacollection
-reg ADD "%rkey%" /f /t reg_dword /v allowtelemetry /d 0 >> "%LOGFILE%" 2>&1
-SET key=HKEY_LOCAL_MACHINE\SOFTWARE\policies\microsoft\windows\scripteddiagnosticsprovider\policy
-reg ADD "%rkey%" /f /t reg_dword /v enablequeryremoteserver /d 0 >> "%LOGFILE%" 2>&1
-
-@REM Disable Microsoft Diagnostics Tracking
-ECHO Disabling Microsoft Diagnostics Tracking: >> "%LOGFILE%"
-ECHO ** Diagnostics Tracking
-sc query diagtrack 2>&1 | findstr /i running >nul 2>&1 && net stop diagtrack >> "%LOGFILE%" 2>&1
-sc query diagtrack >nul 2>&1 && sc delete diagtrack >> "%LOGFILE%" 2>&1
-
-@REM Disable Microsoft WiFi Sense
-ECHO Disabling Microsoft WiFi Sense: >> "%LOGFILE%"
-ECHO ** WiFi Sense
-SET rkey=HKEY_LOCAL_MACHINE\SOFTWARE\microsoft\wcmsvc\wifinetworkmanager
-reg ADD "%rkey%" /f /t reg_dword /v wifisensecredshared /d 0 >> "%LOGFILE%" 2>&1
-reg ADD "%rkey%" /f /t reg_dword /v wifisenseopen /d 0 >> "%LOGFILE%" 2>&1
-
-@REM Disable Microsoft Spynet
-ECHO Disabling Microsoft Spynet: >> "%LOGFILE%"
-ECHO ** Spynet
-SET rkey=HKEY_LOCAL_MACHINE\SOFTWARE\microsoft\windows defender\spynet
-reg ADD "%rkey%" /f /t reg_dword /v spynetreporting /d 0 >> "%LOGFILE%" 2>&1
-reg ADD "%rkey%" /f /t reg_dword /v submitsamplesconsent /d 0 >> "%LOGFILE%" 2>&1
-
-@REM Disable Microsoft SkyDrive
-ECHO Disabling Microsoft SkyDrive: >> "%LOGFILE%"
-ECHO ** Skydrive
-SET rkey=HKEY_LOCAL_MACHINE\SOFTWARE\policies\microsoft\windows\skydrive
-reg ADD "%rkey%" /f /t reg_dword /v disablefilesync /d 1 >> "%LOGFILE%" 2>&1
+FOR /F %%i IN ('DIR /B "%SVCSCRIPTS%" 2^>^>"%LOGFILE%"') DO (
+	CALL "%SVCDIR%\%%i"
+)
 
 ECHO [%DATE% %TIME%] END DISABLE SERVICES >> "%LOGFILE%"
 ECHO   DONE

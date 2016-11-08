@@ -1,4 +1,11 @@
 v1.6
+	Removed BINSETACL dependency from disablewinx
+	Added registry keys to ancile_registry.lst for Disable_MSDT
+	Updated Disable_MSDT to more thoroughly remove Disagnostics Tracking
+	Disableservices now parses the services directory for scripts to run
+	moved disableservices into it's seperate components.
+	Minor changes to config.ini
+	MODWINUPDATE now correctly controls UNINSTALLUPDATES
 	Added comments to the disable tasks list
 	Added comments to the registry key list
 	Added comments to the hosts DNS list
