@@ -13,15 +13,17 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\DateTime\servers
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Diagnostics\DiagTrack
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Windowsupdate\Auto Update
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Defender\SpyNet
+HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Messenger\Client
 HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\SQMClient\Windows
+HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\PCHealth\ErrorReporting
 HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection
 HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\GWX
 HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\scripteddiagnosticsprovider\policy
 HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\skydrive
+HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Windows Error Reporting
 HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate
 HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\WMI\AutoLogger\AutoLogger-Diagtrack-Listener
 HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\WMI\AutoLogger\SQMLogger
 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\WMI\Autologger\AutoLogger-Diagtrack-Listener
 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\w32time\Parameters
 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\w32time\TimeProviders\NtpClient
-

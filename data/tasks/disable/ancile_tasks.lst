@@ -9,6 +9,9 @@
 \microsoft\windows\autochk\proxy
 \microsoft\windows\customer experience improvement program\consolidator
 \microsoft\windows\customer experience improvement program\kernelceiptask
+\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerCeipAssistant
+\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerRoleCollector
+\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerRoleUsageCollector
 \microsoft\windows\customer experience improvement program\usbceip
 \microsoft\windows\diskdiagnostic\microsoft-windows-diskdiagnosticdatacollector
 \microsoft\windows\maintenance\winsat

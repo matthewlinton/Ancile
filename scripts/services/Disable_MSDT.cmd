@@ -1,8 +1,12 @@
 @REM Delete Microsoft Diagnostics Tracking
+
 ECHO Disabling Microsoft Diagnostics Tracking: >> "%LOGFILE%"
 ECHO ** Diagnostics Tracking
+
 sc query diagtrack 2>&1 | findstr /i running >nul 2>&1 && net stop diagtrack >> "%LOGFILE%" 2>&1
 sc query diagtrack >nul 2>&1 && sc delete diagtrack >> "%LOGFILE%" 2>&1
+sc query dmwappushservice 2>&1 | findstr /i running >nul 2>&1 && net stop dmwappushservice >> "%LOGFILE%" 2>&1
+sc query dmwappushservice >nul 2>&1 && sc delete dmwappushservice >> "%LOGFILE%" 2>&1
 
 SET rkey=HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\WMI\AutoLogger\AutoLogger-Diagtrack-Listener
 reg query "%rkey%" >nul 2>&1 && reg delete "%rkey%" /F >> "%LOGFILE%" 2>&1
