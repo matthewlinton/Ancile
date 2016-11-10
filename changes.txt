@@ -1,4 +1,6 @@
 v1.6
+	Added code to remove skyDrive explorer icon
+	Added spynettest.microsoft.com to domain names
 	Removed BINSETACL dependency from disablewinx
 	Added registry keys to ancile_registry.lst for Disable_MSDT
 	Updated Disable_MSDT to more thoroughly remove Disagnostics Tracking
