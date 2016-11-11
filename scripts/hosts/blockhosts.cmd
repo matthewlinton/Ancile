@@ -22,8 +22,6 @@ ECHO [%DATE% %TIME%] BEGIN HOST BLOCKING >> "%LOGFILE%"
 ECHO * Blocking malicious hosts ... 
 ECHO   This may take a long time. Please be patient.
 
-@REM Make sure we can edit the hosts file
-
 IF NOT EXIST "%HTEMPDIR%" MKDIR %HTEMPDIR% >> "%LOGFILE%" 2>&1 
 
 @REM Clear old temp hosts files
@@ -35,6 +33,7 @@ ECHO Modifying hosts file: >> "%LOGFILE%"
 IF NOT "%MODHOSTS%"=="N" (
 	ECHO ** Updating hosts file
 
+	@REM Generate clean hosts file
 	SET wout=1
 	SET linecount=0
 	FOR /F "delims=" %%i IN ('TYPE "%HOSTSFILE%"') DO (
@@ -45,20 +44,21 @@ IF NOT "%MODHOSTS%"=="N" (
 	)
 	ECHO Processed !linecount! Lines >> "%LOGFILE%"
 	
+	@REM Parse through hosts
 	ECHO Adding hosts file entries: >> "%LOGFILE%"
 	IF EXIST "%TMPANCILE%" DEL "%TMPANCILE%" >> "%LOGFILE%" 2>&1
 	ECHO %LISTBEGIN%>> "%TMPANCILE%"
 	SET match=0
-	FOR /F %%k IN ('TYPE "%HOSTLISTS%" 2^>^>"%LOGFILE%"') DO (
+	FOR /F "eol=#" %%k IN ('TYPE "%HOSTLISTS%" 2^>^>"%LOGFILE%"') DO (
 		FOR /F "tokens=1,2" %%i IN ('findstr /V /C:"#" "%TMPHOSTS%"') DO (
 			IF "%%k"=="%%j" (
 				SET match=1
-				IF NOT "%DEBUG%"=="N" ECHO Duplicate: %%k >> "%LOGFILE%"
+				IF "%DEBUG%"=="Y" ECHO Duplicate: %%k >> "%LOGFILE%"
 			) 
 		)
 		IF !match! EQU 0 (
 			ECHO %HOSTSREDIRECT%	%%k>> "%TMPANCILE%"
-			IF NOT "%DEBUG%"=="N" ECHO Adding: %%k >> "%LOGFILE%"
+			IF "%DEBUG%"=="Y" ECHO Adding: %%k >> "%LOGFILE%"
 		)
 		SET match=0
 	)
@@ -74,13 +74,13 @@ IF NOT "%MODHOSTS%"=="N" (
 )
 
 @REM Block hosts using the routing table
-SET rkey=Hkey_Local_machine\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\PersistentRoutes
+SET rkey=HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\PersistentRoutes
 IF NOT "%MODROUTES%"=="N" (
 	ECHO Modifying routing table: >> "%LOGFILE%"
 	ECHO ** Updating routing table
-	IF NOT "%DEBUG%"=="N" route PRINT >> "%LOGFILE%" 2>&1
-	FOR /F "tokens=1,2,* delims=, " %%i IN ('TYPE "%IPLISTS%" 2^>^> "%LOGFILE%"') DO (
-		IF NOT "%DEBUG%"=="N" (
+	IF "%DEBUG%"=="Y" route PRINT >> "%LOGFILE%" 2>&1
+	FOR /F "eol=# tokens=1,2,* delims=, " %%i IN ('TYPE "%IPLISTS%" 2^>^> "%LOGFILE%"') DO (
+		IF "%DEBUG%"=="Y" (
 			ECHO Route: "%%i" : "%%j" : "%ROUTESREDIRECT%" >> "%LOGFILE%" 2>&1
 			route ADD %%i MASK %%j %ROUTESREDIRECT% -p >> "%LOGFILE%" 2>&1
 		) ELSE (
@@ -97,14 +97,14 @@ ECHO Modifying firewall rules: >> "%LOGFILE%"
 IF NOT "%MODFIREWALL%"=="N" (
 	ECHO ** Updating firewall rules
 	SET ipaddrlist=
-	FOR /F "tokens=1,* delims=, " %%i IN ('TYPE "%IPLISTS%" 2^>^> "%LOGFILE%"') DO (
+	FOR /F "eol=# tokens=1,* delims=, " %%i IN ('TYPE "%IPLISTS%" 2^>^> "%LOGFILE%"') DO (
 	IF ".!ipaddrlist!"=="." (
 			SET ipaddrlist=%%i
 		) ELSE (
 			SET ipaddrlist=!ipaddrlist!,%%i
 		)
 	)
-	IF NOT "%DEBUG%"=="N" ECHO !ipaddrlist! >> "%LOGFILE%"
+	IF "%DEBUG%"=="Y" ECHO !ipaddrlist! >> "%LOGFILE%"
 	ECHO Deleting old firewall ruleset >> "%LOGFILE%"
 	netsh advfirewall firewall delete rule name="%RULENAME%" >> "%LOGFILE%" 2>&1
 	ECHO Adding updated firewall ruleset >> "%LOGFILE%"

@@ -5,8 +5,7 @@
 :INIT
 @REM Configure the default environment
 SET APPNAME=Ancile
-SET VERSION=1.5
-SET DEBUG=N
+SET VERSION=1.6
 
 FOR /F "usebackq tokens=1,2 delims==" %%i IN (`wmic os get LocalDateTime /VALUE 2^>NUL`) DO (
 	IF '.%%i.'=='.LocalDateTime.' SET ldt=%%j
@@ -84,7 +83,7 @@ ECHO [%DATE% %TIME%] ########################################################## 
 IF NOT ".%IDSTRING%"=="." ECHO %IDSTRING%>> "%LOGFILE%"
 
 @REM Log System information when Debugging
-IF NOT "%DEBUG%"=="N" (
+IF "%DEBUG%"=="Y" (
 	ECHO Collecting system information ...
 	systeminfo >> "%LOGFILE%"
 	SET >> "%LOGFILE%"

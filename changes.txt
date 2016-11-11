@@ -1,3 +1,26 @@
+v1.6
+	
+	Added script to disable microsoft error reporting (Disable_MSWER)
+	Added registry entries to disable CEIP for Windows Messenger (Disable_MSCEIP)
+	Added Server tasks to disable MS CEIP on server 2008 & 2012
+	Added disable dmwappushservice to disable_MSDT
+	Added code to remove skyDrive explorer icon
+	Added spynettest.microsoft.com to domain names
+	Removed BINSETACL dependency from disablewinx
+	Added registry keys to ancile_registry.lst for Disable_MSDT
+	Updated Disable_MSDT to more thoroughly remove Disagnostics Tracking
+	Disableservices now parses the services directory for scripts to run
+	Minor changes to services scripts
+	Moved disableservices into it's seperate components.
+	Minor changes to config.ini
+	MODWINUPDATE now correctly controls UNINSTALLUPDATES
+	Added comments to the disable tasks list
+	Added comments to the registry key list
+	Added comments to the hosts DNS list
+	Added comments to the host IP list
+	Changed default for debugging (defaults to "N")
+	Added logging for user actions in mkrestore
+
 v1.5
 	Updated README.md file
 	Added log entry when user skips restore point

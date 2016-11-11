@@ -3,12 +3,6 @@
 
 SET WINXDIR=%systemdrive%\$windows.~bt
 
-IF NOT EXIST "%BINSETACL%" (
-	ECHO ERROR! setacl command not found. Unable to continue! >> "%LOGFILE%"
-	SET /A ANCERRLVL=ANCERRLVL+1
-	GOTO DISABLEWINXEND
-)
-
 ECHO [%DATE% %TIME%] BEGIN DISABLE WIN 10 UPGRADE >> "%LOGFILE%"
 ECHO * Disabling Windows 10 Upgrade ... 
 
@@ -29,12 +23,13 @@ reg ADD "%rkey%" /f /t reg_dword /v DisableOSUpgrade /d 1 >> "%LOGFILE%" 2>&1
 ECHO Locking Windows 10 download directory: >> "%LOGFILE%"
 ECHO ** Disabling Windows 10 Download
 IF EXIST "%WINXDIR%" (
-	"%BINSETACL%" -on "%WINXDIR%" -ot file -actn setprot -op dacl:np;sacl:nc -rec cont_obj -actn setowner -ownr n:S-1-5-32-544 >> "%LOGFILE%" 2>&1
+	takeown /F "%WINXDIR%" /A /R /D y >> "%LOGFILE%" 2>&1
 	RMDIR /Q /S "%WINXDIR%" >> "%LOGFILE%" 2>&1
 )
 MKDIR "%WINXDIR%" >> "%LOGFILE%" 2>&1
 attrib +h "%WINXDIR%" >> "%LOGFILE%" 2>&1
-"%BINSETACL%" -on "%WINXDIR%" -ot file -actn setprot -op dacl:p_nc;sacl:p_nc -rec cont_obj -actn setowner -ownr n:S-1-5-32-544 >> "%LOGFILE%" 2>&1
+takeown /F "%WINXDIR%" /A /R /D y >> "%LOGFILE%" 2>&1
+icacls "%WINXDIR%" /grant:r *S-1-5-32-544:F /T /C >> "%LOGFILE%" 2>&1
 
 ECHO [%DATE% %TIME%] END DISABLE WIN 10 UPGRADE >> "%LOGFILE%"
 ECHO   DONE

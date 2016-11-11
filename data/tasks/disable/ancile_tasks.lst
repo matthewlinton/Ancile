@@ -1,9 +1,17 @@
+# Ancile Task Disable List
+# This file contain a list of tasks that will be disabled.
+#
+# Lines starting with a "#" are comments and will be ignored.
+
 \microsoft\windows\application experience\aitagent
 \microsoft\windows\application experience\microsoft compatibility appraiser
 \microsoft\windows\application experience\programdataupdater
 \microsoft\windows\autochk\proxy
 \microsoft\windows\customer experience improvement program\consolidator
 \microsoft\windows\customer experience improvement program\kernelceiptask
+\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerCeipAssistant
+\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerRoleCollector
+\Microsoft\Windows\Customer Experience Improvement Program\Server\ServerRoleUsageCollector
 \microsoft\windows\customer experience improvement program\usbceip
 \microsoft\windows\diskdiagnostic\microsoft-windows-diskdiagnosticdatacollector
 \microsoft\windows\maintenance\winsat

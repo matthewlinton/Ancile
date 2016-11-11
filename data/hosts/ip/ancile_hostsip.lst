@@ -1,3 +1,11 @@
+# Ancile Hosts IP Address list
+# This file contains a list of IP addresses and their subnet masks that Ancile 
+# will use to build a block list.
+# The entries in this file are in the format:
+#	<IP Address> <Subnet Mask>
+#
+# Lines starting with a "#" are comments and will be ignored.
+
 104.107.13.214 255.255.255.255
 104.210.4.77 255.255.255.255
 104.210.40.87 255.255.255.255
