@@ -1,5 +1,7 @@
-v1.6
+v1.7
+	BUGFIX #16 : Temporarily fix broken PATH so that Ancile can run
 	
+v1.6
 	Added script to disable microsoft error reporting (Disable_MSWER)
 	Added registry entries to disable CEIP for Windows Messenger (Disable_MSCEIP)
 	Added Server tasks to disable MS CEIP on server 2008 & 2012

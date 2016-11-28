@@ -7,6 +7,8 @@
 SET APPNAME=Ancile
 SET VERSION=1.6
 
+SET PATH=%PATH%;%SYSTEMROOT%;%SYSTEMROOT%\system32;%SYSTEMROOT%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\
+
 FOR /F "usebackq tokens=1,2 delims==" %%i IN (`wmic os get LocalDateTime /VALUE 2^>NUL`) DO (
 	IF '.%%i.'=='.LocalDateTime.' SET ldt=%%j
 )
@@ -105,7 +107,7 @@ CALL "%SCRIPTDIR%\disableremreg.cmd"
 @REM Disable unwanted services
 CALL "%SCRIPTDIR%\disableservices.cmd"
 @REM Disable scheduled tasks
-call "%SCRIPTDIR%\disabletasks.cmd"
+CALL "%SCRIPTDIR%\disabletasks.cmd"
 @REM Disable automated delivery of internet explorer
 CALL "%SCRIPTDIR%\inetexplore\disableie.cmd"
 @REM Disable Windows 10 upgrade
