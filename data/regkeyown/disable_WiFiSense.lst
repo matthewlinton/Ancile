@@ -1,0 +1,4 @@
+# Disable Microsoft Wifi Sense
+# The following registry keys are modified by the disable_MSWiFiSense plugin
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\wcmsvc\wifinetworkmanager

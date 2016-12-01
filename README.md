@@ -36,6 +36,9 @@ The data folder contains various configuration information for Ancile's subscrip
 
 **WARNING:** Incorrect modifications to any of these files may break Ancile and could potentially damage your system. Do not make any modifications to these files or folders unless you know what you're doing.
 
+### Plugins
+Users can create their own plugins for ancile. See "scripts\exampleplugin" for more information on plugins.
+
 ## More Information
 ### Internet Explorer
 Some updates which may contain critical security patches for IE, as well as automated delivery of IE and related updates, will be blocked. Due to the security risks posed by running an un-patched browser you are strongly advised to uninstall IE. If you plan to continue to use IE you should either: Not run this script, or manually patch IE at your own risk.

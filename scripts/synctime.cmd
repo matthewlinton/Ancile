@@ -4,11 +4,11 @@ ECHO [%DATE% %TIME%] BEGIN NTP SYNC >> "%LOGFILE%"
 
 IF "%TIMESYNC%"=="N" (
 	ECHO Skipping NTP settings and time sync >> "%LOGFILE%"
-	ECHO * Skipping NTP time sync
+	ECHO Skipping NTP time sync
 	GOTO ENDSYNCTIME
 )
 
-ECHO * Syncing time to pool.ntp.org ... 
+ECHO Syncing Windows Time
 
 @REM Configure NTP
 sc query w32time 2>&1 | findstr /i running >nul 2>&1 && net stop w32time >> "%LOGFILE%" 2>&1
@@ -38,4 +38,3 @@ w32tm /resync >> "%LOGFILE%" 2>&1
 
 :ENDSYNCTIME
 ECHO [%DATE% %TIME%] END NTP SYNC >> "%LOGFILE%"
-ECHO   DONE

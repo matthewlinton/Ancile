@@ -1,4 +1,31 @@
 v1.7
+	Created an example plugin as a guide for future plugins
+	Minor changes to scripts during conversion to plugin model
+	Split regkeyown data files into their plugin components
+	Updated config.ini
+	Rewrote disable_MSDT to the new plugin model
+	Rewrote disable_MSCEIP to the new plugin model
+	Copied IP list from modify_routing to the modify_firewall data directory (Lists will now be maintained seperately)
+	Rewrote modify_firewall to the new plugin model
+	Moved IP list to modify_routing plugin data directory
+	Rewrote modify_routing to the new plugin model
+	Moved hosts list to modify_hosts plugin data directory.
+	Rewrote modify_hosts to the new plugin model.
+	Split blockhosts into modify_hosts, modify_routing, and modify_firewall
+	Created modify_winupdate plugin to modify windows update service
+	Rewrote uninstall_updates to the new plugin model
+	Split uninstallupdates to uninstall_updates and modify_updates scripts
+	Moved services to data directory for disable_services plugin
+	Created disable_services plugin
+	Rewrote disable_remreg to the new plugin model
+	Moved disable_tasks tasks to their own files in data directory
+	Rewrote disable_tasks to the new plugin model
+	Moved disable_WINXupdate regestry keys to their own files in data directory
+	Rewrote disable_WINXupdate to the new plugin model
+	Rewrote disable_IEupdate to the new plugin model
+	Coded new script plugin architecture. All future functions should be plugins.
+	Renamed chgregkeyown.cmd to registrykeyown.cmd
+	Moved BINSETACL configuration to chgregkeyown
 	BUGFIX #16 : Temporarily fix broken PATH so that Ancile can run
 	
 v1.6

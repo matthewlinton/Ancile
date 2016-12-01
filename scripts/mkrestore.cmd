@@ -2,12 +2,12 @@
 ECHO [%DATE% %TIME%] BEGIN CREATE RESTORE POINT >> "%LOGFILE%"
 
 IF "%SYSTEMRESTORE%"=="Y" (
-	ECHO * Creating Windows restore point... 
+	ECHO Creating Windows restore point
 	GOTO RESTOREPOINT
 )
 IF "%SYSTEMRESTORE%"=="N" (
 	ECHO Skipping geration of Windows restore point >> "%LOGFILE%"
-	ECHO * Skipping Windows Restore Point
+	ECHO Skipping Windows Restore Point
 	GOTO RESTOREEND
 )
 
@@ -31,4 +31,3 @@ IF /I "%yesno:~,1%" EQU "Y" ECHO User has canceled creating restore point >> "%L
 
 :RESTOREEND
 ECHO [%DATE% %TIME%] END CREATE RESTORE POINT >> "%LOGFILE%"
-ECHO   DONE

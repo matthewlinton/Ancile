@@ -1,0 +1,8 @@
+# The following are a list of tasks related to Microsoft's Application 
+# Experience program which will be disabled by Ancile
+#
+# Lines starting with a "#" are comments and will be ignored.
+
+\microsoft\windows\application experience\aitagent
+\microsoft\windows\application experience\microsoft compatibility appraiser
+\microsoft\windows\application experience\programdataupdater
