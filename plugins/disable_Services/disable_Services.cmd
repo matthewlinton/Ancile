@@ -13,9 +13,8 @@ IF "%DISABLESERVICES%"=="N" (
 	ECHO Skipping Disable Services >> "%LOGFILE%"
 	ECHO   Skipping Disable Services
 ) ELSE (
+	ECHO   Processing Services
 	FOR /F "eol=# tokens=1,*" %%i IN ('TYPE "%SERVICELISTS%" 2^>^> "%LOGFILE%"') DO (
-		ECHO   %%i
-		
 		@REM Stop Service
 		sc query %%i 2>&1 | findstr /i running >nul 2>&1 && net stop %%i >> "%LOGFILE%" 2>&1
 		

@@ -24,6 +24,9 @@ DETAILS
   
 * Setting "DISABLEWINUPDATE" to "Y" will completely disable Windows Update.
 
+If you have problems getting Windows Update to work properly after running the script you may need to run the Windows Update Troubleshooter (https://support.microsoft.com/en-us/kb/2714434), or the System Update Readiness Tool (https://support.microsoft.com/en-us/kb/947821). If you have recently installed updates and have not yet rebooted you should reboot before running the script. If you are on a fresh install of Windows Ancile may take a very long time to run.
+
+
 NOTE
 By default the Example Plugin has a jump statement that completely bypasses the 
 entire script. You will need to remove this jump if you copy the Example Plugin 

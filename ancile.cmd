@@ -17,7 +17,7 @@ SET UNIDATE=%ldt:~0,4%-%ldt:~4,2%-%ldt:~6,2%
 SET CURRDIR=%~dp0
 SET DATADIR=%CURRDIR%data
 SET LIBDIR=%CURRDIR%lib
-SET SCRIPTDIR=%CURRDIR%scripts
+SET SCRIPTDIR=%CURRDIR%plugins
 SET TEMPDIR=%TEMP%\%APPNAME%
 SET LOGFILE=%CURRDIR%%APPNAME%-%VERSION%_%UNIDATE%.log
 
@@ -46,6 +46,7 @@ SET ANCERRLVL=0
 :BEGIN
 ECHO Starting %APPNAME% v%VERSION%
 IF "%DEBUG%"=="Y" ECHO Debugging Enabled
+ECHO.
 
 @REM Make sure we're running as an administrator
 net session >nul 2>&1
@@ -79,7 +80,7 @@ FOR %%i IN ("%LOGFILE%") DO (
 ECHO [%DATE% %TIME%] ### %APPNAME% v%VERSION% ################################# >> "%LOGFILE%"
 ECHO [%DATE% %TIME%] Created by Matthew Linton >> "%LOGFILE%"
 ECHO [%DATE% %TIME%] https://bitbucket.org/matthewlinton/ancile/ >> "%LOGFILE%"
-IF "%DEBUG%"=="Y" ECHO [%DATE% %TIME%]  Debugging Enabled
+IF "%DEBUG%"=="Y" ECHO [%DATE% %TIME%] Debugging Enabled >> "%LOGFILE%"
 ECHO [%DATE% %TIME%] ########################################################## >> "%LOGFILE%"
 IF NOT ".%IDSTRING%"=="." ECHO %IDSTRING%>> "%LOGFILE%"
 
@@ -93,13 +94,13 @@ IF "%DEBUG%"=="Y" (
 
 :SYSPREP
 @REM Sync Windows time
-CALL "%SCRIPTDIR%\synctime.cmd"
+CALL "%LIBDIR%\synctime.cmd"
 
 @REM Create restore point
-CALL "%SCRIPTDIR%\mkrestore.cmd"
+CALL "%LIBDIR%\mkrestore.cmd"
 
 @REM Take ownership of registry keys
-CALL "%SCRIPTDIR%\regkeyown.cmd"
+CALL "%LIBDIR%\regkeyown.cmd"
 
 :SCRIPTS
 @REM Look for plugins in the script directory

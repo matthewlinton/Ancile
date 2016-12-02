@@ -13,9 +13,9 @@ IF "%DISABLETASKS%"=="N" (
 	ECHO User skipping disabletasks >> "%LOGFILE%"
 	ECHO   Skipping Disable Tasks
 ) ELSE (
+	ECHO   Processing Tasks
 	FOR /F "eol=# tokens=*" %%t IN ('TYPE "%TASKLISTS%" 2^>^> "%LOGFILE%"') DO (
 		IF "%DEBUG%"=="Y" ECHO Checking: "%%t" >> "%LOGFILE%" 2>&1
-		ECHO   %%t
 		schtasks /query /tn "%%t" >nul 2>&1 && schtasks /change /disable /tn "%%t" >> "%LOGFILE%" 2>&1
 	)
 )

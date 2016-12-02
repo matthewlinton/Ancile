@@ -21,7 +21,12 @@ The following options can be added to config.ini
 	DISABLEIEUPDATE (Boolean) - Disable automatic download and update of Internet Explorer
 		Y	- Disable Automatic download and upgrade of IE (DEFAULT).
 		N	- Do not change Automatic download and upgrade of IE.
-	
+
+
+DETAILS
+Some Internet Explorer updates may contain critical security patches.. Due to the security risks posed by running an un-patched or out of date browser you are strongly advised to uninstall IE completely. If you plan to continue to use IE you should either: Not run this script, or manually patch IE at your own risk.
+
+
 NOTE
 This does not uninstall Internet Explorer, it only disables automatic updates. 
 If you wish to continue using IE, you will need to manually update your 

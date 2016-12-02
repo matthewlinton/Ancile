@@ -13,7 +13,7 @@ IF "%SYSTEMRESTORE%"=="N" (
 
 @REM Ask the user what to do
 SET yesno=Y
-SET /P yesno="* create system restore point? (Y/n):  "
+SET /P yesno="* Create system restore point? (Y/n):  "
 IF /I "%yesno:~,1%" EQU "n" ECHO User has skipped creating restore point >> "%LOGFILE%" && GOTO RESTOREEND
 IF /I "%yesno:~,1%" EQU "N" ECHO User has skipped creating restore point >> "%LOGFILE%" && GOTO RESTOREEND
 
