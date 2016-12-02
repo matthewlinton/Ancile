@@ -1,0 +1,11 @@
+# Ancile Registry List
+# This file contains a list of registry keys that will be modified.
+# 	Keys will be placed under the ownership of the Administrator.
+# 	Keys will be referenced for changes throughout Ancile.
+#
+# Lines starting with a "#" are comments and will be ignored.
+
+# Date Time (NTP) service changes by Ancile
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\DateTime\servers
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\w32time\Parameters
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\w32time\TimeProviders\NtpClient

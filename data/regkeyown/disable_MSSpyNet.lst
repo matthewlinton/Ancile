@@ -1,0 +1,4 @@
+# Disable Microsoft SpyNet
+# The following registry keys are modified by the disable_MSSpyNet plugin
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Defender\SpyNet

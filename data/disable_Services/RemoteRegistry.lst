@@ -1,0 +1,7 @@
+# The following are a list of tasks that will be disabled when disabling the 
+# Remote Registry service.
+# If the service is followed by the keyword "DELETE" The service will be deleted.
+#
+# Lines starting with a "#" are comments and will be ignored.
+
+RemoteRegistry

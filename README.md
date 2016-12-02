@@ -6,16 +6,18 @@ For more information go to https://voat.co/v/ancile
 This is a fork of th3power's Aegis-voat (https://github.com/th3power/aegis-voat) script.
 
 ## Features
-*  Sync time with ntp.org
-*  Block unwanted hosts
-*  Change windows update to check/notify (do not download/install) or disabled
+*  Sync Windows time with ntp.org
+*  Block unwanted hosts using the Windows hosts file, routing table, and firewall
+*  Change windows update to check/notify (do not download/install) or disable it entirely
 *  Disable automatic delivery of Internet explorer via windows update
-*  Disable ceip/gwx/skydrive(aka OneDrive)/SpyNet/telemetry/WiFiSense
+*  Disable CEIP/GWX/SkyDrive(aka OneDrive)/SpyNet/Telemetry/WiFi Sense
 *  Disable remote registry
 *  Disable unwanted scheduled tasks
-*  Disable Windows 10 update
+*  Disable unwanted services
+*  Disable the Windows 10 forced update
 *  Remove Microsoft's diagnostics tracking
 *  Hide/Uninstall unwanted Windows updates
+*  Add 3rd party plugins
 
 ## Instructions
 Ancile does not require installation and can be run directly from within it's parent folder.
@@ -29,19 +31,23 @@ Ancile does not require installation and can be run directly from within it's pa
 
 ## Configuration
 ### Configuration File
-Some aspects of Ancile can be configured using the "config.ini" file in the root directory. This allows you to customize some of Ancile's behavior. All configuration options are outlined within the config file itself.
+Some aspects of Ancile can be configured using the "config.ini" file in the root directory. This allows you to customize some of Ancile's behavior. All Ancile configuration options are outlined within the config file itself.
+
+Some plugins also have configuration options. See the README file contained in the individual plugin directories for more information.
 
 ### Data Folder
-The data folder contains various configuration information for Ancile's subscripts. You can modify the behavior of some of these subscripts by adding or removing the correct configuration options within the data folders. 
+The data folder contains various configuration information for Ancile and its plugins. You can modify the behavior of some of these by adding or removing the correct configuration options within the data folders. For each script, see the README file for more information
 
 **WARNING:** Incorrect modifications to any of these files may break Ancile and could potentially damage your system. Do not make any modifications to these files or folders unless you know what you're doing.
 
-## More Information
-### Internet Explorer
-Some updates which may contain critical security patches for IE, as well as automated delivery of IE and related updates, will be blocked. Due to the security risks posed by running an un-patched browser you are strongly advised to uninstall IE. If you plan to continue to use IE you should either: Not run this script, or manually patch IE at your own risk.
+### Plugins
+Users can create their own plugins for ancile. See "scripts\exampleplugin" for more information on plugins.
 
-### Windows Update
-Ancile modifies the Windows Update settings to 'check/notify but do not download/install' or (optionally) disables Windows Update entirely. If you have problems getting Windows Update to work properly after running the script you may need to run the Windows Update Troubleshooter (https://support.microsoft.com/en-us/kb/2714434), or the System Update Readiness Tool (https://support.microsoft.com/en-us/kb/947821). If you have recently installed updates and have not yet rebooted you should reboot before running the script. If you are on a fresh install of Windows Ancile may take a very long time to run.
+## More Information
+For more information:
+
+* Check out the README.txt files included for each plugin.
+* go to https://voat.co/v/ancile
 
 ## License
 This code is not covered under any license. You are welcome to modify and share this code as you please.
@@ -78,10 +84,10 @@ If you find a bug, please take the time to report it (https://bitbucket.org/matt
 ## Thanks
 ### A special thanks to everyone that helped to improve Ancile
 #### Partners
-Scalar
+Mixplate, Scalar
 
 #### Contributors
-aekotra, HeavyBeefCurtain, Mixplate, noxxius88, TiagoTiago, ucantdothatontvew
+aekotra, HeavyBeefCurtain, Jean Belga, marineIguana, noxxius88, TiagoTiago, ucantdothatontvew
 
 ### Thank you to everyone that helped create Aegis-voat
 #### Creators

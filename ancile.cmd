@@ -5,7 +5,9 @@
 :INIT
 @REM Configure the default environment
 SET APPNAME=Ancile
-SET VERSION=1.6
+SET VERSION=1.7
+
+SET PATH=%PATH%;%SYSTEMROOT%;%SYSTEMROOT%\system32;%SYSTEMROOT%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\
 
 FOR /F "usebackq tokens=1,2 delims==" %%i IN (`wmic os get LocalDateTime /VALUE 2^>NUL`) DO (
 	IF '.%%i.'=='.LocalDateTime.' SET ldt=%%j
@@ -15,7 +17,7 @@ SET UNIDATE=%ldt:~0,4%-%ldt:~4,2%-%ldt:~6,2%
 SET CURRDIR=%~dp0
 SET DATADIR=%CURRDIR%data
 SET LIBDIR=%CURRDIR%lib
-SET SCRIPTDIR=%CURRDIR%scripts
+SET SCRIPTDIR=%CURRDIR%plugins
 SET TEMPDIR=%TEMP%\%APPNAME%
 SET LOGFILE=%CURRDIR%%APPNAME%-%VERSION%_%UNIDATE%.log
 
@@ -38,14 +40,13 @@ IF NOT "%SYSARCH%"=="32" (
 	)
 )
 
-SET BINSETACL=%LIBDIR%\setacl-%SYSARCH%.exe
-
-MD "%TEMPDIR%" >nul 2>&1
-
+IF NOT EXIST "%TEMPDIR%" MKDIR "%TEMPDIR%" >nul 2>&1
 SET ANCERRLVL=0
 
 :BEGIN
 ECHO Starting %APPNAME% v%VERSION%
+IF "%DEBUG%"=="Y" ECHO Debugging Enabled
+ECHO.
 
 @REM Make sure we're running as an administrator
 net session >nul 2>&1
@@ -79,12 +80,13 @@ FOR %%i IN ("%LOGFILE%") DO (
 ECHO [%DATE% %TIME%] ### %APPNAME% v%VERSION% ################################# >> "%LOGFILE%"
 ECHO [%DATE% %TIME%] Created by Matthew Linton >> "%LOGFILE%"
 ECHO [%DATE% %TIME%] https://bitbucket.org/matthewlinton/ancile/ >> "%LOGFILE%"
+IF "%DEBUG%"=="Y" ECHO [%DATE% %TIME%] Debugging Enabled >> "%LOGFILE%"
 ECHO [%DATE% %TIME%] ########################################################## >> "%LOGFILE%"
 IF NOT ".%IDSTRING%"=="." ECHO %IDSTRING%>> "%LOGFILE%"
 
 @REM Log System information when Debugging
 IF "%DEBUG%"=="Y" (
-	ECHO Collecting system information ...
+	ECHO Collecting System Information
 	systeminfo >> "%LOGFILE%"
 	SET >> "%LOGFILE%"
 	powershell -executionpolicy remotesigned -Command $PSVersionTable >> "%LOGFILE%"
@@ -92,31 +94,29 @@ IF "%DEBUG%"=="Y" (
 
 :SYSPREP
 @REM Sync Windows time
-CALL "%SCRIPTDIR%\synctime.cmd"
+CALL "%LIBDIR%\synctime.cmd"
 
 @REM Create restore point
-CALL "%SCRIPTDIR%\mkrestore.cmd"
+CALL "%LIBDIR%\mkrestore.cmd"
+
+@REM Take ownership of registry keys
+CALL "%LIBDIR%\regkeyown.cmd"
 
 :SCRIPTS
-@REM Take ownership of registry keys
-CALL "%SCRIPTDIR%\chgregkeyown.cmd"
-@REM Disable remote registry
-CALL "%SCRIPTDIR%\disableremreg.cmd"
-@REM Disable unwanted services
-CALL "%SCRIPTDIR%\disableservices.cmd"
-@REM Disable scheduled tasks
-call "%SCRIPTDIR%\disabletasks.cmd"
-@REM Disable automated delivery of internet explorer
-CALL "%SCRIPTDIR%\inetexplore\disableie.cmd"
-@REM Disable Windows 10 upgrade
-CALL "%SCRIPTDIR%\disablewinx.cmd"
-@REM Uninstall and hide unwanted updates
-CALL "%SCRIPTDIR%\updates\disableupdates.cmd"
-@REM Block malicious hosts
-CALL "%SCRIPTDIR%\hosts\blockhosts.cmd"
+@REM Look for plugins in the script directory
+ECHO Loading Plugins:
+ECHO.
+FOR /D %%i IN ("%SCRIPTDIR%\*.*") DO (
+	IF EXIST "%SCRIPTDIR%\%%~nxi\%%~nxi.cmd" (
+		IF "%DEBUG%"=="Y" ECHO "%SCRIPTDIR%\%%~nxi\%%~nxi.cmd" >> "%LOGFILE%"
+		CALL "%SCRIPTDIR%\%%~nxi\%%~nxi.cmd"
+		ECHO.
+	)
+)
 
 :ERRCHK
 @REM Check for error condition
+IF EXIST "%LOGFILE%" ECHO [%DATE% %TIME%] ########################################################## >> "%LOGFILE%"
 IF %ANCERRLVL% GTR 0 GOTO ENDFAIL
 GOTO ENDSUCCESS
 
@@ -128,7 +128,6 @@ GOTO END
 :ENDSUCCESS
 IF EXIST "%LOGFILE%" ECHO [%DATE% %TIME%] END : %APPNAME% v%VERSION% completed successfully >> "%LOGFILE%"
 ECHO %APPNAME% v%VERSION% has completed successfully.
-
 GOTO END
 
 :END
