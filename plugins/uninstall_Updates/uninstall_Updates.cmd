@@ -1,17 +1,28 @@
 @REM uninstall_Updates - uninstall and hide unwanted Windows updates.
 
+@REM Configuration
 SET PLUGINNAME=uninstall_Updates
-SET PLUGINVERSION=1.0
+SET PLUGINVERSION=1.1
 SET PLUGINDIR=%SCRIPTDIR%\%PLUGINNAME%
 
 SET UPDTDISABLE=%PLUGINDIR%\UninstallAndHideUpdates.ps1
 SET UPDATEDIR=%DATADIR%\%PLUGINNAME%
 SET UPDATELISTS=%UPDATEDIR%\*.lst
 
+@REM Dependencies
+IF NOT "%APPNAME%"=="Ancile" (
+	ECHO ERROR: %PLUGINNAME% is meant to be launched by Ancile, and will not run as a stand alone script.
+	ECHO Press any key to exit ...
+	PAUSE >nul 2>&1
+	EXIT
+)
+
+@REM Header
 ECHO [%DATE% %TIME%] BEGIN UNINSTALL WINDOWS UPDATES >> "%LOGFILE%"
 ECHO * Uninstalling Windows Updates ... 
 ECHO   This may take a long time. Please be patient.
 
+@REM Main
 IF "%UNINSTALLUPDATES%"=="N" (
 	ECHO Skipping Uninstall of Windows Updates >> "%LOGFILE%"
 	ECHO   Skipping Uninstall Windows Updates
@@ -57,5 +68,6 @@ IF "%UNINSTALLUPDATES%"=="N" (
 	)
 )
 
+@REM Footer
 ECHO [%DATE% %TIME%] END UNINSTALL WINDOWS UPDATES >> "%LOGFILE%"
 ECHO   DONE

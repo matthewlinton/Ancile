@@ -1,12 +1,23 @@
 @REM Delete Microsoft Diagnostics Tracking
 
+@REM Configuration
 SET PLUGINNAME=disable_MSDT
-SET PLUGINVERSION=1.0
+SET PLUGINVERSION=1.1
 SET PLUGINDIR=%SCRIPTDIR%\%PLUGINNAME%
 
-ECHO [%DATE% %TIME%] BEGIN DISABLE MSDT PLUGIN >> "%LOGFILE%"
+@REM Dependencies
+IF NOT "%APPNAME%"=="Ancile" (
+	ECHO ERROR: %PLUGINNAME% is meant to be launched by Ancile, and will not run as a stand alone script.
+	ECHO Press any key to exit ...
+	PAUSE >nul 2>&1
+	EXIT
+)
+
+@REM Header
+ECHO [%DATE% %TIME%] BEGIN DISABLE MICROSOFT DIAGNOSTICS TRACKING PLUGIN >> "%LOGFILE%"
 ECHO * Disabling MS Diagnostics Tracking ...
 
+@REM Main
 IF "%DISABLEMSDT%"=="N" (
 	ECHO Skipping disable MS DT >> "%LOGFILE%"
 	ECHO   Skipping MSDT
@@ -42,5 +53,6 @@ IF "%DISABLEMSDT%"=="N" (
 	DEL /F /Q /S %PROGRAMDATA%\Microsoft\Diagnosis\ETLLogs\* >> "%LOGFILE%" 2>&1
 )
 
-ECHO [%DATE% %TIME%] END DISABLE MSDT PLUGIN >> "%LOGFILE%"
+@REM Footer
+ECHO [%DATE% %TIME%] END DISABLE MICROSOFT DIAGNOSTICS TRACKING PLUGIN >> "%LOGFILE%"
 ECHO   DONE

@@ -1,3 +1,8 @@
+v1.8
+	Updated ExamplePlugin
+	Made multiple small/misc. changes to various plugins to match standard practice
+	Modified all plugins to verify that they were launched by Ancile
+	
 v1.7
 	Renamed scripts directory to plugins
 	Moved synctime.cmd to lib directory

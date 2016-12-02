@@ -1,17 +1,27 @@
 @REM modify_Routing - Modify the routing table with blocked IPs
 
+@REM Configuration
 SET PLUGINNAME=modify_Routing
-SET PLUGINVERSION=1.0
+SET PLUGINVERSION=1.1
 SET PLUGINDIR=%SCRIPTDIR%\%PLUGINNAME%
 
 SET IPLISTS=%DATADIR%\%PLUGINNAME%\*.lst
 
 IF "%ROUTESREDIRECT%"=="" SET ROUTESREDIRECT=0.0.0.0
 
+@REM Dependencies
+IF NOT "%APPNAME%"=="Ancile" (
+	ECHO ERROR: %PLUGINNAME% is meant to be launched by Ancile, and will not run as a stand alone script.
+	ECHO Press any key to exit ...
+	PAUSE >nul 2>&1
+	EXIT
+)
+
+@REM Header
 ECHO [%DATE% %TIME%] BEGIN ROUTING TABLE MODIFICATION >> "%LOGFILE%"
 ECHO * Modifying Routing Table ...
 
-@REM Block hosts using the routing table
+@REM Main
 IF "%MODIFYROUTES%"=="N" (
 	ECHO Skipping modification of routing table: >> "%LOGFILE%"
 	ECHO   Skipping routing table
@@ -21,6 +31,7 @@ IF "%MODIFYROUTES%"=="N" (
 	
 	IF "%DEBUG%"=="Y" route PRINT >> "%LOGFILE%" 2>&1
 	
+	@REM Loop through the lists of IP addresses and add new ones
 	FOR /F "eol=# tokens=1,2,* delims=, " %%i IN ('TYPE "%IPLISTS%" 2^>^> "%LOGFILE%"') DO (
 		IF "%DEBUG%"=="Y" (
 			ECHO Route: "%%i" : "%%j" : "%ROUTESREDIRECT%" >> "%LOGFILE%" 2>&1
@@ -31,5 +42,6 @@ IF "%MODIFYROUTES%"=="N" (
 	)
 )
 
+@REM Footer
 ECHO [%DATE% %TIME%] END ROUTING TABLE MODIFICATION >> "%LOGFILE%"
 ECHO   DONE

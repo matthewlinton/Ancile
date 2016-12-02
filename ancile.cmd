@@ -5,7 +5,7 @@
 :INIT
 @REM Configure the default environment
 SET APPNAME=Ancile
-SET VERSION=1.7
+SET VERSION=1.8
 
 SET PATH=%PATH%;%SYSTEMROOT%;%SYSTEMROOT%\system32;%SYSTEMROOT%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\
 

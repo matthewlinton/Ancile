@@ -1,14 +1,24 @@
-@REM disablewinx - Disable Windows 10 upgrade
+@REM Disable Windows 10 Forced Upgrade
 
 @REM Configuration. 
 SET PLUGINNAME=disable_winx
-SET PLUGINVERSION=1.0
+SET PLUGINVERSION=1.1
 SET PLUGINDIR=%SCRIPTDIR%\%PLUGINNAME%
 SET WINXDIR=%SYSTEMDRIVE%\$windows.~bt
 
-ECHO [%DATE% %TIME%] BEGIN DISABLE WIN 10 UPGRADE >> "%LOGFILE%"
+@REM Dependencies
+IF NOT "%APPNAME%"=="Ancile" (
+	ECHO ERROR: %PLUGINNAME% is meant to be launched by Ancile, and will not run as a stand alone script.
+	ECHO Press any key to exit ...
+	PAUSE >nul 2>&1
+	EXIT
+)
+
+@REM Header
+ECHO [%DATE% %TIME%] BEGIN DISABLE WINDOWS 10 FORCED UPGRADE >> "%LOGFILE%"
 ECHO * Disabling Windows 10 Upgrade ... 
 
+@REM Main
 IF "%DISABLEWINXUPDATE%"=="N" (
 	ECHO Skipping Disable Windows 10 Upgrade >> "%LOGFILE%"
 	ECHO   Skipping Disable Windows 10 Upgrade
@@ -39,5 +49,6 @@ IF "%DISABLEWINXUPDATE%"=="N" (
 	icacls "%WINXDIR%" /grant:r *S-1-5-32-544:F /T /C >> "%LOGFILE%" 2>&1
 )
 
-ECHO [%DATE% %TIME%] END DISABLE WIN 10 UPGRADE >> "%LOGFILE%"
+@REM Footer
+ECHO [%DATE% %TIME%] END DISABLE WIN 10 FORCED UPGRADE >> "%LOGFILE%"
 ECHO   DONE

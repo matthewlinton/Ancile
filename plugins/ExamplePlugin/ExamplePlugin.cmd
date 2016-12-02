@@ -1,26 +1,37 @@
-@REM exampleplugin - This is a example plugin for Ancile.
+@REM ExamplePlugin - This is a example plugin for Ancile.
 @REM Below is an example skeleton for writing an Ancile plugin.
 
 @REM We don't want this script running at all so we'll jump to the end
 @REM This only applies to the example script. When creating your own script you'll want to exclude this jump
-GOTO SKIPEXAMPLESCRIPT
+@REM GOTO SKIPEXAMPLESCRIPT
 
 @REM Configuration.
 @REM Every script should have a script configuration with PLUGINNAME, PLUGINVERSION, PLUGINDIR.
 @REM You might also want to add any other global configuration variables here.
-SET PLUGINNAME=exampleplugin
-SET PLUGINVERSION=1.0
+SET PLUGINNAME=ExamplePlugin
+SET PLUGINVERSION=1.1
 @REM If you want to call sub-scripts from your main script, you will need to include the full path.
 @REM Ancile provides the shell variable "SCRIPTDIR" which is the path to the scripts directory.
 SET PLUGINDIR=%SCRIPTDIR%\%PLUGINNAME%
 
-@REM Launch header. 
+@REM Dependencies
+@REM This script relies on Ancile to launch it so we need to check for that.
+@REM You should also check for any other dependencies here as well.
+IF NOT "%APPNAME%"=="Ancile" (
+	ECHO ERROR: %PLUGINNAME% is meant to be launched by Ancile, and will not run as a stand alone script.
+	ECHO Press any key to exit ...
+	PAUSE >nul 2>&1
+	EXIT
+)
+
+@REM Header
 @REM The Launch Header Briefly describe what we're running in the log and console to announce that the script has started.
-@REM Plugins for ancile should always announce that they have been started even when they are disabled.
+@REM Plugins for Ancile should always announce that they have been started even when they are disabled.
 ECHO [%DATE% %TIME%] BEGIN EXAMPLE PLUGIN >> "%LOGFILE%"
 ECHO * Launching example plugin ...
 
-@REM Run Check. Add a unique variable to determine if the script will be run.
+@REM Begin
+@REM Add a unique variable to determine if the script will be run.
 @REM This will allow the user to enable and disable this script through the config.ini file.
 @REM NOTE: Please ensure that this variable is unique. If you reuse variables used by other scripts, you could break that script or your own script.
 @REM In this example the script will be run unless the user explicitly sets "ANCILEEXAMPLE" to "N" in "config.ini"
@@ -64,6 +75,10 @@ IF "%ANCILEEXAMPLE%"=="N" (
 	@REM You can access these binaries using the "LIBDIR" shell variable set up by Ancile.
 	@REM THe following command will log an error as "testing.exe" doesn't exist.
 	CALL "%LIBDIR%\testing.exe" >> "%LOGFILE%" 2>&1
+	@REM You may want to check if the above command produced any errors.
+	@REM You can do this by cecking the system variable "ERRORLEVEL"
+	@REM If there's an error, update the Ancile error counter.
+	IF %ERRORLEVEL% neq 0 SET /A ANCERRLVL=ANCERRLVL+1
 	
 	@REM Do you need to run a sub script that you've included with your plugin?
 	IF EXIST "%PLUGINDIR%\examplesubscript.cmd" (
@@ -81,7 +96,8 @@ IF "%ANCILEEXAMPLE%"=="N" (
 	DEL /F /Q "%TEMPDIR%\%PLUGINNAME%" >> "%LOGFILE%" 2>&1
 )
 
-@REM LAUNCH Footer. confirm that script has completed in log and console.
+@REM Footer
+@REM confirm that script has completed in log and console.
 @REM Plugins for ancile should always announce that they have completed even when they are disabled.
 ECHO [%DATE% %TIME%] END EXAMPLE PLUGIN >> "%LOGFILE%"
 ECHO   DONE
