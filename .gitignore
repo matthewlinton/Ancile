@@ -2,3 +2,6 @@
 *.log
 *.tmp
 TODO.txt
+config.default.ini
+config.disable_all.ini
+config.enable_all.ini

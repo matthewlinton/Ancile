@@ -1,10 +1,6 @@
 @REM ExamplePlugin - This is a example plugin for Ancile.
 @REM Below is an example skeleton for writing an Ancile plugin.
 
-@REM We don't want this script running at all so we'll jump to the end
-@REM This only applies to the example script. When creating your own script you'll want to exclude this jump
-@REM GOTO SKIPEXAMPLESCRIPT
-
 @REM Configuration.
 @REM Every script should have a script configuration with PLUGINNAME, PLUGINVERSION, PLUGINDIR.
 @REM You might also want to add any other global configuration variables here.
@@ -25,7 +21,7 @@ IF NOT "%APPNAME%"=="Ancile" (
 )
 
 @REM Header
-@REM The Launch Header Briefly describe what we're running in the log and console to announce that the script has started.
+@REM The Header Briefly describe what we're running in the log and console to announce that the script has started.
 @REM Plugins for Ancile should always announce that they have been started even when they are disabled.
 ECHO [%DATE% %TIME%] BEGIN EXAMPLE PLUGIN >> "%LOGFILE%"
 ECHO * Launching example plugin ...
@@ -43,7 +39,7 @@ IF "%ANCILEEXAMPLE%"=="N" (
 ) ELSE (
 	@REM Script Main.
 	@REM This is the main body of the plugin. All the working code goes here.
-	@REM Ancile Plugins are Windows Batch scrips. Everything that you can do with a batch script yo can do here.
+	@REM Ancile Plugins are Windows Batch scrips. Everything that you can do with a batch script you can do here.
 	ECHO   Running Example Plugin
 	
 	@REM Debugging. Include Extra Debugging information if debugging is enabled. This can also be helpful in reducing log clutter when running commands.
@@ -73,12 +69,17 @@ IF "%ANCILEEXAMPLE%"=="N" (
 	
 	@REM The Library directory is used for including binaries that may be used by multiple scripts.
 	@REM You can access these binaries using the "LIBDIR" shell variable set up by Ancile.
-	@REM THe following command will log an error as "testing.exe" doesn't exist.
+	@REM The following command will log an error as "testing.exe" doesn't exist.
 	CALL "%LIBDIR%\testing.exe" >> "%LOGFILE%" 2>&1
+	@REM Ancile version 1.8 and later add the Library directory to your path.
+	@REM This means that you can launch Ancile commands without having to include "%LIBDIR%"
+	CALL testing.exe >> "%LOGFILE%" 2>&1
 	@REM You may want to check if the above command produced any errors.
-	@REM You can do this by cecking the system variable "ERRORLEVEL"
+	@REM You can do this by checking the system variable "ERRORLEVEL"
 	@REM If there's an error, update the Ancile error counter.
 	IF %ERRORLEVEL% neq 0 SET /A ANCERRLVL=ANCERRLVL+1
+	@REM NOTE: Not all commands will set an error level. You will want to make sure that the command you are using
+	@REM sets this correctly, or you may not get the behavior you're expecting.
 	
 	@REM Do you need to run a sub script that you've included with your plugin?
 	IF EXIST "%PLUGINDIR%\examplesubscript.cmd" (
@@ -101,5 +102,3 @@ IF "%ANCILEEXAMPLE%"=="N" (
 @REM Plugins for ancile should always announce that they have completed even when they are disabled.
 ECHO [%DATE% %TIME%] END EXAMPLE PLUGIN >> "%LOGFILE%"
 ECHO   DONE
-
-:SKIPEXAMPLESCRIPT

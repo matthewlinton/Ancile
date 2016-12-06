@@ -1,4 +1,18 @@
 v1.8
+	Created "docs" folder to store "changes.txt", "ExamplePlugin", and any other documents related to Ancile
+	Created "modifyservices.cmd" script to allow plugins to modify services
+	Created "modifytasks.cmd" script to allow plugins to modify tasks
+	Split uninstall_Updates data into seperate files
+	Renamed mkrestore.cmd to mkrestorepoint.cmd
+	Renamed synctime.cmd to syncwindowstime.cmd
+	Renamed data folder regkeyown to registrykeyownership
+	Renamed regkeyown.cmd to registrykeyownership.cmd
+	Renamed remaining updates file to Other (uninstall updates)
+	Moved Windows 10 updates to their own data file (uninstall updates)
+	Moved Windows Update Client updates to their own data file (uninstall updates)
+	Moved Telemetry updates to their own data file (uninstall updates)
+	Moved Monthly preview updates to their own data file (uninstall updates)
+	Moved Windows update client updates to their own file (uninstall updates)
 	Updated ExamplePlugin
 	Made multiple small/misc. changes to various plugins to match standard practice
 	Modified all plugins to verify that they were launched by Ancile

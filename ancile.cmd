@@ -7,6 +7,7 @@
 SET APPNAME=Ancile
 SET VERSION=1.8
 
+@REM Make sure the path variable contians everything we need
 SET PATH=%PATH%;%SYSTEMROOT%;%SYSTEMROOT%\system32;%SYSTEMROOT%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\
 
 FOR /F "usebackq tokens=1,2 delims==" %%i IN (`wmic os get LocalDateTime /VALUE 2^>NUL`) DO (
@@ -32,13 +33,16 @@ IF EXIST "%USERCONFIG%" (
 	ECHO Using default configuration.
 )
 
-@REM Configure internal environment variables
+@REM Get system architecture
 IF NOT "%SYSARCH%"=="32" (
 	IF NOT "%SYSARCH%"=="64" (
 		SET SYSARCH=32
 		wmic os get osarchitecture 2>&1|findstr /I 64-bit >nul 2>&1 && SET SYSARCH=64
 	)
 )
+
+@REM Add the LIB directory to the user's path so we can call Ancile commands without listing the path
+SET PATH=%PATH%;%LIBDIR%
 
 IF NOT EXIST "%TEMPDIR%" MKDIR "%TEMPDIR%" >nul 2>&1
 SET ANCERRLVL=0
@@ -94,13 +98,13 @@ IF "%DEBUG%"=="Y" (
 
 :SYSPREP
 @REM Sync Windows time
-CALL "%LIBDIR%\synctime.cmd"
+CALL "%LIBDIR%\syncwindowstime.cmd"
 
 @REM Create restore point
-CALL "%LIBDIR%\mkrestore.cmd"
+CALL "%LIBDIR%\mkrestorepoint.cmd"
 
 @REM Take ownership of registry keys
-CALL "%LIBDIR%\regkeyown.cmd"
+CALL "%LIBDIR%\registrykeyownership.cmd"
 
 :SCRIPTS
 @REM Look for plugins in the script directory
