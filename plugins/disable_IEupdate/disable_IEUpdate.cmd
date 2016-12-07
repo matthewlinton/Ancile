@@ -16,7 +16,7 @@ IF NOT "%APPNAME%"=="Ancile" (
 
 @REM Header
 ECHO [%DATE% %TIME%] BEGIN DISABLE INTERNET EXPLORER UPDATE PLUGIN >> "%LOGFILE%"
-ECHO * Disabling IE Update ... 
+ECHO * Disabling Internet Explorer Update ... 
 
 @REM Begin
 IF "%DISABLEIEUPDATE%"=="N" (

@@ -6,15 +6,15 @@
 @REM "LOGFILE"
 
 @REM make sure the file exists
-IF NOT EXIST "%2" (
+IF NOT EXIST "%~2" (
 	@REM make sure the file exists
-	ECHO ERROR: File "%2" could not be found. >> "%LOGFILE%" 2>&1
+	ECHO ERROR: File "%~2" could not be found. >> "%LOGFILE%" 2>&1
 	SET /A ANCERRLVL=ANCERRLVL+1
 ) ELSE (
 	@REM Disable Service
 	IF "%1"=="DISABLE" (
 		ECHO Disabling Tasks
-		FOR /F "eol=# tokens=*" %%i IN ('TYPE "%2" 2^>^>1') DO (
+		FOR /F "eol=# tokens=*" %%i IN ('TYPE "%~2" 2^>^>1') DO (
 			IF "%DEBUG%"=="Y" (
 				ECHO Disabling: "%%i" >> "%LOGFILE%" 2>&1
 				@REM Stop Service
@@ -33,7 +33,7 @@ IF NOT EXIST "%2" (
 	@REM Enable service to autostart
 	IF "%1"=="ENABLE" (
 		ECHO Enabling Tasks
-		FOR /F "eol=# tokens=*" %%i IN ('TYPE "%2" 2^>^>1') DO (
+		FOR /F "eol=# tokens=*" %%i IN ('TYPE "%~2" 2^>^>1') DO (
 			IF "%DEBUG%"=="Y" (
 				ECHO Enabling: "%%i" >> "%LOGFILE%" 2>&1
 				@REM Stop Service
@@ -56,7 +56,7 @@ IF NOT EXIST "%2" (
 	@REM Enable service to delayed autostart
 	IF "%1"=="DELAYED" (
 		ECHO Enabling Tasks
-		FOR /F "eol=# tokens=*" %%i IN ('TYPE "%2" 2^>^>1') DO (
+		FOR /F "eol=# tokens=*" %%i IN ('TYPE "%~2" 2^>^>1') DO (
 			IF "%DEBUG%"=="Y" (
 				ECHO Enabling (Delayed): "%%i" >> "%LOGFILE%" 2>&1
 				@REM Stop Service
@@ -78,7 +78,7 @@ IF NOT EXIST "%2" (
 
 	@REM Delete service
 	IF "%1"=="DELETE" (
-		FOR /F "eol=# tokens=*" %%i IN ('TYPE "%2" 2^>^>1') DO (
+		FOR /F "eol=# tokens=*" %%i IN ('TYPE "%~2" 2^>^>1') DO (
 			IF "%DEBUG%"=="Y" (
 				ECHO Deleting: "%%i" >> "%LOGFILE%" 2>&1
 				@REM Stop Service

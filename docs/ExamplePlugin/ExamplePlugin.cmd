@@ -26,6 +26,12 @@ IF NOT "%APPNAME%"=="Ancile" (
 ECHO [%DATE% %TIME%] BEGIN EXAMPLE PLUGIN >> "%LOGFILE%"
 ECHO * Launching example plugin ...
 
+@REM Enable Delayed Expansion
+@REM If you're going to be changing variables inside the main body of your script, you'll need to Enable Delayed Expansion.
+@REM Delayed Expansion will cause variables to be expanded at execution time rather than at parse time.
+@REM An example of when you will need this is below in the "Script Main" section.
+Setlocal EnableDelayedExpansion
+
 @REM Begin
 @REM Add a unique variable to determine if the script will be run.
 @REM This will allow the user to enable and disable this script through the config.ini file.
@@ -67,6 +73,14 @@ IF "%ANCILEEXAMPLE%"=="N" (
 	@REM When storing data for your script, you should place that data in "%DATADIR%\%PLUGINNAME%"
 	TYPE "%DATADIR%\%PLUGINNAME%\datafile.txt" >> "%LOGFILE%" 2>&1
 	
+	@REM Here's an example of when we need "EnableDelayedExpansion"
+	@REM We've set a variable inside the IF statement. If we don't use this special access method, the variable
+	@REM won't be set at runtime (When we run the script).
+	@REM Note that delayed variables use "!" insted of "%" when we access their contents.
+	SET temporaryvariable=echo this
+	ECHO !temporaryvariable! to the log file >> "%LOGFILE%"
+	
+	
 	@REM The Library directory is used for including binaries that may be used by multiple scripts.
 	@REM You can access these binaries using the "LIBDIR" shell variable set up by Ancile.
 	@REM The following command will log an error as "testing.exe" doesn't exist.
@@ -96,6 +110,10 @@ IF "%ANCILEEXAMPLE%"=="N" (
 	@REM Don't forget to clean up after yourself.
 	DEL /F /Q "%TEMPDIR%\%PLUGINNAME%" >> "%LOGFILE%" 2>&1
 )
+
+@REM Disable Delayed Expansion
+@REM If you Enabled Delayed Expansion above, don't forget to Disable Delayed Expansion.
+Setlocal DisableDelayedExpansion
 
 @REM Footer
 @REM confirm that script has completed in log and console.

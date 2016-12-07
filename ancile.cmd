@@ -24,6 +24,7 @@ SET LOGFILE=%CURRDIR%%APPNAME%-%VERSION%_%UNIDATE%.log
 
 @REM Load user environment configuration
 SET USERCONFIG=%CURRDIR%config.ini
+
 IF EXIST "%USERCONFIG%" (
 	FOR /F "eol=# delims=" %%i in ('TYPE "%USERCONFIG%"') DO (
 		CALL SET %%i
@@ -41,7 +42,7 @@ IF NOT "%SYSARCH%"=="32" (
 	)
 )
 
-@REM Add the LIB directory to the user's path so we can call Ancile commands without listing the path
+@REM Add the LIB directory to the user's path
 SET PATH=%PATH%;%LIBDIR%
 
 IF NOT EXIST "%TEMPDIR%" MKDIR "%TEMPDIR%" >nul 2>&1
@@ -89,7 +90,7 @@ ECHO [%DATE% %TIME%] ########################################################## 
 IF NOT ".%IDSTRING%"=="." ECHO %IDSTRING%>> "%LOGFILE%"
 
 @REM Log System information when Debugging
-IF "%DEBUG%"=="Y" (
+IF "%DEBUG%"=="SKIPFORNOWDEBUGGING" (
 	ECHO Collecting System Information
 	systeminfo >> "%LOGFILE%"
 	SET >> "%LOGFILE%"
@@ -98,12 +99,15 @@ IF "%DEBUG%"=="Y" (
 
 :SYSPREP
 @REM Sync Windows time
+ECHO. >> "%LOGFILE%"
 CALL "%LIBDIR%\syncwindowstime.cmd"
 
 @REM Create restore point
+ECHO. >> "%LOGFILE%"
 CALL "%LIBDIR%\mkrestorepoint.cmd"
 
 @REM Take ownership of registry keys
+ECHO. >> "%LOGFILE%"
 CALL "%LIBDIR%\registrykeyownership.cmd"
 
 :SCRIPTS
@@ -112,6 +116,7 @@ ECHO Loading Plugins:
 ECHO.
 FOR /D %%i IN ("%SCRIPTDIR%\*.*") DO (
 	IF EXIST "%SCRIPTDIR%\%%~nxi\%%~nxi.cmd" (
+		ECHO. >> "%LOGFILE%"
 		IF "%DEBUG%"=="Y" ECHO "%SCRIPTDIR%\%%~nxi\%%~nxi.cmd" >> "%LOGFILE%"
 		CALL "%SCRIPTDIR%\%%~nxi\%%~nxi.cmd"
 		ECHO.
