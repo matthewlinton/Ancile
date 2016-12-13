@@ -1,4 +1,13 @@
 v1.8
+	Updated "README.md" file
+	Created update file for uninstall_Updates plugin (uninstall_Updates data files are now maintained in the Ancile_Updates project)
+	Added config.ini option for Automatic Updates
+	Added Automatic updating functinality to Ancile
+	Added Daniel Schroeder's "Synchronous-ZipAndUnzip.psm1" to "lib" (http://blog.danskingdom.com/module-to-synchronously-zip-and-unzip-using-powershell-2-0/)
+	Added:	KB3197869		November 2016 Preview of Monthly Quality Rollup for Windows 7 SP1 and Windows Server 2008 R2 SP1
+	Added:	KB3197875		November 2016 Preview of Monthly Quality Rollup for Windows 8.1 and Windows Server 2012 R2
+	Added:	KB3197878		November 2016 Preview of Monthly Quality Rollup for Windows Server 2012
+	Moved OS version check to individual plugins from Ancile main
 	Added disable_MSWMC configuration options to "config.ini"
 	Created disable_MSWMC plugin to disable MSWMC tasks
 	Moved "disable_tasks\disable_MSWMC.lst" to "disable_MSAEP\disable_MSWMC.tasks.lst"
@@ -15,7 +24,6 @@ v1.8
 	Created "docs" folder to store "changes.txt", "ExamplePlugin", and any other documents related to Ancile
 	Created "modifyservices.cmd" script to allow plugins to modify services
 	Created "modifytasks.cmd" script to allow plugins to modify tasks
-	Split uninstall_Updates data into seperate files
 	Renamed mkrestore.cmd to mkrestorepoint.cmd
 	Renamed synctime.cmd to syncwindowstime.cmd
 	Renamed data folder regkeyown to registrykeyownership

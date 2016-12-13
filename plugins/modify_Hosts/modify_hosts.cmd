@@ -80,7 +80,7 @@ IF "%MODIFYHOSTS%"=="N" (
 	ECHO Copying to system hosts file >> "%LOGFILE%"
 	ECHO   Updating System hosts File
 	attrib -R "%HOSTSFILE%"
-	COPY /B "%TMPHOSTS%" + "%TMPMODHOSTS%" "%HOSTSFILE%" >> "%LOGFILE%" 2>&1
+	COPY /B /Y "%TMPHOSTS%" + "%TMPMODHOSTS%" "%HOSTSFILE%" >> "%LOGFILE%" 2>&1
 	IF %ERRORLEVEL% NEQ 0 (
 		ECHO ERROR: Unable to copy "%TMPHOSTS%" + "%TMPMODHOSTS%" to "%HOSTSFILE%" >> "%LOGFILE%"
 		SET /A ANCERRLVL=ANCERRLVL+1
