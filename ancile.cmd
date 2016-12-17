@@ -22,6 +22,9 @@ SET SCRIPTDIR=%CURRDIR%plugins
 SET TEMPDIR=%TEMP%\%APPNAME%
 SET LOGFILE=%CURRDIR%%APPNAME%-%VERSION%_%UNIDATE%.log
 
+SET SYSARCH=32
+wmic os get osarchitecture 2>&1|findstr /I 64-bit >nul 2>&1 && SET SYSARCH=64
+
 @REM Load user environment configuration
 SET USERCONFIG=%CURRDIR%config.ini
 
@@ -30,16 +33,7 @@ IF EXIST "%USERCONFIG%" (
 		CALL SET %%i
 	)
 ) ELSE (
-	ECHO User config "%USERCONFIG%" does not exist.
-	ECHO Using default configuration.
-)
-
-@REM Get system architecture
-IF NOT "%SYSARCH%"=="32" (
-	IF NOT "%SYSARCH%"=="64" (
-		SET SYSARCH=32
-		wmic os get osarchitecture 2>&1|findstr /I 64-bit >nul 2>&1 && SET SYSARCH=64
-	)
+	ECHO User config "%USERCONFIG%" does not exist. Using default configuration.
 )
 
 @REM Set the OS version

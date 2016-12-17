@@ -1,4 +1,7 @@
 v1.8
+	Added Update file for modify_Hosts (Data now maintained in the Ancile_Updates project)
+	Added Update File for modify_Routing (Data now maintained in the Ancile_Updates project)
+	Added Update File for modify_WINFirewall (Data now maintained in the Ancile_Updates project)
 	Updated "README.md" file
 	Created update file for uninstall_Updates plugin (uninstall_Updates data files are now maintained in the Ancile_Updates project)
 	Added config.ini option for Automatic Updates
