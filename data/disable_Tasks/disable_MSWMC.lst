@@ -1,0 +1,23 @@
+# The following are a list of tasks related to Microsoft's Media Center software
+#
+# Lines starting with a "#" are comments and will be ignored.
+
+\microsoft\windows\media center\activatewindowssearch
+\microsoft\windows\media center\configureinternettimeservice
+\microsoft\windows\media center\dispatchrecoverytasks
+\microsoft\windows\media center\ehdrminit
+\microsoft\windows\media center\installplayready
+\microsoft\windows\media center\mcupdate
+\microsoft\windows\media center\mediacenterrecoverytask
+\microsoft\windows\media center\objectstorerecoverytask
+\microsoft\windows\media center\ocuractivate
+\microsoft\windows\media center\ocurdiscovery
+\microsoft\windows\media center\pbdadiscovery
+\microsoft\windows\media center\pbdadiscoveryw1
+\microsoft\windows\media center\pbdadiscoveryw2
+\microsoft\windows\media center\pvrrecoverytask
+\microsoft\windows\media center\pvrscheduletask
+\microsoft\windows\media center\registersearch
+\microsoft\windows\media center\reindexsearchroot
+\microsoft\windows\media center\sqlliterecoverytask
+\microsoft\windows\media center\updaterecordpath

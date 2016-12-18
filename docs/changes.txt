@@ -1,3 +1,47 @@
+v1.8
+	Added DELETE option to "disable_Services"
+	Added Update file for modify_Hosts (Data now maintained in the Ancile_Updates project)
+	Added Update File for modify_Routing (Data now maintained in the Ancile_Updates project)
+	Added Update File for modify_WINFirewall (Data now maintained in the Ancile_Updates project)
+	Updated "README.md" file
+	Created update file for uninstall_Updates plugin (uninstall_Updates data files are now maintained in the Ancile_Updates project)
+	Added config.ini option for Automatic Updates
+	Added Automatic updating functinality to Ancile
+	Added Daniel Schroeder's "Synchronous-ZipAndUnzip.psm1" to "lib" (http://blog.danskingdom.com/module-to-synchronously-zip-and-unzip-using-powershell-2-0/)
+	Added:	KB3197869		November 2016 Preview of Monthly Quality Rollup for Windows 7 SP1 and Windows Server 2008 R2 SP1
+	Added:	KB3197875		November 2016 Preview of Monthly Quality Rollup for Windows 8.1 and Windows Server 2012 R2
+	Added:	KB3197878		November 2016 Preview of Monthly Quality Rollup for Windows Server 2012
+	Moved OS version check to individual plugins from Ancile main
+	Added disable_MSWMC configuration options to "config.ini"
+	Created disable_MSWMC plugin to disable MSWMC tasks
+	Moved "disable_tasks\disable_MSWMC.lst" to "disable_MSAEP\disable_MSWMC.tasks.lst"
+	Added disable_MSAEP configuration options to "config.ini"
+	Created disable_MSAEP plugin to disable MSAEP tasks
+	Moved "disable_tasks\disable_MSAEP.lst" to "disable_MSAEP\disable_MSAEP.tasks.lst"
+	Modified "disable_MSWER" plugin to disable its related tasks in "disable_MSCEIP.tasks.lst"
+	Moved "disable_tasks\disable_MSWER.lst" to "disable_WINXUpdate\disable_MSWER.tasks.lst"
+	Modified "disable_MSCEIP" plugin to disable its related tasks in "disable_MSCEIP.tasks.lst"
+	Moved "disable_tasks\disable_MSCEIP.lst" to "disable_WINXUpdate\disable_MSCEIP.tasks.lst"
+	Modified "disable_WINXUpdate" plugin to disable its related tasks in "disable_WINXUpdate.tasks.lst"
+	Moved "disable_tasks\disable_MSGWX.lst" to "disable_WINXUpdate\disable_WINXUpdate.tasks.lst"
+	Renamed "disable_Tasks.lst" to "disable_OtherTasks.lst"
+	Created "docs" folder to store "changes.txt", "ExamplePlugin", and any other documents related to Ancile
+	Created "modifyservices.cmd" script to allow plugins to modify services
+	Created "modifytasks.cmd" script to allow plugins to modify tasks
+	Renamed mkrestore.cmd to mkrestorepoint.cmd
+	Renamed synctime.cmd to syncwindowstime.cmd
+	Renamed data folder regkeyown to registrykeyownership
+	Renamed regkeyown.cmd to registrykeyownership.cmd
+	Renamed remaining updates file to Other (uninstall updates)
+	Moved Windows 10 updates to their own data file (uninstall updates)
+	Moved Windows Update Client updates to their own data file (uninstall updates)
+	Moved Telemetry updates to their own data file (uninstall updates)
+	Moved Monthly preview updates to their own data file (uninstall updates)
+	Moved Windows update client updates to their own file (uninstall updates)
+	Updated ExamplePlugin
+	Made multiple small/misc. changes to various plugins to match standard practice
+	Modified all plugins to verify that they were launched by Ancile
+	
 v1.7
 	Renamed scripts directory to plugins
 	Moved synctime.cmd to lib directory

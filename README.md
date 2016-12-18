@@ -73,6 +73,9 @@ Some host names and IP addresses were provided by crazy-max's WindowsSpyBlockerS
 ### UninstallAndHideUpdates.ps1
 UninstallAndHideUpdates.ps1 is a powershell script written by Mark Berry (MCB Systems) to uninstall and hide updates removed by Ancile. Minor modifications have been made to meet Ancile's needs.
 
+### Synchronous-ZipAndUnzip.psm1
+Synchronous-ZipAndUnzip.psm1 is a powershell module created by Daniel Schroeder to add Zip and un-Zip functionality to powershell 2.0 environments.
+
 ### Other
 * setacl-**.exe (https://helgeklein.com/setacl/) : Modify ACL permissions on files.
 

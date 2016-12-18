@@ -1,4 +1,7 @@
 *.bat
 *.log
 *.tmp
+*.zip
 TODO.txt
+config.disable_all.ini
+config.enable_all.ini

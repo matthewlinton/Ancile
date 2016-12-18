@@ -1,14 +1,25 @@
 @REM disable_Tasks - Disable unwanted Windows tasks
 
+@REM COnfiguration
 SET PLUGINNAME=disable_Tasks
-SET PLUGINVERSION=1.0
+SET PLUGINVERSION=1.1
 SET PLUGINDIR=%SCRIPTDIR%\%PLUGINNAME%
 
 SET TASKLISTS=%DATADIR%\%PLUGINNAME%\*.lst
 
+@REM Dependencies
+IF NOT "%APPNAME%"=="Ancile" (
+	ECHO ERROR: %PLUGINNAME% is meant to be launched by Ancile, and will not run as a stand alone script.
+	ECHO Press any key to exit ...
+	PAUSE >nul 2>&1
+	EXIT
+)
+
+@REM Header
 ECHO [%DATE% %TIME%] BEGIN DISABLE TASKS >> "%LOGFILE%"
 ECHO * Disabling Tasks ... 
 
+@REM Main
 IF "%DISABLETASKS%"=="N" (
 	ECHO User skipping disabletasks >> "%LOGFILE%"
 	ECHO   Skipping Disable Tasks
@@ -20,5 +31,6 @@ IF "%DISABLETASKS%"=="N" (
 	)
 )
 
+@REM Footer
 ECHO [%DATE% %TIME%] END DISABLE TASKS >> "%LOGFILE%"
 ECHO   DONE

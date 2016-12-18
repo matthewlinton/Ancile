@@ -2,8 +2,9 @@
 
 Setlocal EnableDelayedExpansion
 
+@REM Configuration
 SET PLUGINNAME=modify_Hosts
-SET PLUGINVERSION=1.0
+SET PLUGINVERSION=1.1
 SET PLUGINDIR=%SCRIPTDIR%\%PLUGINNAME%
 
 SET HOSTSFILE=%SYSTEMDRIVE%\windows\system32\drivers\etc\hosts
@@ -18,10 +19,20 @@ SET LISTEND=# End of entries inserted by %APPNAME%
 
 IF "%HOSTSREDIRECT%"=="" SET HOSTSREDIRECT=0.0.0.0
 
+@REM Dependencies
+IF NOT "%APPNAME%"=="Ancile" (
+	ECHO ERROR: %PLUGINNAME% is meant to be launched by Ancile, and will not run as a stand alone script.
+	ECHO Press any key to exit ...
+	PAUSE >nul 2>&1
+	EXIT
+)
+
+@REM Header
 ECHO [%DATE% %TIME%] BEGIN HOST FILE MODIFICATION >> "%LOGFILE%"
 ECHO * Modifying hosts File ...
 ECHO   This may take a long time. Please be patient.
 
+@REM Main
 IF "%MODIFYHOSTS%"=="N" (
 	ECHO Skipping modification of the hosts file >> "%LOGFILE%"
 	ECHO   Skipping hosts file
@@ -69,7 +80,7 @@ IF "%MODIFYHOSTS%"=="N" (
 	ECHO Copying to system hosts file >> "%LOGFILE%"
 	ECHO   Updating System hosts File
 	attrib -R "%HOSTSFILE%"
-	COPY /B "%TMPHOSTS%" + "%TMPMODHOSTS%" "%HOSTSFILE%" >> "%LOGFILE%" 2>&1
+	COPY /B /Y "%TMPHOSTS%" + "%TMPMODHOSTS%" "%HOSTSFILE%" >> "%LOGFILE%" 2>&1
 	IF %ERRORLEVEL% NEQ 0 (
 		ECHO ERROR: Unable to copy "%TMPHOSTS%" + "%TMPMODHOSTS%" to "%HOSTSFILE%" >> "%LOGFILE%"
 		SET /A ANCERRLVL=ANCERRLVL+1
@@ -77,6 +88,7 @@ IF "%MODIFYHOSTS%"=="N" (
 	attrib +R "%HOSTSFILE%"
 )
 
+@REM Footer
 ECHO [%DATE% %TIME%] END HOST FILE MODIFICATION >> "%LOGFILE%"
 ECHO   DONE
 

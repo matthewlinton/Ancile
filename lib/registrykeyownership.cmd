@@ -1,6 +1,6 @@
-@REM regown - Set the owner for registry keys to the administrator.
+@REM registry_KeyOwnership - Set the owner for registry keys to the administrator.
 
-SET KEYFILES=%DATADIR%\regkeyown\*.lst
+SET KEYFILES=%DATADIR%\registrykeyownership\*.lst
 SET BINSETACL=%LIBDIR%\setacl-%SYSARCH%.exe
 
 ECHO [%DATE% %TIME%] BEGIN REGISTRY KEY OWNERSHIP >> "%LOGFILE%"

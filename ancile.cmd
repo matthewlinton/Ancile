@@ -5,8 +5,9 @@
 :INIT
 @REM Configure the default environment
 SET APPNAME=Ancile
-SET VERSION=1.7
+SET VERSION=1.8
 
+@REM Make sure the path variable contians everything we need
 SET PATH=%PATH%;%SYSTEMROOT%;%SYSTEMROOT%\system32;%SYSTEMROOT%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\
 
 FOR /F "usebackq tokens=1,2 delims==" %%i IN (`wmic os get LocalDateTime /VALUE 2^>NUL`) DO (
@@ -21,26 +22,30 @@ SET SCRIPTDIR=%CURRDIR%plugins
 SET TEMPDIR=%TEMP%\%APPNAME%
 SET LOGFILE=%CURRDIR%%APPNAME%-%VERSION%_%UNIDATE%.log
 
+SET SYSARCH=32
+wmic os get osarchitecture 2>&1|findstr /I 64-bit >nul 2>&1 && SET SYSARCH=64
+
 @REM Load user environment configuration
 SET USERCONFIG=%CURRDIR%config.ini
+
 IF EXIST "%USERCONFIG%" (
 	FOR /F "eol=# delims=" %%i in ('TYPE "%USERCONFIG%"') DO (
 		CALL SET %%i
 	)
 ) ELSE (
-	ECHO User config "%USERCONFIG%" does not exist.
-	ECHO Using default configuration.
+	ECHO User config "%USERCONFIG%" does not exist. Using default configuration.
 )
 
-@REM Configure internal environment variables
-IF NOT "%SYSARCH%"=="32" (
-	IF NOT "%SYSARCH%"=="64" (
-		SET SYSARCH=32
-		wmic os get osarchitecture 2>&1|findstr /I 64-bit >nul 2>&1 && SET SYSARCH=64
-	)
-)
+@REM Set the OS version
+FOR /F "tokens=4-5 delims=. " %%i IN ('ver') DO SET OSVERSION=%%i.%%j
 
+@REM Add the LIB directory to the user's path
+SET PATH=%PATH%;%LIBDIR%
+
+@REM create the temp directory
 IF NOT EXIST "%TEMPDIR%" MKDIR "%TEMPDIR%" >nul 2>&1
+
+@REM Set Ancile error level
 SET ANCERRLVL=0
 
 :BEGIN
@@ -51,19 +56,6 @@ ECHO.
 @REM Make sure we're running as an administrator
 net session >nul 2>&1
 IF %ERRORLEVEL% NEQ 0 ECHO This script requires Administrative privileges. Exiting. & PAUSE & EXIT 1
-
-@REM Make sure we're running on the correct OS
-@REM Windows 10 (10.0)
-@REM Windows 8.1 (6.3)
-@REM Windows 8 (6.2)
-@REM Windows 7 (6.1)
-@REM Windows Vista (6.0)
-SET OSCHECK=0
-FOR /F "tokens=4-5 delims=. " %%i IN ('ver') DO SET OSVERSION=%%i.%%j
-IF "%OSVERSION%" == "6.3" SET OSCHECK=1
-IF "%OSVERSION%" == "6.2" SET OSCHECK=1
-IF "%OSVERSION%" == "6.1" SET OSCHECK=1
-IF %OSCHECK% EQU 0 ECHO This script should only be run under Windows 7 or 8. Exiting. & PAUSE & EXIT 1
 
 @REM Make sure that the directory we're logging to exists
 FOR %%i IN ("%LOGFILE%") DO (
@@ -94,20 +86,30 @@ IF "%DEBUG%"=="Y" (
 
 :SYSPREP
 @REM Sync Windows time
-CALL "%LIBDIR%\synctime.cmd"
+ECHO. >> "%LOGFILE%"
+CALL "%LIBDIR%\syncwindowstime.cmd"
 
 @REM Create restore point
-CALL "%LIBDIR%\mkrestore.cmd"
+ECHO. >> "%LOGFILE%"
+CALL "%LIBDIR%\mkrestorepoint.cmd"
+
+@REM Update Data Files
+ECHO. >> "%LOGFILE%"
+CALL "%LIBDIR%\automaticupdates.cmd"
+ECHO.
 
 @REM Take ownership of registry keys
-CALL "%LIBDIR%\regkeyown.cmd"
+ECHO. >> "%LOGFILE%"
+CALL "%LIBDIR%\registrykeyownership.cmd"
 
-:SCRIPTS
+:PLUGINS
 @REM Look for plugins in the script directory
+ECHO.
 ECHO Loading Plugins:
 ECHO.
 FOR /D %%i IN ("%SCRIPTDIR%\*.*") DO (
 	IF EXIST "%SCRIPTDIR%\%%~nxi\%%~nxi.cmd" (
+		ECHO. >> "%LOGFILE%"
 		IF "%DEBUG%"=="Y" ECHO "%SCRIPTDIR%\%%~nxi\%%~nxi.cmd" >> "%LOGFILE%"
 		CALL "%SCRIPTDIR%\%%~nxi\%%~nxi.cmd"
 		ECHO.
