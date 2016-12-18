@@ -1,4 +1,5 @@
 v1.8
+	Added DELETE option to "disable_Services"
 	Added Update file for modify_Hosts (Data now maintained in the Ancile_Updates project)
 	Added Update File for modify_Routing (Data now maintained in the Ancile_Updates project)
 	Added Update File for modify_WINFirewall (Data now maintained in the Ancile_Updates project)

@@ -33,6 +33,7 @@ IF "%DISABLESERVICES%"=="N" (
 		IF "%%j"=="DELETE" (
 			@REM Delete Service
 			IF "%DEBUG%"=="Y" ECHO Deleting "%%i" Service >> "%LOGFILE%"
+			sc query %%i >nul 2>&1 && sc delete %%i >> "%LOGFILE%" 2>&1
 		) ELSE (
 			@REM Disable Service
 			IF "%DEBUG%"=="Y" ECHO Disabling "%%i" Service >> "%LOGFILE%"
