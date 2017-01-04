@@ -1,3 +1,8 @@
+v1.9
+	syncwindowstime now unregisters and re-registers Windows Time service. fixes time bug on some systems.
+	Removed unnecessary code in syncwindowstime.
+	Added User configuration "NTPSERVERS" for Windows NTP sync
+	
 v1.8
 	Added DELETE option to "disable_Services"
 	Added Update file for modify_Hosts (Data now maintained in the Ancile_Updates project)

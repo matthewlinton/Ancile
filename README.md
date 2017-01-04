@@ -90,7 +90,7 @@ If you find a bug, please take the time to report it (https://bitbucket.org/matt
 Mixplate, Scalar
 
 #### Contributors
-aekotra, HeavyBeefCurtain, Jean Belga, marineIguana, noxxius88, TiagoTiago, ucantdothatontvew
+aekotra, HeavyBeefCurtain, Ilja, Jean Belga, marineIguana, noxxius88, TiagoTiago, ucantdothatontvew
 
 ### Thank you to everyone that helped create Aegis-voat
 #### Creators
