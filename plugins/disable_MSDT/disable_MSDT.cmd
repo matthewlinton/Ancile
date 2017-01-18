@@ -55,7 +55,7 @@ IF "%DISABLEMSDT%"=="N" (
 	@REM Deleting Log Files
 	ECHO Deleting Diagnostic Log files >> "%LOGFILE%"
 	ECHO   Cleaning log files
-	takeown /F %PROGRAMDATA%\Microsoft\Diagnosis /A /R /D y >> "%LOGFILE%" 2>&1
+	takeown /F %PROGRAMDATA%\Microsoft\Diagnosis /A /R >> "%LOGFILE%" 2>&1
 	icacls %PROGRAMDATA%\Microsoft\Diagnosis /grant:r *S-1-5-32-544:F /T /C >> "%LOGFILE%" 2>&1
 	
 	DEL /F /Q %PROGRAMDATA%\Microsoft\Diagnosis\*.rbs >> "%LOGFILE%" 2>&1

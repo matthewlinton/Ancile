@@ -12,6 +12,10 @@ IF NOT "%APPNAME%"=="Ancile" (
 	EXIT
 )
 
+IF %NETCONNECTED% EQU 0 (
+	SET AUTOMATICUPDATES=N
+)
+
 @REM create the temp directory
 IF NOT EXIST "%UPDATETEMP%" MKDIR "%UPDATETEMP%" >nul 2>&1
 
@@ -19,7 +23,7 @@ ECHO [%DATE% %TIME%] BEGIN AUTOMATIC UPDATES >> "%LOGFILE%"
 ECHO Updating ... 
 
 IF "%AUTOMATICUPDATES%"=="N" (
-	ECHO Skipping Automatic Updates per user configuration >> "%LOGFILE%"
+	ECHO Skipping Automatic Updates >> "%LOGFILE%"
 	ECHO   Skipping Automatic Updates
 ) ELSE (
 

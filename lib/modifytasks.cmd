@@ -5,6 +5,14 @@
 @REM "ANCERRLVL"
 @REM "LOGFILE"
 
+@REM Dependencies
+IF NOT "%APPNAME%"=="Ancile" (
+	ECHO ERROR: Modify Tasks is meant to be launched by Ancile, and will not run as a stand alone script.
+	ECHO Press any key to exit ...
+	PAUSE >nul 2>&1
+	EXIT
+)
+
 IF NOT EXIST "%~2" (
 	@REM make sure the file exists
 	ECHO ERROR: File "%~2" could not be found. >> "%LOGFILE%" 2>&1

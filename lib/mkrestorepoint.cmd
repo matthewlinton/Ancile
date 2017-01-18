@@ -1,4 +1,13 @@
 @REM mkrestore - Create a system restore point
+
+@REM Dependencies
+IF NOT "%APPNAME%"=="Ancile" (
+	ECHO ERROR: Make Restore Point is meant to be launched by Ancile, and will not run as a stand alone script.
+	ECHO Press any key to exit ...
+	PAUSE >nul 2>&1
+	EXIT
+)
+
 ECHO [%DATE% %TIME%] BEGIN CREATE RESTORE POINT >> "%LOGFILE%"
 
 IF "%SYSTEMRESTORE%"=="Y" (

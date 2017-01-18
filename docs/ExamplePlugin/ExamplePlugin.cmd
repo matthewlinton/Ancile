@@ -10,7 +10,7 @@ SET PLUGINVERSION=1.1
 @REM Ancile provides the shell variable "SCRIPTDIR" which is the path to the scripts directory.
 SET PLUGINDIR=%SCRIPTDIR%\%PLUGINNAME%
 
-@REM Dependencies
+@REM Dependencies:Ancile
 @REM This script relies on Ancile to launch it so we need to check for that.
 @REM You should also check for any other dependencies here as well.
 IF NOT "%APPNAME%"=="Ancile" (
@@ -19,6 +19,15 @@ IF NOT "%APPNAME%"=="Ancile" (
 	PAUSE >nul 2>&1
 	EXIT
 )
+
+@REM Dependencies:Services
+@REM Do you need to check if other services are running, or if a program exists?
+@REM If something is missing or disabled you should gracefully cancel the script,
+@REM and provide extra user and logging information.
+@REM This will set variables to cause the script to exit because a service is missing.
+SET servicerunning=1
+sc query service 2>&1 | findstr /I RUNNING >nul 2>&1 && SET ANCILEEXAMPLE=N
+sc query service 2>&1 | findstr /I RUNNING >nul 2>&1 && SET servicerunning=0
 
 @REM Header
 @REM The Header Briefly describe what we're running in the log and console to announce that the script has started.
@@ -39,6 +48,13 @@ Setlocal EnableDelayedExpansion
 @REM In this example the script will be run unless the user explicitly sets "ANCILEEXAMPLE" to "N" in "config.ini"
 IF "%ANCILEEXAMPLE%"=="N" (
 	@REM Script Disabled.
+	
+	@REM If we've caught something like a disabled service (above). We'll want to log that extra information.
+	IF %servicerunning% EQU 0 (
+		ECHO A necessary service has been disabled >> "%LOGFILE%"
+		ECHO   A necessary service has been disabled
+	)
+	
 	@REM If the user has disabled this plugin, log that and move on
 	ECHO Skipping %PLUGINNAME% (%PLUGINVERSION%) using variable configured in config.ini >> "%LOGFILE%"
 	ECHO   Skipping %PLUGINNAME% (%PLUGINVERSION%)
