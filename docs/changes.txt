@@ -1,5 +1,6 @@
 v1.9
 	Misc changes to various scripts
+	Created stand alone "debuginfo.cmd" in "lib" to help debug issues.
 	Added SETLOCAL restrictions to all default plugins
 	Added SETLOCAL and ENDLOCAL to Example script
 	syncwindowstime now starts Windows Time service delayed
