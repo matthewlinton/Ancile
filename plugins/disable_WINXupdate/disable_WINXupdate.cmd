@@ -1,5 +1,7 @@
 @REM Disable Windows 10 Forced Upgrade
 
+SETLOCAL
+
 @REM Configuration. 
 SET PLUGINNAME=disable_WINXUpdate
 SET PLUGINVERSION=1.2
@@ -19,7 +21,7 @@ IF NOT "%APPNAME%"=="Ancile" (
 ECHO [%DATE% %TIME%] BEGIN DISABLE WINDOWS 10 FORCED UPGRADE >> "%LOGFILE%"
 ECHO * Disabling Windows 10 Upgrade ... 
 
-Setlocal EnableDelayedExpansion
+SETLOCAL EnableDelayedExpansion
 
 @REM Main
 IF "%DISABLEWINXUPDATE%"=="N" (
@@ -77,8 +79,10 @@ IF "%DISABLEWINXUPDATE%"=="N" (
 	)
 )
 
-Setlocal DisableDelayedExpansion
+SETLOCAL DisableDelayedExpansion
 
 @REM Footer
 ECHO [%DATE% %TIME%] END DISABLE WIN 10 FORCED UPGRADE >> "%LOGFILE%"
 ECHO   DONE
+
+ENDLOCAL

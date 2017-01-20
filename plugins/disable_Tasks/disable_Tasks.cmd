@@ -1,5 +1,7 @@
 @REM disable_Tasks - Disable unwanted Windows tasks
 
+SETLOCAL
+
 @REM COnfiguration
 SET PLUGINNAME=disable_Tasks
 SET PLUGINVERSION=1.1
@@ -34,3 +36,5 @@ IF "%DISABLETASKS%"=="N" (
 @REM Footer
 ECHO [%DATE% %TIME%] END DISABLE TASKS >> "%LOGFILE%"
 ECHO   DONE
+
+ENDLOCAL

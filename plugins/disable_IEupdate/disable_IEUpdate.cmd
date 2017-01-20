@@ -1,9 +1,11 @@
 @REM disable_IEUpdate - Disable automated delivery of internet explorer
 @REM			 This script relies on third party code from Microsoft
 
+SETLOCAL
+
 @REM Configuration. 
 SET PLUGINNAME=disable_IEUpdate
-SET PLUGINVERSION=1.1
+SET PLUGINVERSION=1.2
 SET PLUGINDIR=%SCRIPTDIR%\%PLUGINNAME%
 
 @REM Dependencies
@@ -38,3 +40,5 @@ IF "%DISABLEIEUPDATE%"=="N" (
 @REM Footer
 ECHO [%DATE% %TIME%] END DISABLE INTERNET EXPLORER UPDATE PLUGIN >> "%LOGFILE%"
 ECHO   DONE
+
+ENDLOCAL

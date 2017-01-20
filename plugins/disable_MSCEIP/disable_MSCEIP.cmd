@@ -1,5 +1,7 @@
 @REM disable_MSCEIP - Disable Microsoft Customer Experience Improvement Program
 
+SETLOCAL
+
 @REM Configuration
 SET PLUGINNAME=disable_MSCEIP
 SET PLUGINVERSION=1.1
@@ -52,3 +54,5 @@ Setlocal DisableDelayedExpansion
 @REM Footer
 ECHO [%DATE% %TIME%] END DISABLE MICROSOFT CUSTOMER EXPERIENCE IMPROVEMENT PROGRAM PLUGIN >> "%LOGFILE%"
 ECHO   DONE
+
+ENDLOCAL

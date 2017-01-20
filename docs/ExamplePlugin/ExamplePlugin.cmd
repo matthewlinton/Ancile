@@ -1,6 +1,9 @@
 @REM ExamplePlugin - This is a example plugin for Ancile.
 @REM Below is an example skeleton for writing an Ancile plugin.
 
+@REM Set local - This will make sure that any changes and variables we create will only be local to this script.
+SETLOCAL
+
 @REM Configuration.
 @REM Every script should have a script configuration with PLUGINNAME, PLUGINVERSION, PLUGINDIR.
 @REM You might also want to add any other global configuration variables here.
@@ -39,7 +42,7 @@ ECHO * Launching example plugin ...
 @REM If you're going to be changing variables inside the main body of your script, you'll need to Enable Delayed Expansion.
 @REM Delayed Expansion will cause variables to be expanded at execution time rather than at parse time.
 @REM An example of when you will need this is below in the "Script Main" section.
-Setlocal EnableDelayedExpansion
+SETLOCAL EnableDelayedExpansion
 
 @REM Begin
 @REM Add a unique variable to determine if the script will be run.
@@ -137,10 +140,13 @@ IF "%ANCILEEXAMPLE%"=="N" (
 
 @REM Disable Delayed Expansion
 @REM If you Enabled Delayed Expansion above, don't forget to Disable Delayed Expansion.
-Setlocal DisableDelayedExpansion
+SETLOCAL DisableDelayedExpansion
 
 @REM Footer
 @REM confirm that script has completed in log and console.
 @REM Plugins for ancile should always announce that they have completed even when they are disabled.
 ECHO [%DATE% %TIME%] END EXAMPLE PLUGIN >> "%LOGFILE%"
 ECHO   DONE
+
+@REM End local - End localization of environmet. This resets any environment changes for the next script.
+ENDLOCAL

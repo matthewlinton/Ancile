@@ -1,5 +1,7 @@
 @REM uninstall_Updates - uninstall and hide unwanted Windows updates.
 
+SETLOCAL
+
 @REM Configuration
 SET PLUGINNAME=uninstall_Updates
 SET PLUGINVERSION=1.1
@@ -71,3 +73,5 @@ IF "%UNINSTALLUPDATES%"=="N" (
 @REM Footer
 ECHO [%DATE% %TIME%] END UNINSTALL WINDOWS UPDATES >> "%LOGFILE%"
 ECHO   DONE
+
+ENDLOCAL
