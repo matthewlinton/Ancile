@@ -1,5 +1,7 @@
 @REM disable_Services - Disable Windows services
 
+SETLOCAL
+
 @REM COnfiguration
 SET PLUGINNAME=disable_Services
 SET PLUGINVERSION=1.1
@@ -45,3 +47,5 @@ IF "%DISABLESERVICES%"=="N" (
 @REM Footer
 ECHO [%DATE% %TIME%] END DISABLE SERVICES >> "%LOGFILE%"
 ECHO   DONE
+
+ENDLOCAL

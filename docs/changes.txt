@@ -1,3 +1,32 @@
+v1.9
+	Misc changes to various scripts
+	Created stand alone "debuginfo.cmd" in "lib" to help debug issues.
+	Added SETLOCAL restrictions to all default plugins
+	Added SETLOCAL and ENDLOCAL to Example script
+	syncwindowstime now starts Windows Time service delayed
+	syncwindowstime now skipped when not connected to the internet
+	automaticupdates is now skipped when not connected to the internet
+	added NETCONNECTED option in config.ini
+	Ancile now checks for an internet connection
+	Removed takeown option "/D y" in disable_WINXupdate (errors on some systems)
+	Removed takeown option "/D y" in disable_MSDT (errors on some systems)
+	Added Ancile dependency check to makerestorepoint
+	Added Ancile dependency check to modifyservices
+	Added Ancile dependency check to registrykeyownership
+	Added Ancile dependency check to modifytasks
+	Added Ancile dependency check to syncwindowstime
+	Updated ExamplePlugin to include sanity check
+	Updated ExamplePlugin to include service check
+	Modified modify_WINFirewall to check if Windows Firewall is running
+	Minor tweaks to "ancile.cmd"
+	Enable debug logging by default when check admin is disabled
+	Added logging for CHECKADMIN setting
+	Added undocumented ability to disable Admin check "CHECKADMIN=N" in config file
+	Moved admin check to later in the process
+	syncwindowstime now does a better job of catching errors
+	Removed unnecessary code in syncwindowstime.
+	Added User configuration "NTPSERVERS" for Windows NTP sync
+	
 v1.8
 	Added DELETE option to "disable_Services"
 	Added Update file for modify_Hosts (Data now maintained in the Ancile_Updates project)

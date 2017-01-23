@@ -5,6 +5,14 @@
 @REM "ANCERRLVL"
 @REM "LOGFILE"
 
+@REM Dependencies
+IF NOT "%APPNAME%"=="Ancile" (
+	ECHO ERROR: Modify Services is meant to be launched by Ancile, and will not run as a stand alone script.
+	ECHO Press any key to exit ...
+	PAUSE >nul 2>&1
+	EXIT
+)
+
 @REM make sure the file exists
 IF NOT EXIST "%~2" (
 	@REM make sure the file exists

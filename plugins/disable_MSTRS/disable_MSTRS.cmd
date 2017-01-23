@@ -1,5 +1,7 @@
 @REM Disable Microsoft Telemetry Reporting Services
 
+SETLOCAL
+
 @REM Configuration
 SET PLUGINNAME=disable_MSTRS
 SET PLUGINVERSION=1.1
@@ -17,6 +19,8 @@ IF NOT "%APPNAME%"=="Ancile" (
 ECHO [%DATE% %TIME%] BEGIN DISABLE MICROSOFT TELEMETRY REPORTING SERVICE PLUGIN >> "%LOGFILE%"
 ECHO * Disable MS Telemetry reporting service ...
 
+SETLOCAL EnableDelayedExpansion
+
 @REM Begin
 IF "%DISABLEMSTRS%"=="N" (
 	@REM Script Disabled.
@@ -28,31 +32,35 @@ IF "%DISABLEMSTRS%"=="N" (
 	ECHO Modifying Windows Service >> "%LOGFILE%"
 	ECHO   Modifying Windows Service
 	
-	SET key=HKEY_LOCAL_MACHINE\SOFTWARE\policies\microsoft\windows\datacollection
-	reg ADD "%rkey%" /f /t reg_dword /v allowtelemetry /d 0 >> "%LOGFILE%" 2>&1
+	SET rkey=HKEY_LOCAL_MACHINE\SOFTWARE\policies\microsoft\windows\datacollection
+	reg ADD "!rkey!" /f /t reg_dword /v allowtelemetry /d 0 >> "%LOGFILE%" 2>&1
 
-	SET key=HKEY_LOCAL_MACHINE\SOFTWARE\policies\microsoft\windows\scripteddiagnosticsprovider\policy
-	reg ADD "%rkey%" /f /t reg_dword /v enablequeryremoteserver /d 0 >> "%LOGFILE%" 2>&1
+	SET rkey=HKEY_LOCAL_MACHINE\SOFTWARE\policies\microsoft\windows\scripteddiagnosticsprovider\policy
+	reg ADD "!rkey!" /f /t reg_dword /v enablequeryremoteserver /d 0 >> "%LOGFILE%" 2>&1
 	
 	@REM Modify MS Office 2010 registry entries
 	ECHO Modifying MS Office 2013 >> "%LOGFILE%"
 	ECHO   Modifying MS Office 2013
 	
 	SET rkey=HKEY_CURRENT_USER\SOFTWARE\policies\microsoft\office\15.0\osm
-	reg ADD "%rkey%" /f /t reg_dword /v enablelogging /d 0 >> "%LOGFILE%" 2>&1
-	reg ADD "%rkey%" /f /t reg_dword /v enablefileobfuscation /d 1 >> "%LOGFILE%" 2>&1
-	reg ADD "%rkey%" /f /t reg_dword /v enableupload /d 0 >> "%LOGFILE%" 2>&1
+	reg ADD "!rkey!" /f /t reg_dword /v enablelogging /d 0 >> "%LOGFILE%" 2>&1
+	reg ADD "!rkey!" /f /t reg_dword /v enablefileobfuscation /d 1 >> "%LOGFILE%" 2>&1
+	reg ADD "!rkey!" /f /t reg_dword /v enableupload /d 0 >> "%LOGFILE%" 2>&1
 
 	@REM Modify MS Office registry entries
 	ECHO Modifying MS Office 2016 >> "%LOGFILE%"
 	ECHO   Modifying MS Office 2016
 	
 	SET key=HKEY_CURRENT_USER\SOFTWARE\policies\microsoft\office\16.0\osm
-	reg ADD "%rkey%" /f /t reg_dword /v enablelogging /d 0 >> "%LOGFILE%" 2>&1
-	reg ADD "%rkey%" /f /t reg_dword /v enablefileobfuscation /d 1 >> "%LOGFILE%" 2>&1
-	reg ADD "%rkey%" /f /t reg_dword /v enableupload /d 0 >> "%LOGFILE%" 2>&1
+	reg ADD "!rkey!" /f /t reg_dword /v enablelogging /d 0 >> "%LOGFILE%" 2>&1
+	reg ADD "!rkey!" /f /t reg_dword /v enablefileobfuscation /d 1 >> "%LOGFILE%" 2>&1
+	reg ADD "!rkey!" /f /t reg_dword /v enableupload /d 0 >> "%LOGFILE%" 2>&1
 )
+
+SETLOCAL DisableDelayedExpansion
 
 @REM Footer
 ECHO [%DATE% %TIME%] END DISABLE MICROSOFT TELEMETRY REPORTING SERVICE PLUGIN >> "%LOGFILE%"
 ECHO   DONE
+
+ENDLOCAL

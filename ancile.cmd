@@ -5,7 +5,7 @@
 :INIT
 @REM Configure the default environment
 SET APPNAME=Ancile
-SET VERSION=1.8
+SET VERSION=1.9
 
 @REM Make sure the path variable contians everything we need
 SET PATH=%PATH%;%SYSTEMROOT%;%SYSTEMROOT%\system32;%SYSTEMROOT%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\
@@ -25,6 +25,9 @@ SET LOGFILE=%CURRDIR%%APPNAME%-%VERSION%_%UNIDATE%.log
 SET SYSARCH=32
 wmic os get osarchitecture 2>&1|findstr /I 64-bit >nul 2>&1 && SET SYSARCH=64
 
+@REM Set Ancile error level
+SET ANCERRLVL=0
+
 @REM Load user environment configuration
 SET USERCONFIG=%CURRDIR%config.ini
 
@@ -34,6 +37,7 @@ IF EXIST "%USERCONFIG%" (
 	)
 ) ELSE (
 	ECHO User config "%USERCONFIG%" does not exist. Using default configuration.
+	SET /A ANCERRLVL+=1
 )
 
 @REM Set the OS version
@@ -45,27 +49,21 @@ SET PATH=%PATH%;%LIBDIR%
 @REM create the temp directory
 IF NOT EXIST "%TEMPDIR%" MKDIR "%TEMPDIR%" >nul 2>&1
 
-@REM Set Ancile error level
-SET ANCERRLVL=0
-
 :BEGIN
 ECHO Starting %APPNAME% v%VERSION%
 IF "%DEBUG%"=="Y" ECHO Debugging Enabled
 ECHO.
-
-@REM Make sure we're running as an administrator
-net session >nul 2>&1
-IF %ERRORLEVEL% NEQ 0 ECHO This script requires Administrative privileges. Exiting. & PAUSE & EXIT 1
 
 @REM Make sure that the directory we're logging to exists
 FOR %%i IN ("%LOGFILE%") DO (
 	IF NOT EXIST "%%~di%%~pi" (
 		ECHO Logging directory "%%~di%%~pi" does not exist.
 		ECHO Please make sure the path is correct.
-		SET /A ANCERRLVL=ANCERRLVL+1
-		GOTO ERRCHK
+		SET /A ANCERRLVL+=1
+		GOTO ERRORCHECK
 	)
 )
+
 
 :MAIN
 @REM Begin Logging
@@ -74,14 +72,54 @@ ECHO [%DATE% %TIME%] Created by Matthew Linton >> "%LOGFILE%"
 ECHO [%DATE% %TIME%] https://bitbucket.org/matthewlinton/ancile/ >> "%LOGFILE%"
 IF "%DEBUG%"=="Y" ECHO [%DATE% %TIME%] Debugging Enabled >> "%LOGFILE%"
 ECHO [%DATE% %TIME%] ########################################################## >> "%LOGFILE%"
-IF NOT ".%IDSTRING%"=="." ECHO %IDSTRING%>> "%LOGFILE%"
+IF NOT "%IDSTRING%"=="" ECHO %IDSTRING%>> "%LOGFILE%"
+
+@REM Make sure we're running as an administrator
+net session >nul 2>&1
+IF NOT "%CHECKADMIN%"=="N" (
+	IF %ERRORLEVEL% NEQ 0 (
+		ECHO FATAL ERROR: User does not have Administrative rights. >> "%LOGFILE%"
+		whoami /all >> "%LOGFILE%" 2>&1
+		ECHO This script requires Administrative privileges.
+		ECHO.
+		SET /A ANCERRLVL+=1
+		GOTO ERRORCHECK
+	)
+) ELSE (
+	ECHO Admin check disabled. Enabling Debug by default.
+	ECHO WARNING: User has disabled Admin Check. Enabling Debug. >> "%LOGFILE%"
+	SET DEBUG=Y
+)
 
 @REM Log System information when Debugging
 IF "%DEBUG%"=="Y" (
 	ECHO Collecting System Information
+	ECHO %0 >> "%LOGFILE%"
+	DIR "%CURRDIR%" >> "%LOGFILE%"
+	whoami /all >> "%LOGFILE%" 2>&1
 	systeminfo >> "%LOGFILE%"
 	SET >> "%LOGFILE%"
 	powershell -executionpolicy remotesigned -Command $PSVersionTable >> "%LOGFILE%"
+)
+
+@REM Check to see if we're connected to the internet
+ping -n 1 bitbucket.org >nul 2>&1
+
+IF "%NETCONNECTED%"=="" (
+	ECHO Checking Network Connection: >> "%LOGFILE%"
+	
+	IF %ERRORLEVEL% NEQ 0 (
+		ECHO Unable to connect to the internet >> "%LOGFILE%"
+		ECHO Network Connection Not Detected
+		tracert bitbucket.org >> "%LOGFILE%" 2>&1
+		SET NETCONNECTED=0
+		SET /A ANCERRLVL+=1
+	) ELSE (
+		ECHO Network Connection Detected >> "%LOGFILE%"
+		SET NETCONNECTED=1
+	)
+) ELSE (
+	ECHO NETCONNECTED manually set "%NETCONNECTED%" >> "%LOGFILE%"
 )
 
 :SYSPREP
@@ -116,7 +154,7 @@ FOR /D %%i IN ("%SCRIPTDIR%\*.*") DO (
 	)
 )
 
-:ERRCHK
+:ERRORCHECK
 @REM Check for error condition
 IF EXIST "%LOGFILE%" ECHO [%DATE% %TIME%] ########################################################## >> "%LOGFILE%"
 IF %ANCERRLVL% GTR 0 GOTO ENDFAIL

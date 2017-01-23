@@ -1,5 +1,7 @@
 @REM disable_MSAEP - Disable Microsoft's Windows Media Center Telemetry data collection
 
+SETLOCAL
+
 @REM Configuration
 SET PLUGINNAME=disable_MSWMC
 SET PLUGINVERSION=1.0
@@ -32,3 +34,5 @@ IF "%DISABLEMSWMC%"=="N" (
 @REM Footer
 ECHO [%DATE% %TIME%] END DISABLE MICROSOFT WINDOWS MEDIA CENTER TELEMETRY PLUGIN >> "%LOGFILE%"
 ECHO   DONE
+
+ENDLOCAL

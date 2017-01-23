@@ -1,5 +1,7 @@
 @REM disable_MSSpyNet - Disable Microsoft Spynet. Set Registry keys to unenroll you from spynet reporting
 
+SETLOCAL
+
 @REM Configuration
 SET PLUGINNAME=disable_MSSpyNet
 SET PLUGINVERSION=1.1
@@ -17,6 +19,8 @@ IF NOT "%APPNAME%"=="Ancile" (
 ECHO [%DATE% %TIME%] BEGIN DISABLE MICROSOFT SPYNET PLUGIN >> "%LOGFILE%"
 ECHO * Disable MS SpyNet ...
 
+SETLOCAL EnableDelayedExpansion
+
 @REM Begin
 IF "%DISABLEMSSPYNET%"=="N" (
 	ECHO Skipping Disable Microsoft SpyNet >> "%LOGFILE%"
@@ -24,10 +28,14 @@ IF "%DISABLEMSSPYNET%"=="N" (
 ) ELSE (
 	ECHO   Modifying Registry
 	SET rkey=HKEY_LOCAL_MACHINE\SOFTWARE\microsoft\windows defender\spynet
-	reg ADD "%rkey%" /f /t reg_dword /v spynetreporting /d 0 >> "%LOGFILE%" 2>&1
-	reg ADD "%rkey%" /f /t reg_dword /v submitsamplesconsent /d 0 >> "%LOGFILE%" 2>&1
+	reg ADD "!rkey!" /f /t reg_dword /v spynetreporting /d 0 >> "%LOGFILE%" 2>&1
+	reg ADD "!rkey!" /f /t reg_dword /v submitsamplesconsent /d 0 >> "%LOGFILE%" 2>&1
 )
+
+SETLOCAL DisableDelayedExpansion
 
 @REM Footer
 ECHO [%DATE% %TIME%] END DISABLE MICROSOFT SPYNET PLUGIN >> "%LOGFILE%"
 ECHO   DONE
+
+ENDLOCAL

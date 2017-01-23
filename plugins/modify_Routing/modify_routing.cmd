@@ -1,5 +1,7 @@
 @REM modify_Routing - Modify the routing table with blocked IPs
 
+SETLOCAL
+
 @REM Configuration
 SET PLUGINNAME=modify_Routing
 SET PLUGINVERSION=1.1
@@ -45,3 +47,5 @@ IF "%MODIFYROUTES%"=="N" (
 @REM Footer
 ECHO [%DATE% %TIME%] END ROUTING TABLE MODIFICATION >> "%LOGFILE%"
 ECHO   DONE
+
+ENDLOCAL

@@ -3,6 +3,14 @@
 SET KEYFILES=%DATADIR%\registrykeyownership\*.lst
 SET BINSETACL=%LIBDIR%\setacl-%SYSARCH%.exe
 
+@REM Dependencies
+IF NOT "%APPNAME%"=="Ancile" (
+	ECHO ERROR: Registry Key Ownership is meant to be launched by Ancile, and will not run as a stand alone script.
+	ECHO Press any key to exit ...
+	PAUSE >nul 2>&1
+	EXIT
+)
+
 ECHO [%DATE% %TIME%] BEGIN REGISTRY KEY OWNERSHIP >> "%LOGFILE%"
 ECHO Modifying registry key ownership
 

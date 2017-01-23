@@ -1,10 +1,10 @@
 @REM modify_WINFirewall - Create rules for the windows firewall to block hosts.
 
-Setlocal EnableDelayedExpansion
+SETLOCAL
 
 @REM Configuration
 SET PLUGINNAME=modify_WINFirewall
-SET PLUGINVERSION=1.1
+SET PLUGINVERSION=1.2
 SET PLUGINDIR=%SCRIPTDIR%\%PLUGINNAME%
 
 SET IPLISTS=%DATADIR%\%PLUGINNAME%\*.lst
@@ -19,12 +19,24 @@ IF NOT "%APPNAME%"=="Ancile" (
 	EXIT
 )
 
+@REM Check to see if Windows Firewall is running
+SET _firewallrunning=N
+sc query MpsSvc 2>&1 | findstr /I RUNNING >nul 2>&1 && SET _firewallrunning=Y
+IF "%_firewallrunning%"=="N" SET MODIFYWINFIREWALL=N
+
 @REM Header
 ECHO [%DATE% %TIME%] BEGIN FIREWALL MODIFICATION >> "%LOGFILE%"
 ECHO * Modifying Windows Firewall ...
 
+SETLOCAL EnableDelayedExpansion
+
 @REM Main
 IF "%MODIFYWINFIREWALL%"=="N" (
+	IF "%_firewallrunning%"=="N" (
+		ECHO Windows Firewall has been disabled >> "%LOGFILE%"
+		ECHO   Windows Firewall has been disabled
+	)
+	
 	ECHO Skipping modification of Windows firewall >> "%LOGFILE%"
 	ECHO   Skipping Windows firewall modification
 ) ELSE (
@@ -54,8 +66,10 @@ IF "%MODIFYWINFIREWALL%"=="N" (
 	netsh advfirewall firewall add rule name="%RULENAME%" dir=out action=block remoteip=!ipaddrlist! >> "%LOGFILE%" 2>&1
 )
 
+SETLOCAL DisableDelayedExpansion
+
 @REM Footer
 ECHO [%DATE% %TIME%] END FIREWALL MODIFICATION >> "%LOGFILE%"
 ECHO   DONE
 
-Setlocal DisableDelayedExpansion
+ENDLOCAL

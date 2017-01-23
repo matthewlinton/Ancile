@@ -1,6 +1,6 @@
 @REM modify_Hosts - Modify the hosts file
 
-Setlocal EnableDelayedExpansion
+SETLOCAL
 
 @REM Configuration
 SET PLUGINNAME=modify_Hosts
@@ -31,6 +31,8 @@ IF NOT "%APPNAME%"=="Ancile" (
 ECHO [%DATE% %TIME%] BEGIN HOST FILE MODIFICATION >> "%LOGFILE%"
 ECHO * Modifying hosts File ...
 ECHO   This may take a long time. Please be patient.
+
+SETLOCAL EnableDelayedExpansion
 
 @REM Main
 IF "%MODIFYHOSTS%"=="N" (
@@ -88,8 +90,10 @@ IF "%MODIFYHOSTS%"=="N" (
 	attrib +R "%HOSTSFILE%"
 )
 
+SETLOCAL DisableDelayedExpansion
+
 @REM Footer
 ECHO [%DATE% %TIME%] END HOST FILE MODIFICATION >> "%LOGFILE%"
 ECHO   DONE
 
-Setlocal DisableDelayedExpansion
+ENDLOCAL

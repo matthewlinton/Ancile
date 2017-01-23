@@ -1,5 +1,7 @@
 @REM Disable Microsoft Windows Error Reporting
 
+SETLOCAL
+
 @REM Configuration
 SET PLUGINNAME=disable_MSWER
 SET PLUGINVERSION=1.1
@@ -18,7 +20,7 @@ IF NOT "%APPNAME%"=="Ancile" (
 ECHO [%DATE% %TIME%] BEGIN DISABLE MS WINDOWS ERROR REPORTING PLUGIN >> "%LOGFILE%"
 ECHO * Disable Microsoft Windows Error Reporting ...
 
-Setlocal EnableDelayedExpansion
+SETLOCAL EnableDelayedExpansion
 
 @REM Main
 IF "%DISABLEMSWER%"=="N" (
@@ -43,8 +45,10 @@ IF "%DISABLEMSWER%"=="N" (
 	reg ADD "!rkey!" /f /t reg_dword /v Disabled /d 1 >> "%LOGFILE%" 2>&1
 )
 
-Setlocal DisableDelayedExpansion
+SETLOCAL DisableDelayedExpansion
 
 @REM Footer
 ECHO [%DATE% %TIME%] END DISABLE MS WINDOWS ERROR REPORTING PLUGIN >> "%LOGFILE%"
 ECHO   DONE
+
+ENDLOCAL
