@@ -1,5 +1,0 @@
-# Disable Microsoft Windows Error Reporting
-# The following registry keys are modified by the disable_MSWER plugin
-
-HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\PCHealth\ErrorReporting
-HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Windows Error Reporting

@@ -1,5 +1,0 @@
-# Disable Microsoft Customer Experience Improvement Program
-# The following registry keys are modified by the disable_MSCEIP plugin
-
-HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Messenger\Client
-HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\SQMClient\Windows

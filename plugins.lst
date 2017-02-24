@@ -1,0 +1,19 @@
+# This is a list of plugins that will be imported into the Ancile release
+
+https://matthewlinton@bitbucket.org/ancile_development/ancileplugin_tasks.git
+https://matthewlinton@bitbucket.org/ancile_development/ancileplugin_services.git
+https://matthewlinton@bitbucket.org/ancile_development/ancileplugin_updates.git
+
+https://matthewlinton@bitbucket.org/ancile_development/ancileplugin_internetexplorer.git
+https://matthewlinton@bitbucket.org/ancile_development/ancileplugin_msaep.git
+https://matthewlinton@bitbucket.org/ancile_development/ancileplugin_msceip.git
+https://matthewlinton@bitbucket.org/ancile_development/ancileplugin_msdt.git
+https://matthewlinton@bitbucket.org/ancile_development/ancileplugin_msskydrive.git
+https://matthewlinton@bitbucket.org/ancile_development/ancileplugin_msspynet.git
+https://matthewlinton@bitbucket.org/ancile_development/ancileplugin_mstrs.git
+https://matthewlinton@bitbucket.org/ancile_development/ancileplugin_mswer.git
+https://matthewlinton@bitbucket.org/ancile_development/ancileplugin_mswifisense.git
+https://matthewlinton@bitbucket.org/ancile_development/ancileplugin_mswmc.git
+https://matthewlinton@bitbucket.org/ancile_development/ancileplugin_other.git
+https://matthewlinton@bitbucket.org/ancile_development/ancileplugin_windowsupdate.git
+

@@ -1,7 +1,0 @@
-# Automatic Updates for the modify_Routing plugin
-# File is in the format:
-# <Target Filename><tab><tab><URL>
-#
-# Lines starting with a "#" are comments and will be ignored.
-
-https://bitbucket.org/matthewlinton/ancile_updates/downloads/modify_Routing.data.zip
