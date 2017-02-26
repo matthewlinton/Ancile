@@ -1,4 +1,4 @@
-# Ancile Release(https://bitbucket.org/ancile_development/ancile/downloads/)
+# Ancile Official Release(https://bitbucket.org/ancile_development/ancile/downloads/)
 Ancile for Windows attempts to block all Windows spying and unwanted upgrades.
 
 For more information go to https://voat.co/v/ancile
@@ -15,7 +15,7 @@ For more information go to https://voat.co/v/ancile
 *  Disable the Windows 10 forced update
 *  Remove Microsoft's diagnostics tracking
 *  Hide/Uninstall unwanted Windows updates
-*  Add 3rd party plugins
+*  Add 3rd party plug-ins
 
 ## Instructions
 Ancile does not require installation and can be run directly from within it's parent folder.

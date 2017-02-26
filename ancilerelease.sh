@@ -1,5 +1,6 @@
 #!/bin/sh
 # ancilerelease.sh - Build the latest release of Ancile using Ancile_Core and all approved plugins
+#       This script requires that GIT be installed on your system
 
 SCRIPTNAME='AncileRelease'
 SCRIPTVERSION='1.3'
@@ -13,7 +14,8 @@ mkdir -p "$BASEDIR"
 #### Download Ancile Core #####################################################
 git -C "$BASEDIR/" clone https://matthewlinton@bitbucket.org/ancile_development/ancile_core.git
 
-ANCILEDIR="$BASEDIR/Ancile_$(head "$BASEDIR/ancile_core/ancile.cmd" | grep VERSION= | sed 's/.*=//')"
+ANCILERELEASE="Ancile_$(head "$BASEDIR/ancile_core/ancile.cmd" | grep VERSION= | sed 's/.*=//')"
+ANCILEDIR="$BASEDIR/$ANCILERELEASE"
 mv "$BASEDIR/ancile_core" "$ANCILEDIR"
 
 mkdir -p "$ANCILEDIR/docs/AncileCore"
@@ -56,3 +58,8 @@ cp docs/release.README.md "$ANCILEDIR/README.md"
 #### Clean the Ancile directory ###############################################
 find "$BASEDIR/" -iname .git -exec rm -rf {} \;
 find "$BASEDIR/" -iname .gitignore -exec rm -rf {} \;
+
+#### Create a zip archive #####################################################
+pushd "$BASEDIR/"
+zip -r "$ANCILERELEASE.zip" "$ANCILERELEASE"
+popd
