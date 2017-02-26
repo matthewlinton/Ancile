@@ -31,21 +31,17 @@ Ancile does not require installation and can be run directly from within it's pa
 ### Configuration File
 Some aspects of Ancile can be configured using the "config.ini" file in the root directory. This allows you to customize some of Ancile's behavior. All Ancile configuration options are outlined within the config file itself.
 
-Some plugins also have configuration options. See the README file contained in the individual plugin directories for more information.
+Some plugins also have configuration options. See the "README.md" file contained in the individual plugin directories for more information.
 
 ### Data Folder
-The data folder contains various configuration information for Ancile and its plugins. You can modify the behavior of some of these by adding or removing the correct configuration options within the data folders. For each script, see the README file for more information
+The data folder contains various configuration information for Ancile and its plugins. You can modify the behavior of some of these by adding or removing the correct configuration options within the data folders. For each script, see the "README.md" files for each plugin for more information.
 
 **WARNING:** Incorrect modifications to any of these files may break Ancile and could potentially damage your system. Do not make any modifications to these files or folders unless you know what you're doing.
 
 ### Plugins
-Users can create their own plugins for ancile. See "scripts\exampleplugin" for more information on plugins.
+Almost all of Ancile's functionality is created by adding plugins. THe goal of the default collection of plugins is to stop Windows Telemetry spying, but Ancile can be enhanced by adding third party plugins.
 
-## More Information
-For more information:
-
-* Check out the README.txt files included for each plugin.
-* go to https://voat.co/v/ancile
+Users can create their own plugins for Ancile. See "https://bitbucket.org/ancile_development/ancileplugin_example" for more information on plugins.
 
 ## License
 This code is not covered under any license. You are welcome to modify and share this code as you please.
@@ -56,26 +52,7 @@ Use Ancile at your own risk!
 Ancile, to the best of my knowledge, does not contain any harmful or malicious code. I assume no liability for any issues that may occur from the use of this software. Please take the time to understand how this code will interact with your system before using it.
 
 ## Resources
-Ancile uses the following third party resources to perform specific tasks.
-
-### Microsoft
-* Toolkit to Disable Automatic Delivery of Internet Explorer 7 (https://www.microsoft.com/en-us/download/details.aspx?id=13428)
-* Toolkit to Disable Automatic Delivery of Internet Explorer 8 (https://technet.microsoft.com/en-us/browser/dd365124.aspx)
-* Toolkit to Disable Automatic Delivery of Internet Explorer 9 (https://technet.microsoft.com/en-us/browser/gg615600.aspx)
-* Toolkit to Disable Automatic Delivery of Internet Explorer 10 (https://technet.microsoft.com/en-us/browser/jj898509.aspx)
-* Toolkit to Disable Automatic Delivery of Internet Explorer 11 (https://www.microsoft.com/en-us/download/details.aspx?id=40722)
-
-### WindowsSpyBlocker
-Some host names and IP addresses were provided by crazy-max's WindowsSpyBlockerScript (https://github.com/crazy-max/WindowsSpyBlocker).
-
-### UninstallAndHideUpdates.ps1
-UninstallAndHideUpdates.ps1 is a powershell script written by Mark Berry (MCB Systems) to uninstall and hide updates removed by Ancile. Minor modifications have been made to meet Ancile's needs.
-
-### Synchronous-ZipAndUnzip.psm1
-Synchronous-ZipAndUnzip.psm1 is a powershell module created by Daniel Schroeder to add Zip and un-Zip functionality to powershell 2.0 environments.
-
-### Other
-* setacl-**.exe (https://helgeklein.com/setacl/) : Modify ACL permissions on files.
+Ancile and it's plugins may use various third party resources to function. For more information, please review the readme documents that are located in the "docs" directory.
 
 ## Feedback
 Please direct all feedback to the Voat subverse (https://voat.co/v/ancile/).
