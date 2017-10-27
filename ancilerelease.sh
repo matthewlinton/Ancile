@@ -12,7 +12,7 @@ BASEDIR='release'
 mkdir -p "$BASEDIR"
 
 #### Download Ancile Core #####################################################
-git -C "$BASEDIR/" clone https://matthewlinton@bitbucket.org/ancile_development/ancile_core.git
+git -C "$BASEDIR/" clone https://bitbucket.org/ancile_development/ancile_core.git
 
 ANCILERELEASE="Ancile_$(head "$BASEDIR/ancile_core/ancile.cmd" | grep VERSION= | sed 's/.*=//')"
 ANCILEDIR="$BASEDIR/$ANCILERELEASE"

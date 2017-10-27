@@ -62,7 +62,7 @@ If you find a bug, please take the time to report it (https://bitbucket.org/matt
 ## Thanks
 ### A special thanks to everyone that helped to improve Ancile
 #### Partners
-Ilja, Mixplate, Scalar
+bl0ck0ut, Ilja, Mixplate, Scalar
 
 #### Contributors
 aekotra, HeavyBeefCurtain, Jean Belga, Linda Meyer, marineIguana, Markus, noxxius88, Sam, TiagoTiago, ucantdothatontvew
